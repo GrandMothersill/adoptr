@@ -12,7 +12,7 @@ app.listen(port, function () {
 
 app.get("/", (req, res) => {
     // res.sendFile(__dirname + "/index.html");
-    res.status(200).send("hello not available NO uh")
+    res.status(200).send("we are working on this")
 });
 
 

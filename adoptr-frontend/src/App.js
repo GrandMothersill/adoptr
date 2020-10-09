@@ -1,8 +1,11 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import UserRegistration from "./userRegistration.js";
 
 function App() {
+
+
+
   return (
     <div className="App">
       <header className="App-header">
@@ -13,7 +16,10 @@ function App() {
           Made by Erica Sun and Graham Mothersill
         </p>
 
+        <UserRegistration />
+
       </header>
+
     </div>
   );
 }
