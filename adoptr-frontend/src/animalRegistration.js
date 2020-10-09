@@ -16,8 +16,6 @@ function AnimalRegistration(props) {
             age: age
         }
 
-        console.log(registrationData);
-
         axios
             .post("http://localhost:3001/animals", registrationData)
             .then((response) => {

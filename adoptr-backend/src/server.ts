@@ -38,7 +38,6 @@ MongoClient.connect(
         });
 
         app.post("/animals", (req, res) => {
-            console.log("HEY REQ.BODY POST", req.body)
             animalsCollection.insertOne(req.body)
                 .then(result => {
                     res.redirect('/animals');
