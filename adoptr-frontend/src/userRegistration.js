@@ -10,12 +10,21 @@ function UserRegistration(props) {
 
 
     const handleSubmit = (event) => {
-        console.log(`
-    Email: ${email}
-    Password: ${password}
-    First Name: ${firstName}
-    Last Name: ${lastName}
-  `);
+        const registrationData = {
+            email: email,
+            password: password,
+            first_name: firstName,
+            last_name: lastName
+        }
+
+        axios
+            .post("http://localhost:3001/users", registrationData)
+            .then((response) => {
+                console.log("FE response", response);
+            })
+            .catch((err) => {
+                alert(err);
+            });
 
         event.preventDefault();
     }

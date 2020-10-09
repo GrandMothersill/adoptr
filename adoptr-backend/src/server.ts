@@ -16,6 +16,7 @@ MongoClient.connect(
         console.log('Connected to Database');
         const db = client.db("adoptrdb");
         const animalsCollection = db.collection("animals");
+        const usersCollection = db.collection("users");
         app.use(cors());
         app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({ extended: true }));
@@ -41,6 +42,23 @@ MongoClient.connect(
             animalsCollection.insertOne(req.body)
                 .then(result => {
                     res.redirect('/animals');
+                })
+                .catch(error => console.log(error));
+        });
+
+        app.get("/users", (req, res) => {
+            db.collection("users").find().toArray()
+                .then(results => {
+                    // replace with html to send to front-end
+                    console.log("GET RESULTS", results)
+                })
+                .catch(error => console.error(error))
+        });
+
+        app.post("/users", (req, res) => {
+            usersCollection.insertOne(req.body)
+                .then(result => {
+                    res.redirect('/users');
                 })
                 .catch(error => console.log(error));
         });
