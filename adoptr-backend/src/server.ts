@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const MongoClient = require("mongodb").MongoClient;
+const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 3001
 // const connection_url = `mongodb+srv://adoptrdb:${process.env.MONGO_ATLAS_PW}@cluster0.jt8pq.mongodb.net/${process.env.MONGO_ATLAS_UN}?retryWrites=true&w=majority`
@@ -15,7 +16,8 @@ MongoClient.connect(
         console.log('Connected to Database');
         const db = client.db("adoptrdb");
         const animalsCollection = db.collection("animals");
-
+        app.use(cors());
+        app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({ extended: true }));
 
         app.listen(port, function () {
@@ -30,12 +32,13 @@ MongoClient.connect(
             db.collection("animals").find().toArray()
                 .then(results => {
                     // replace with html to send to front-end
-                    console.log(results)
+                    console.log("GET RESULTS", results)
                 })
                 .catch(error => console.error(error))
         });
 
         app.post("/animals", (req, res) => {
+            console.log("HEY REQ.BODY POST", req.body)
             animalsCollection.insertOne(req.body)
                 .then(result => {
                     res.redirect('/animals');

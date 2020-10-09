@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from "axios";
 
 function AnimalRegistration(props) {
 
@@ -8,12 +9,23 @@ function AnimalRegistration(props) {
     const [age, setAge] = useState("");
 
     const handleSubmit = (event) => {
-        console.log(`
-            Name: ${name}
-            Breed: ${breed}
-            Gender: ${gender}
-            Age: ${age}
-    `);
+        const registrationData = {
+            name: name,
+            breed: breed,
+            gender: gender,
+            age: age
+        }
+
+        console.log(registrationData);
+
+        axios
+            .post("http://localhost:3001/animals", registrationData)
+            .then((response) => {
+                console.log("FE response", response);
+            })
+            .catch((err) => {
+                alert(err);
+            });
 
         event.preventDefault();
     }
