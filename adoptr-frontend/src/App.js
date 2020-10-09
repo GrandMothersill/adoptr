@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useState } from 'react';
 import './App.css';
 import UserRegistration from "./userRegistration.js";
 import AnimalRegistration from "./animalRegistration.js";

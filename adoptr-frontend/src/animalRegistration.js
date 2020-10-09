@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import React, { useState } from 'react';
 
 function AnimalRegistration(props) {
 
@@ -21,7 +21,7 @@ function AnimalRegistration(props) {
     return (
 
         <form onSubmit={handleSubmit}>
-            <h1>Create Account</h1>
+            <h1>Create Animal</h1>
 
             <label>
                 Name
