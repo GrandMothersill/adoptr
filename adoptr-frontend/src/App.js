@@ -1,6 +1,7 @@
-import React from 'react';
+import * as React from 'react'
 import './App.css';
 import UserRegistration from "./userRegistration.js";
+import AnimalRegistration from "./animalRegistration.js";
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
         </p>
 
         <UserRegistration />
+        <AnimalRegistration />
 
       </header>
 

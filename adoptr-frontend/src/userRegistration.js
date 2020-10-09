@@ -1,11 +1,11 @@
-import React from 'react';
+import { React, useState } from 'react';
 
 function UserRegistration(props) {
 
-    const [email, setEmail] = React.useState("");
-    const [password, setPassword] = React.useState("");
-    const [firstName, setFirstName] = React.useState("");
-    const [lastName, setLastName] = React.useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
 
 
     const handleSubmit = (event) => {
