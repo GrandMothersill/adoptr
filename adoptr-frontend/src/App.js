@@ -14,9 +14,9 @@ function App() {
         <Nav />
         <Switch>
         <Route path= '/profiles' exact component={AnimalProfile}/>
-          <Route path = '/animals' exact component={AnimalRegistration}/>
-          <Route path = '/users' exact component={UserRegistration}/>
-          <Route path= '/' exact component={About}/>
+        <Route path = '/animals' exact component={AnimalRegistration}/>
+        <Route path = '/users' exact component={UserRegistration}/>
+        <Route path= '/' exact component={About}/>
         </Switch>
       </div>
     </Router>
