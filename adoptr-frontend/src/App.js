@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import './App.css';
-import UserRegistration from "./userRegistration.js";
-import AnimalRegistration from "./animalRegistration.js";
+import UserRegistration from "./components/userRegistration.js";
+import AnimalRegistration from "./components/animalRegistration.js";
 
 function App() {
-
-
-
   return (
     <div className="App">
       <header className="App-header">
@@ -21,7 +18,6 @@ function App() {
         <AnimalRegistration />
 
       </header>
-
     </div>
   );
 }
