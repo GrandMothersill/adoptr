@@ -5,11 +5,11 @@ const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 3001
 // const connection_url = `mongodb+srv://adoptrdb:${process.env.MONGO_ATLAS_PW}@cluster0.jt8pq.mongodb.net/${process.env.MONGO_ATLAS_UN}?retryWrites=true&w=majority`
+
+
+
+
 // process.env.WHATEVER - put pass and username in env for more security
-
-
-
-
 MongoClient.connect(
     "mongodb+srv://adoptrdb:adoptrdbpassword@cluster0.jt8pq.mongodb.net/adoptordb?retryWrites=true&w=majority", { useUnifiedTopology: true })
     .then(client => {
