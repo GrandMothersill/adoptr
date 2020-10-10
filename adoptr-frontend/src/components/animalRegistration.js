@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import axios from "axios";
 
 function AnimalRegistration(props) {
-
     const [name, setName] = useState("");
     const [breed, setBreed] = useState("");
     const [gender, setGender] = useState("");
     const [age, setAge] = useState("");
 
     const handleSubmit = (event) => {
+        event.preventDefault();
         const registrationData = {
             name: name,
             breed: breed,
@@ -24,59 +24,52 @@ function AnimalRegistration(props) {
             .catch((err) => {
                 alert(err);
             });
-
-        event.preventDefault();
     }
 
     return (
-
         <form onSubmit={handleSubmit}>
             <h1>Create Animal</h1>
-
             <label>
                 Name
-        <input
+                <input
                     name="name"
-                    type="name"
+                    type="text"
                     value={name}
                     onChange={e => setName(e.target.value)}
-                    required />
+                    required/>
             </label>
             <br></br>
             <label>
                 Breed
-        <input
+                <input
                     name="breed"
-                    type="breed"
+                    type="text"
                     value={breed}
                     onChange={e => setBreed(e.target.value)}
-                    required />
+                    required/>
             </label>
-
             <br></br>
             <label>
                 Gender
-        <input
+                <input
                     name="gender"
-                    type="gender"
+                    type="text"
                     value={gender}
                     onChange={e => setGender(e.target.value)}
-                    required />
+                    required/>
             </label>
             <br></br>
             <label>
                 Age
-        <input
+                <input
                     name="age"
-                    type="age"
+                    type="text"
                     value={age}
                     onChange={e => setAge(e.target.value)}
-                    required />
+                    required/>
             </label>
-
             <button>Submit</button>
         </form>
-
     );
 }
 

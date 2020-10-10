@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import axios from "axios";
 
 function UserRegistration(props) {
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
 
-
     const handleSubmit = (event) => {
+        event.preventDefault();
         const registrationData = {
             email: email,
             password: password,
@@ -25,59 +24,52 @@ function UserRegistration(props) {
             .catch((err) => {
                 alert(err);
             });
-
-        event.preventDefault();
     }
 
     return (
-
         <form onSubmit={handleSubmit}>
             <h1>Create Account</h1>
-
             <label>
                 First Name
-        <input
+                <input
                     name="firstName"
-                    type="firstName"
+                    type="text"
                     value={firstName}
                     onChange={e => setFirstName(e.target.value)}
-                    required />
+                    required/>
             </label>
             <br></br>
             <label>
                 Last Name
-        <input
+                <input
                     name="lastName"
-                    type="lastName"
+                    type="text"
                     value={lastName}
                     onChange={e => setLastName(e.target.value)}
-                    required />
+                    required/>
             </label>
-
             <br></br>
             <label>
-                Email:
-        <input
+                Email
+                <input
                     name="email"
                     type="email"
                     value={email}
                     onChange={e => setEmail(e.target.value)}
-                    required />
+                    required/>
             </label>
             <br></br>
             <label>
                 Password:
-        <input
+                <input
                     name="password"
                     type="password"
                     value={password}
                     onChange={e => setPassword(e.target.value)}
-                    required />
+                    required/>
             </label>
-
             <button>Submit</button>
         </form>
-
     );
 }
 

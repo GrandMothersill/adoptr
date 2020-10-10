@@ -33,7 +33,7 @@ MongoClient.connect(
             db.collection("animals").find().toArray()
                 .then(results => {
                     // replace with html to send to front-end
-                    console.log("GET RESULTS", results)
+                    res.send(results)
                 })
                 .catch(error => console.error(error))
         });
