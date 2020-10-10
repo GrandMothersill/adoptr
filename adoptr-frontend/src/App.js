@@ -1,24 +1,25 @@
 import React, { useState } from 'react';
 import './App.css';
-import UserRegistration from "./components/userRegistration.js";
-import AnimalRegistration from "./components/animalRegistration.js";
+import UserRegistration from "./components/UserRegistration.js";
+import AnimalRegistration from "./components/AnimalRegistration.js";
+import Nav from "./components/Nav";
+import About from "./components/About"
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
+    <Router>
+      <div className="App">
+        <Nav />
+        <Switch>
+          <Route path = '/animals' exact component={AnimalRegistration}/>
+          <Route path = '/users' exact component={UserRegistration}/>
+          <Route path= '/' exact component={About}/>
+        </Switch>
+      </div>
+    </Router>
 
-        <p>
-          Some day this will be a tinder-style app for adopting and fostering pets.
-          <br></br>
-          Made by Erica Sun and Graham Mothersill
-        </p>
 
-        <UserRegistration />
-        <AnimalRegistration />
-
-      </header>
-    </div>
   );
 }
 
