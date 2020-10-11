@@ -12,6 +12,7 @@ function AnimalRegistration(props) {
     const [colour, setColour] = useState("");
     const [size, setSize] = useState("");
     const [spayedNeudered, setSpayedNeudered] = useState(false);
+    const [foster, setFoster] = useState(false);
 
     const handleSexChange = (event) => {
         const name = event.target.value;
@@ -27,6 +28,7 @@ function AnimalRegistration(props) {
             age: age,
             animal_photos: [animalPhoto],
             bio: bio,
+            foster: foster,
             breedAndInfo: {
                 breed: breed,
                 colour: colour,
@@ -155,6 +157,16 @@ function AnimalRegistration(props) {
                     type="checkbox"
                     checked={spayedNeudered}
                     onClick={() => setSpayedNeudered(!spayedNeudered)}
+                />
+            </label>
+            <br></br>
+            <label>
+                Fostering?
+                <input
+                    name="foster"
+                    type="checkbox"
+                    checked={foster}
+                    onClick={() => setFoster(!foster)}
                 />
             </label>
             <br></br>
