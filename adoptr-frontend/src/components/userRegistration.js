@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 import axios from "axios";
 
 function UserRegistration(props) {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [userPhoto, setUserPhoto] = useState("");
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const registrationData = {
-            email: email,
-            password: password,
             first_name: firstName,
             last_name: lastName,
+            email: email,
+            password: password,
             user_photo: userPhoto,
             rejected_animals: []
         }

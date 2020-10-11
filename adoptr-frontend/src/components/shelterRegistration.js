@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import axios from "axios";
 
 function ShelterRegistration(props) {
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [name, setName] = useState("");
-    const [phone, setPhone] = useState("");
     const [bio, setBio] = useState("");
+    const [phone, setPhone] = useState("");
     const [streetNumber, setStreetNumber] = useState("");
     const [street, setStreet] = useState("");
     const [city, setCity] = useState("");
@@ -16,21 +16,21 @@ function ShelterRegistration(props) {
     const handleSubmit = (event) => {
         event.preventDefault();
         const registrationData = {
+            name: name,
             email: email,
             password: password,
-            name: name,
-            phone: phone,
             bio: bio,
-            location: {
-                latitude: 200,
-                longitude: 100
-            },
+            phone: phone,
             address: {
                 street_number: streetNumber,
                 street: street,
                 city: city,
                 province: province,
                 postal_code: postalCode
+            },
+            location: {
+                latitude: 200,
+                longitude: 100
             }
         }
 
@@ -80,16 +80,6 @@ function ShelterRegistration(props) {
             </label>
             <br></br>
             <label>
-                Shelter Phone Number:
-                <input
-                    name="phone"
-                    type="phoneNumber"
-                    value={phone}
-                    onChange={e => setPhone(e.target.value)}
-                    required />
-            </label>
-            <br></br>
-            <label>
                 Shelter Bio:
                 <input
                     name="bio"
@@ -100,7 +90,17 @@ function ShelterRegistration(props) {
             </label>
             <br></br>
             <label>
-                Shelter Street Number:
+                Phone Number:
+                <input
+                    name="phone"
+                    type="phoneNumber"
+                    value={phone}
+                    onChange={e => setPhone(e.target.value)}
+                    required />
+            </label>
+            <br></br>
+            <label>
+                Street Number:
                 <input
                     name="street_number"
                     type="text"
@@ -110,7 +110,7 @@ function ShelterRegistration(props) {
             </label>
             <br></br>
             <label>
-                Shelter Street:
+                Street:
                 <input
                     name="street"
                     type="text"
@@ -120,7 +120,7 @@ function ShelterRegistration(props) {
             </label>
             <br></br>
             <label>
-                Shelter City:
+                City:
                 <input
                     name="city"
                     type="text"
@@ -130,7 +130,7 @@ function ShelterRegistration(props) {
             </label>
             <br></br>
             <label>
-                Shelter Province:
+                Province:
                 <input
                     name="province"
                     type="text"
@@ -140,7 +140,7 @@ function ShelterRegistration(props) {
             </label>
             <br></br>
             <label>
-                Shelter Postcal Code:
+                Postcal Code:
                 <input
                     name="address"
                     type="text"

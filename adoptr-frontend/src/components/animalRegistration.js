@@ -4,28 +4,42 @@ import axios from "axios";
 function AnimalRegistration(props) {
     const [name, setName] = useState("");
     const [species, setSpecies] = useState("");
-    const [gender, setGender] = useState("");
+    const [sex, setSex] = useState("");
     const [age, setAge] = useState("");
     const [animalPhoto, setAnimalPhoto] = useState("");
     const [bio, setBio] = useState("");
-    const [breedAndInfo, setBreedAndInfo] = useState("");
+    const [breed, setBreed] = useState("");
+    const [colour, setColour] = useState("");
+    const [size, setSize] = useState("");
+    const [spayedNeudered, setSpayedNeudered] = useState(false);
 
+    const handleSexChange = (event) => {
+        const name = event.target.value;
+        setSex(name);
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const registrationData = {
             name: name,
             species: species,
-            gender: gender,
+            sex: sex,
             age: age,
-            animal_photo: animalPhoto,
+            animal_photos: [animalPhoto],
             bio: bio,
-            breedAndInfo: breedAndInfo,
+            breedAndInfo: {
+                breed: breed,
+                colour: colour,
+                size: size,
+                spayedNeudered: spayedNeudered
+            },
             shelterInfo: {
                 shelter_id: 1,
                 shelter_name: "Warm Shelter"
             }
         }
+
+        console.log(registrationData)
 
         axios
             .post("http://localhost:3001/animals", registrationData)
@@ -61,13 +75,17 @@ function AnimalRegistration(props) {
             </label>
             <br></br>
             <label>
-                Gender
-                <input
-                    name="gender"
-                    type="text"
-                    value={gender}
-                    onChange={e => setGender(e.target.value)}
-                    required />
+                Sex
+                    <select
+                    name="sex"
+                    id="sex"
+                    name="sex"
+                    onChange={handleSexChange}
+                >
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
             </label>
             <br></br>
             <label>
@@ -91,7 +109,7 @@ function AnimalRegistration(props) {
             </label>
             <br></br>
             <label>
-                Shelter Bio:
+                Bio:
                 <input
                     name="bio"
                     type="text"
@@ -101,13 +119,43 @@ function AnimalRegistration(props) {
             </label>
             <br></br>
             <label>
-                Breed Info:
+                Breed:
                 <input
-                    name="breedAndInfo"
+                    name="breed"
                     type="text"
-                    value={breedAndInfo}
-                    onChange={e => setBreedAndInfo(e.target.value)}
+                    value={breed}
+                    onChange={e => setBreed(e.target.value)}
                     required />
+            </label>
+            <br></br>
+            <label>
+                Colour:
+                <input
+                    name="colour"
+                    type="text"
+                    value={colour}
+                    onChange={e => setColour(e.target.value)}
+                    required />
+            </label>
+            <br></br>
+            <label>
+                Size:
+                <input
+                    name="size"
+                    type="text"
+                    value={size}
+                    onChange={e => setSize(e.target.value)}
+                    required />
+            </label>
+            <br></br>
+            <label>
+                Spayed/Neudered?
+                <input
+                    name="spayedNeudered"
+                    type="checkbox"
+                    checked={spayedNeudered}
+                    onClick={() => setSpayedNeudered(!spayedNeudered)}
+                />
             </label>
             <br></br>
             <button>Submit</button>
