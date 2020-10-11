@@ -156,7 +156,7 @@ function AnimalRegistration(props) {
                     name="spayedNeudered"
                     type="checkbox"
                     checked={spayedNeudered}
-                    onClick={() => setSpayedNeudered(!spayedNeudered)}
+                    onChange={() => setSpayedNeudered(!spayedNeudered)}
                 />
             </label>
             <br></br>
@@ -166,7 +166,7 @@ function AnimalRegistration(props) {
                     name="foster"
                     type="checkbox"
                     checked={foster}
-                    onClick={() => setFoster(!foster)}
+                    onChange={() => setFoster(!foster)}
                 />
             </label>
             <br></br>
