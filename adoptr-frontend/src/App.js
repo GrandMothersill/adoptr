@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
-import UserRegistration from "./components/UserRegistration.js";
-import AnimalRegistration from "./components/AnimalRegistration.js";
+import UserRegistration from "./components/userRegistration.js";
+import AnimalRegistration from "./components/animalRegistration.js";
+import ShelterRegistration from "./components/shelterRegistration.js";
 import Nav from "./components/Nav";
 import About from "./components/About"
 import AnimalProfile from "./components/AnimalProfile"
@@ -13,10 +14,11 @@ function App() {
       <div className="App">
         <Nav />
         <Switch>
-        <Route path= '/profiles' exact component={AnimalProfile}/>
-        <Route path = '/animals' exact component={AnimalRegistration}/>
-        <Route path = '/users' exact component={UserRegistration}/>
-        <Route path= '/' exact component={About}/>
+          <Route path='/profiles' exact component={AnimalProfile} />
+          <Route path='/animals' exact component={AnimalRegistration} />
+          <Route path='/users' exact component={UserRegistration} />
+          <Route path='/shelters' exact component={ShelterRegistration} />
+          <Route path='/' exact component={About} />
         </Switch>
       </div>
     </Router>

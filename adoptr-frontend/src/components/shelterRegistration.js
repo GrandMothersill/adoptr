@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from "axios";
 
-function UserRegistration(props) {
+function ShelterRegistration(props) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [firstName, setFirstName] = useState("");
@@ -87,4 +87,4 @@ function UserRegistration(props) {
     );
 }
 
-export default UserRegistration;
+export default ShelterRegistration;
