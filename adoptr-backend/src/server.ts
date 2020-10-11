@@ -17,6 +17,7 @@ MongoClient.connect(
         const db = client.db("adoptrdb");
         const animalsCollection = db.collection("animals");
         const usersCollection = db.collection("users");
+        const sheltersCollection = db.collection("shelters");
         app.use(cors());
         app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({ extended: true }));
@@ -62,6 +63,30 @@ MongoClient.connect(
                 })
                 .catch(error => console.log(error));
         });
+
+
+
+
+
+        app.get("/shelters", (req, res) => {
+            db.collection("shelters").find().toArray()
+                .then(results => {
+                    // replace with html to send to front-end
+                    console.log("GET RESULTS", results)
+                })
+                .catch(error => console.error(error))
+        });
+
+        app.post("/shelters", (req, res) => {
+            sheltersCollection.insertOne(req.body)
+                .then(result => {
+                    res.redirect('/shelters');
+                })
+                .catch(error => console.log(error));
+        });
+
+
+
     })
     .catch(error => console.error(error));
 

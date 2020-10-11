@@ -3,17 +3,28 @@ import axios from "axios";
 
 function AnimalRegistration(props) {
     const [name, setName] = useState("");
-    const [breed, setBreed] = useState("");
+    const [species, setSpecies] = useState("");
     const [gender, setGender] = useState("");
     const [age, setAge] = useState("");
+    const [animalPhoto, setAnimalPhoto] = useState("");
+    const [bio, setBio] = useState("");
+    const [breedAndInfo, setBreedAndInfo] = useState("");
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const registrationData = {
             name: name,
-            breed: breed,
+            species: species,
             gender: gender,
-            age: age
+            age: age,
+            animal_photo: animalPhoto,
+            bio: bio,
+            breedAndInfo: breedAndInfo,
+            shelterInfo: {
+                shelter_id: 1,
+                shelter_name: "Warm Shelter"
+            }
         }
 
         axios
@@ -36,17 +47,17 @@ function AnimalRegistration(props) {
                     type="text"
                     value={name}
                     onChange={e => setName(e.target.value)}
-                    required/>
+                    required />
             </label>
             <br></br>
             <label>
-                Breed
+                Species
                 <input
-                    name="breed"
+                    name="species"
                     type="text"
-                    value={breed}
-                    onChange={e => setBreed(e.target.value)}
-                    required/>
+                    value={species}
+                    onChange={e => setSpecies(e.target.value)}
+                    required />
             </label>
             <br></br>
             <label>
@@ -56,7 +67,7 @@ function AnimalRegistration(props) {
                     type="text"
                     value={gender}
                     onChange={e => setGender(e.target.value)}
-                    required/>
+                    required />
             </label>
             <br></br>
             <label>
@@ -66,8 +77,39 @@ function AnimalRegistration(props) {
                     type="text"
                     value={age}
                     onChange={e => setAge(e.target.value)}
-                    required/>
+                    required />
             </label>
+            <br></br>
+            <label>
+                Animal Photo:
+                <input
+                    name="animalPhoto"
+                    type="text"
+                    value={animalPhoto}
+                    onChange={e => setAnimalPhoto(e.target.value)}
+                    required />
+            </label>
+            <br></br>
+            <label>
+                Shelter Bio:
+                <input
+                    name="bio"
+                    type="text"
+                    value={bio}
+                    onChange={e => setBio(e.target.value)}
+                    required />
+            </label>
+            <br></br>
+            <label>
+                Breed Info:
+                <input
+                    name="breedAndInfo"
+                    type="text"
+                    value={breedAndInfo}
+                    onChange={e => setBreedAndInfo(e.target.value)}
+                    required />
+            </label>
+            <br></br>
             <button>Submit</button>
         </form>
     );
