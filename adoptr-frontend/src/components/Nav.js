@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPaw } from '@fortawesome/free-solid-svg-icons'
 
 function Nav() {
   return (
     <nav>
-      <Link to="/" className="nav-link"><h3>Logo</h3></Link>
+      <Link to="/" className="nav-link"><h3>Adoptr  <FontAwesomeIcon icon={faPaw} /></h3></Link>
       <Link to="/" className="nav-link">About</Link>
       <Link to="/users" className="nav-link">Create New User Profile</Link>
       <Link to="/shelters" className="nav-link">Create New Shelter Profile</Link>
