@@ -1,5 +1,5 @@
 /// REFACTOR TO HERE LATER
-
+/// This is just a reference for now, will export a function later?
 
 var options = {
     enableHighAccuracy: true,

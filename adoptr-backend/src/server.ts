@@ -51,7 +51,7 @@ MongoClient.connect(
             db.collection("users").find().toArray()
                 .then(results => {
                     // replace with html to send to front-end
-                    console.log("GET RESULTS", results)
+                    console.log("GET USERS CALLED")
                 })
                 .catch(error => console.error(error))
         });
@@ -59,7 +59,7 @@ MongoClient.connect(
         app.post("/users", (req, res) => {
             usersCollection.insertOne(req.body)
                 .then(result => {
-                    res.redirect('/users');
+                    res.redirect('/');
                 })
                 .catch(error => console.log(error));
         });
@@ -72,7 +72,6 @@ MongoClient.connect(
             db.collection("shelters").find().toArray()
                 .then(results => {
                     // replace with html to send to front-end
-                    console.log("GET RESULTS", results)
                 })
                 .catch(error => console.error(error))
         });
@@ -93,4 +92,4 @@ MongoClient.connect(
 
 
 
-// npm run start:watch - to start server
+// npm run start:watch - to start server   

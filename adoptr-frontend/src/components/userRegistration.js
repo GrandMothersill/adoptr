@@ -22,11 +22,12 @@ function UserRegistration(props) {
         axios
             .post("http://localhost:3001/users", registrationData)
             .then((response) => {
-                console.log("FE response", response);
+                props.login(registrationData)
             })
             .catch((err) => {
                 alert(err);
             });
+
     }
 
     return (
@@ -82,6 +83,7 @@ function UserRegistration(props) {
                     required />
             </label>
             <br></br>
+
             <button>Submit</button>
         </form>
     );
