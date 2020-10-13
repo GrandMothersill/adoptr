@@ -12,8 +12,7 @@ function Nav(props) {
       <Link to="/shelters" className="nav-link">Create New Shelter Profile</Link>
       <Link to="/animals" className="nav-link">Create New Animal Profile</Link>
       <Link to="/profiles" className="nav-link">Profiles</Link>
-
-      {props.state.user.first_name ? <p>Logged in as: {props.state.user.first_name}</p> : <Link to="/users" className="nav-link">Login</Link>}
+      {props.state.user.first_name ? <p>Logged in as: {props.state.user.first_name}</p> : <Link to="/login" className="nav-link">Login</Link>}
       <button onClick={() => props.logout({})}>Logout</button>
     </nav>
   )
