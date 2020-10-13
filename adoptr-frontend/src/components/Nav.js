@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 
 function Nav() {
@@ -12,6 +12,6 @@ function Nav() {
       <Link to="/profiles" className="nav-link">Profiles</Link>
     </nav>
   )
-}
+};
 
 export default Nav;

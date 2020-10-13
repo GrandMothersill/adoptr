@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
 
 function ShelterRegistration(props) {
@@ -13,8 +13,34 @@ function ShelterRegistration(props) {
     const [province, setProvince] = useState("");
     const [postalCode, setPostalCode] = useState("");
 
+    const [coordinates, setCoordinates] = useState({ longitude: null, latitude: null });
+
+
+    function coordError(err) {
+        console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+
+    var coordOptions = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+    };
+
+
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition(e => {
+            console.log(e.coords.longitude, e.coords.latitude)
+            setCoordinates({
+                longitude: e.coords.longitude,
+                latitude: e.coords.latitude
+            });
+        }, coordError, coordOptions);
+    }, []);
+
+
     const handleSubmit = (event) => {
         event.preventDefault();
+
         const registrationData = {
             name: name,
             email: email,
@@ -28,13 +54,14 @@ function ShelterRegistration(props) {
                 province: province,
                 postal_code: postalCode
             },
-            location: {
-                latitude: 200,
-                longitude: 100
-            }
+            location: coordinates
         }
 
         console.log(registrationData);
+
+
+        ////////// ADD ERRROR HANDLING FOR IF COORDINATES CANNOT BE FOUND
+
 
         axios
             .post("http://localhost:3001/shelters", registrationData)
