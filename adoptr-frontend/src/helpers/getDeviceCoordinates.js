@@ -1,3 +1,6 @@
+/// REFACTOR TO HERE LATER
+
+
 var options = {
     enableHighAccuracy: true,
     timeout: 5000,
