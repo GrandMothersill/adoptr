@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import UserRegistration from "./components/userRegistration.js";
 import AnimalRegistration from "./components/animalRegistration.js";
 import ShelterRegistration from "./components/shelterRegistration.js";
@@ -15,13 +16,13 @@ import useApplicationData from "./hooks/useApplicationData";
 function App() {
 
 
-  const { state, setUser, setShelter } = useApplicationData();
+  const { state, setUser, setShelter, logout } = useApplicationData();
 
 
   return (
     <Router>
       <div className="App">
-        <Nav logout={setUser} state={state} />
+        <Nav logout={logout} state={state} />
         <Switch>
           <Route path='/profiles' exact component={AnimalProfile} />
           <Route path='/animals' exact component={AnimalRegistration} />

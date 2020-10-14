@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import axios from "axios";
 
 function UserRegistration(props) {
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [userPhoto, setUserPhoto] = useState("");
@@ -11,8 +10,7 @@ function UserRegistration(props) {
     const handleSubmit = (event) => {
         event.preventDefault();
         const registrationData = {
-            first_name: firstName,
-            last_name: lastName,
+            name: name,
             email: email,
             password: password,
             user_photo: userPhoto,
@@ -34,22 +32,12 @@ function UserRegistration(props) {
         <form onSubmit={handleSubmit}>
             <h1>Create Account</h1>
             <label>
-                First Name
+                Full Name
                 <input
-                    name="firstName"
+                    name="name"
                     type="text"
-                    value={firstName}
-                    onChange={e => setFirstName(e.target.value)}
-                    required />
-            </label>
-            <br></br>
-            <label>
-                Last Name
-                <input
-                    name="lastName"
-                    type="text"
-                    value={lastName}
-                    onChange={e => setLastName(e.target.value)}
+                    value={name}
+                    onChange={e => setName(e.target.value)}
                     required />
             </label>
             <br></br>
