@@ -56,17 +56,12 @@ function ShelterRegistration(props) {
             },
             location: coordinates
         }
-
         console.log(registrationData);
-
-
         ////////// ADD ERRROR HANDLING FOR IF COORDINATES CANNOT BE FOUND
-
-
         axios
             .post("http://localhost:3001/shelters", registrationData)
             .then((response) => {
-                console.log("FE response", response);
+                props.login(registrationData)
             })
             .catch((err) => {
                 alert(err);

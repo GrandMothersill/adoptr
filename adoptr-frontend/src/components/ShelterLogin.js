@@ -14,7 +14,7 @@ function ShelterLogin(props) {
             .get(`http://localhost:3001/shelterlogin/?email=${email}&password=${password}`)
             .then((response) => {
                 const data = response.data[0];
-                props.shelterLogin(data)
+                props.login(data)
             })
             .catch((err) => {
                 alert(err);
@@ -24,7 +24,7 @@ function ShelterLogin(props) {
 
     return (
         <form onSubmit={handleSubmit}>
-            <h1>Login Form</h1>
+            <h1>Shelter Login</h1>
             <label>
                 Email
                 <input

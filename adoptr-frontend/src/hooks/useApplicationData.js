@@ -6,11 +6,11 @@ export default function useApplicationData() {
         user: {},
         shelter: {}
     });
-    //Function to update the state of the user
-    const setUser = (user) => setState({ ...state, user });
-    const setShelter = (shelter) => setState({ ...state, shelter });
+    //Functions to update state
+    const setUser = (user) => setState({ ...state, shelter: {}, user });
+    const setShelter = (shelter) => setState({ ...state, user: {}, shelter });
 
-    //Gets the user information from localstorage each time there is a refresh and set the state at first load)
+    //Gets the user/shelter information from localstorage each time there is a refresh and set the state at first load)
     useEffect(() => {
         const data = localStorage.getItem("userObj");
         if (data) {
@@ -19,16 +19,23 @@ export default function useApplicationData() {
         }
     }, []);
 
-    //Default state for receiver
-    // useEffect(() => {
-    //   const receiver = { test: 'test' };
-    //   setState({ ...state, receiver });
-    // }, []);
+    useEffect(() => {
+        const data = localStorage.getItem("shelterObj");
+        if (data) {
+            const shelter = JSON.parse(data);
+            setState({ ...state, shelter });
+        }
+    }, []);
 
-    //Stores the user information in localStorage so that we can use it to set the state again if a refresh happens
+
+    //Stores the user/shelter information in localStorage so that we can use it to set the state again if a refresh happens
     useEffect(() => {
         localStorage.setItem("userObj", JSON.stringify(state.user));
     }, [state.user]);
+
+    useEffect(() => {
+        localStorage.setItem("shelterObj", JSON.stringify(state.shelter));
+    }, [state.shelter]);
 
     return {
         state,

@@ -68,7 +68,6 @@ MongoClient.connect(
         app.get("/users", (req, res) => {
             db.collection("users").find().toArray()
                 .then(results => {
-                    // replace with html to send to front-end
                     res.send(results)
                     console.log("GET USERS CALLED")
                 })
@@ -86,7 +85,7 @@ MongoClient.connect(
         app.get("/shelters", (req, res) => {
             db.collection("shelters").find().toArray()
                 .then(results => {
-                    // replace with html to send to front-end
+                    res.send(results)
                 })
                 .catch(error => console.error(error))
         });
