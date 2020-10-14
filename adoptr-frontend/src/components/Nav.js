@@ -36,9 +36,8 @@ function Nav(props) {
       <Link to="/shelters" className="nav-link">Create New Shelter Profile</Link>
       <Link to="/animals" className="nav-link">Create New Animal Profile</Link>
       <Link to="/profiles" className="nav-link">Profiles</Link>
-      {props.state.type ? <p>Logged in as: {props.state.account.name}</p> : <p>Not Logged In!</p>}
-      {/* {props.state.shelter.name ? <p>Logged in as: {props.state.shelter.name}</p> : <Link to="/shelterlogin" className="nav-link">Shelter Login</Link>} */}
-      <button onClick={() => props.logout({})}>Logout (both)</button>
+      {props.state.type ? <div><p>Logged in as: {props.state.account.name}</p><button onClick={() => props.logout({})}>Logout (both)</button></div> : <div><Link to="/login" className="nav-link">User Login</Link><Link to="/shelterlogin" className="nav-link">Shelter Login</Link></div>}
+      
     </nav>
   )
 };
