@@ -45,7 +45,6 @@ function AnimalRegistration(props) {
                 }
             }
 
-
             axios
                 .post("http://localhost:3001/animals", registrationData)
                 .then((response) => {
