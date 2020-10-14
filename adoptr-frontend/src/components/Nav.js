@@ -6,6 +6,7 @@ import Dropdown from 'react-bootstrap/Dropdown'
 
 
 function Nav(props) {
+  console.log("these are the PROPS", props)
   return (
     <nav>
       <Link to="/" className="nav-link"><h3>Adoptr  <FontAwesomeIcon icon={faPaw} /></h3></Link>
