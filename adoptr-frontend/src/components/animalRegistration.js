@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import axios from "axios";
+import { Redirect } from 'react-router-dom';
 
 function AnimalRegistration(props) {
+    const [landingRedirect, setLandingRedirect] = useState(false);
     const [name, setName] = useState("");
     const [species, setSpecies] = useState("");
     const [sex, setSex] = useState("");
@@ -47,10 +49,15 @@ function AnimalRegistration(props) {
             .post("http://localhost:3001/animals", registrationData)
             .then((response) => {
                 console.log("FE response", response);
+                setLandingRedirect(true);
             })
             .catch((err) => {
                 alert(err);
             });
+    }
+
+    if (landingRedirect) {
+        return <Redirect to="/" />
     }
 
     return (

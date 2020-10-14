@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import axios from "axios";
+import { Redirect } from "react-router-dom"
 
 function UserRegistration(props) {
+    const [landingRedirect, setLandingRedirect] = useState(false);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -21,11 +23,16 @@ function UserRegistration(props) {
             .post("http://localhost:3001/users", registrationData)
             .then((response) => {
                 props.login(registrationData)
+                setLandingRedirect(true);
             })
             .catch((err) => {
                 alert(err);
             });
 
+    }
+
+    if (landingRedirect) {
+        return <Redirect to="/" />
     }
 
     return (

@@ -1,15 +1,12 @@
-.App {
-  text-align: center;
-}
-
 nav {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   background-color: #f3b32f;
   color: white;
   min-height: 8vh;
   font-size: 2vh;
+  padding: 0 2%;
 }
 
 .nav-link {
@@ -23,4 +20,14 @@ nav {
 
 .nav-link:visited {
   color: white;
+}
+
+.nav-group {
+  display: flex;
+  align-items: center;
+}
+
+.logged-user {
+  margin-top: 10px;
+  margin-right: 10px;
 }
