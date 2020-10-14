@@ -4,7 +4,7 @@ import axios from "axios";
 function AnimalRegistration(props) {
     const [name, setName] = useState("");
     const [species, setSpecies] = useState("");
-    const [sex, setSex] = useState("");
+    const [sex, setSex] = useState("male");
     const [age, setAge] = useState("");
     const [animalPhoto, setAnimalPhoto] = useState("");
     const [bio, setBio] = useState("");
@@ -21,41 +21,46 @@ function AnimalRegistration(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const registrationData = {
-            name: name,
-            species: species,
-            sex: sex,
-            age: age,
-            animal_photos: [animalPhoto],
-            bio: bio,
-            foster: foster,
-            breedAndInfo: {
-                breed: breed,
-                colour: colour,
-                size: size,
-                spayedNeudered: spayedNeudered
-            },
-            shelterInfo: {
-                shelter_id: 1,
-                shelter_name: "Warm Shelter"
+        if (props.state.account._id && props.state.account.name) {
+
+            const registrationData = {
+                name: name,
+                species: species,
+                sex: sex,
+                age: age,
+                animal_photos: [animalPhoto],
+                bio: bio,
+                foster: foster,
+                breedAndInfo: {
+                    breed: breed,
+                    colour: colour,
+                    size: size,
+                    spayedNeudered: spayedNeudered
+                },
+                shelterInfo: {
+                    shelter_id: props.state.account.name,
+                    shelter_name: props.state.account._id
+                }
             }
+
+
+            axios
+                .post("http://localhost:3001/animals", registrationData)
+                .then((response) => {
+                    console.log("FE response", response);
+                })
+                .catch((err) => {
+                    alert(err);
+                });
+        } else {
+            alert("You must be logged-in as a shelter to create a new animal profile.")
         }
-
-        console.log(registrationData)
-
-        axios
-            .post("http://localhost:3001/animals", registrationData)
-            .then((response) => {
-                console.log("FE response", response);
-            })
-            .catch((err) => {
-                alert(err);
-            });
     }
 
     return (
         <form onSubmit={handleSubmit}>
             <h1>Create Animal</h1>
+
             <label>
                 Name
                 <input
