@@ -29,7 +29,7 @@ MongoClient.connect(
         app.get("/", (req, res) => {
             res.status(200).send("hello not available NO uh");
         });
-
+        ////////////////////////////////////////////////////////////////////////////////////////////////
         app.get("/animals", (req, res) => {
             db.collection("animals").find().toArray()
                 .then(results => {
@@ -46,11 +46,30 @@ MongoClient.connect(
                 })
                 .catch(error => console.log(error));
         });
+        ////////////////////////////////////////////////////////////////////////////////////////////////
+        app.get("/login", (req, res) => {
+            console.log("QUERY", req.query)
+            db.collection("users").find({ email: req.query.email, password: req.query.password }).toArray()
+                .then(results => {
+                    res.send(results)
+                })
+                .catch(error => console.error(error))
+        });
 
+        app.get("/shelterlogin", (req, res) => {
+            console.log("QUERY", req.query)
+            db.collection("shelters").find({ email: req.query.email, password: req.query.password }).toArray()
+                .then(results => {
+                    res.send(results)
+                })
+                .catch(error => console.error(error))
+        });
+        ////////////////////////////////////////////////////////////////////////////////////////////////
         app.get("/users", (req, res) => {
             db.collection("users").find().toArray()
                 .then(results => {
                     // replace with html to send to front-end
+                    res.send(results)
                     console.log("GET USERS CALLED")
                 })
                 .catch(error => console.error(error))
@@ -63,11 +82,7 @@ MongoClient.connect(
                 })
                 .catch(error => console.log(error));
         });
-
-
-
-
-
+        ////////////////////////////////////////////////////////////////////////////////////////////////
         app.get("/shelters", (req, res) => {
             db.collection("shelters").find().toArray()
                 .then(results => {
@@ -83,9 +98,6 @@ MongoClient.connect(
                 })
                 .catch(error => console.log(error));
         });
-
-
-
     })
     .catch(error => console.error(error));
 

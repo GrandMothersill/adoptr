@@ -4,9 +4,11 @@ export default function useApplicationData() {
     //Hook to store the state and update it
     const [state, setState] = useState({
         user: {},
+        shelter: {}
     });
     //Function to update the state of the user
     const setUser = (user) => setState({ ...state, user });
+    const setShelter = (shelter) => setState({ ...state, shelter });
 
     //Gets the user information from localstorage each time there is a refresh and set the state at first load)
     useEffect(() => {
@@ -31,5 +33,6 @@ export default function useApplicationData() {
     return {
         state,
         setUser,
+        setShelter,
     };
 }

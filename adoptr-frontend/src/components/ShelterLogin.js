@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from "axios";
 
-function Login(props) {
+function ShelterLogin(props) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -11,10 +11,10 @@ function Login(props) {
         //// NEED TO ACCOUNT FOR EDGE CASES AND ERRORS AND IF THE EMAIL/PASSWORD INCORRECT
 
         axios
-            .get(`http://localhost:3001/login/?email=${email}&password=${password}`)
+            .get(`http://localhost:3001/shelterlogin/?email=${email}&password=${password}`)
             .then((response) => {
                 const data = response.data[0];
-                props.login(data)
+                props.shelterLogin(data)
             })
             .catch((err) => {
                 alert(err);
@@ -51,4 +51,4 @@ function Login(props) {
     );
 }
 
-export default Login;
+export default ShelterLogin;
