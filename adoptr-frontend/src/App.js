@@ -4,7 +4,8 @@ import './App.css';
 import UserRegistration from "./components/userRegistration.js";
 import AnimalRegistration from "./components/animalRegistration.js";
 import ShelterRegistration from "./components/shelterRegistration.js";
-import ShelterLogin from "./components/ShelterLogin.js";
+// import ShelterLogin from "./components/ShelterLogin.js";
+import Login from "./components/Login";
 import Nav from "./components/Nav";
 import About from "./components/About"
 import AnimalProfile from "./components/AnimalProfile"
@@ -31,7 +32,7 @@ function App() {
           <Route path='/shelters' render={() => <ShelterRegistration login={setShelter} state={state} />} />
           <Route path='/login' render={() => <UserLogin login={setUser} />} />
           {/* <Route path='/login' render={() => <Login login={setUser} state={state} />} /> */}
-          <Route path='/shelterlogin' render={() => <ShelterLogin login={setShelter} state={state} />} />
+          <Route path='/shelterlogin' render={() => <Login login={setShelter} />} />
           <Route path='/' exact component={About} />
           
         </Switch>
