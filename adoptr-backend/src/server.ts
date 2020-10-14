@@ -7,8 +7,6 @@ const port = process.env.PORT || 3001
 // const connection_url = `mongodb+srv://adoptrdb:${process.env.MONGO_ATLAS_PW}@cluster0.jt8pq.mongodb.net/${process.env.MONGO_ATLAS_UN}?retryWrites=true&w=majority`
 
 
-
-
 // process.env.WHATEVER - put pass and username in env for more security
 MongoClient.connect(
     "mongodb+srv://adoptrdb:adoptrdbpassword@cluster0.jt8pq.mongodb.net/adoptordb?retryWrites=true&w=majority", { useUnifiedTopology: true })
@@ -79,7 +77,7 @@ MongoClient.connect(
                 .then(result => {
                     res.redirect('/');
                 })
-                .catch(error => console.log(error));
+                .catch(error => res.status(409).send(error));
         });
         ////////////////////////////////////////////////////////////////////////////////////////////////
         app.get("/shelters", (req, res) => {
@@ -95,7 +93,7 @@ MongoClient.connect(
                 .then(result => {
                     res.redirect('/shelters');
                 })
-                .catch(error => console.log(error));
+                .catch(error => res.status(409).send(error));
         });
     })
     .catch(error => console.error(error));

@@ -27,6 +27,7 @@ function UserRegistration(props) {
             })
             .catch((err) => {
                 alert(err);
+                console.log(err)
             });
 
     }

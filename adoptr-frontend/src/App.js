@@ -26,7 +26,7 @@ function App() {
         <Nav logout={logout} state={state} />
         <Switch>
           <Route path='/profiles' exact component={AnimalProfile} />
-          <Route path='/animals' exact component={AnimalRegistration} />
+          <Route path='/animals' render={() => <AnimalRegistration state={state} />} />
           <Route path='/users' render={() => <UserRegistration login={setUser} state={state} />} />
           <Route path='/shelters' render={() => <ShelterRegistration login={setShelter} state={state} />} />
           <Route path='/login' render={() => <UserLogin login={setUser} />} />
