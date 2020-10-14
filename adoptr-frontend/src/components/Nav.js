@@ -32,8 +32,6 @@ function Nav(props) {
           <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown> */}
-      <Link to="/users" className="nav-link">Create New User Profile</Link>
-      <Link to="/shelters" className="nav-link">Create New Shelter Profile</Link>
       <Link to="/animals" className="nav-link">Create New Animal Profile</Link>
       <Link to="/profiles" className="nav-link">Profiles</Link>
       {props.state.type ? <div><p>Logged in as: {props.state.account.name}</p><button onClick={() => props.logout({})}>Logout (both)</button></div> : <div><Link to="/login" className="nav-link">User Login</Link><Link to="/shelterlogin" className="nav-link">Shelter Login</Link></div>}
