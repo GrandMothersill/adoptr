@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import axios from "axios";
+import { Redirect } from "react-router-dom"
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -50,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ShelterLogin(props) {
   const classes = useStyles();
+  const [landingRedirect, setLandingRedirect] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -64,11 +66,15 @@ export default function ShelterLogin(props) {
               const data = response.data[0];
               console.log(data)
               props.login(data)
+              setLandingRedirect(true);
           })
           .catch((err) => {
               alert(err);
           });
+  }
 
+  if (landingRedirect) {
+    return <Redirect to="/" />
   }
 
   return (
@@ -121,7 +127,7 @@ export default function ShelterLogin(props) {
           </Button>
           <Grid container>
             <Grid item>
-              <Link href="/animals" variant="body2">
+              <Link href="/shelters" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>

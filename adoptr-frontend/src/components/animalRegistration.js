@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import axios from "axios";
+import { Redirect } from 'react-router-dom';
 
 function AnimalRegistration(props) {
+    const [landingRedirect, setLandingRedirect] = useState(false);
     const [name, setName] = useState("");
     const [species, setSpecies] = useState("");
     const [sex, setSex] = useState("male");
@@ -43,11 +45,11 @@ function AnimalRegistration(props) {
                 }
             }
 
-
             axios
                 .post("http://localhost:3001/animals", registrationData)
                 .then((response) => {
                     console.log("FE response", response);
+                    setLandingRedirect(true);
                 })
                 .catch((err) => {
                     alert(err);
@@ -55,6 +57,10 @@ function AnimalRegistration(props) {
         } else {
             alert("You must be logged-in as a shelter to create a new animal profile.")
         }
+    }
+
+    if (landingRedirect) {
+        return <Redirect to="/" />
     }
 
     return (
