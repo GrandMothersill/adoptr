@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import axios from "axios";
 import { Redirect } from "react-router-dom"
 import Avatar from '@material-ui/core/Avatar';
@@ -56,25 +56,25 @@ export default function ShelterLogin(props) {
   const [password, setPassword] = useState("");
 
   const handleSubmit = (event) => {
-      event.preventDefault();
+    event.preventDefault();
 
-      if (!email || !password) {
-        alert("Please fill in all fields")
-      } else {
-        axios
-          .get(`http://localhost:3001/login/?email=${email}&password=${password}`)
-          .then((response) => {
-            if (response.data) {
-              props.login(response.data)
-              setLandingRedirect(true);
-            } else {
-              alert("wrong credentials")
-            }
-          })
-            .catch((err) => {
-                alert(err);
-            });
-      }
+    if (!email || !password) {
+      alert("Please fill in all fields")
+    } else {
+      axios
+        .get(`http://localhost:3001/shelterlogin/?email=${email}&password=${password}`)
+        .then((response) => {
+          if (response.data) {
+            props.login(response.data)
+            setLandingRedirect(true);
+          } else {
+            alert("wrong credentials")
+          }
+        })
+        .catch((err) => {
+          alert(err);
+        });
+    }
   }
 
   if (landingRedirect) {

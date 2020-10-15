@@ -26,7 +26,7 @@ MongoClient.connect(
         });
 
         app.get("/", (req, res) => {
-            res.status(200).send("hello not available NO uh");
+            res.status(200).send("Adoptr Serer");
         });
         ////////////////////////////////////////////////////////////////////////////////////////////////
         app.get("/animals", (req, res) => {
@@ -58,26 +58,26 @@ MongoClient.connect(
                         }
                     } else {
                         res.send(false);
-                    }    
+                    }
                 })
                 .catch(error => console.error(error))
         });
 
         app.get("/shelterlogin", (req, res) => {
             db.collection("shelters").find({ email: req.query.email }).toArray()
-            .then(results => {
-                if (results[0]) {
-                    const dbpassword = results[0].password
-                    if (bcrypt.compareSync(req.query.password, dbpassword)) {
-                        res.send(results[0]);
+                .then(results => {
+                    if (results[0]) {
+                        const dbpassword = results[0].password
+                        if (bcrypt.compareSync(req.query.password, dbpassword)) {
+                            res.send(results[0]);
+                        } else {
+                            res.send(false);
+                        }
                     } else {
                         res.send(false);
                     }
-                } else {
-                    res.send(false);
-                }    
-            })
-            .catch(error => console.error(error))
+                })
+                .catch(error => console.error(error))
         });
         ////////////////////////////////////////////////////////////////////////////////////////////////
         app.get("/users", (req, res) => {
@@ -91,7 +91,7 @@ MongoClient.connect(
 
         app.post("/users", (req, res) => {
             const hashedPassword = bcrypt.hashSync(req.body.password, 10);
-            usersCollection.insertOne({...req.body, password: hashedPassword})
+            usersCollection.insertOne({ ...req.body, password: hashedPassword })
                 .then(result => {
                     res.redirect('/');
                 })
@@ -108,7 +108,7 @@ MongoClient.connect(
 
         app.post("/shelters", (req, res) => {
             const hashedPassword = bcrypt.hashSync(req.body.password, 10);
-            sheltersCollection.insertOne({...req.body, password: hashedPassword})
+            sheltersCollection.insertOne({ ...req.body, password: hashedPassword })
                 .then(result => {
                     res.redirect('/shelters');
                 })

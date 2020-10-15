@@ -14,14 +14,14 @@ function AnimalRegistration(props) {
     const [spayedNeudered, setSpayedNeudered] = useState(false);
     const [foster, setFoster] = useState(false);
 
-    const handleSexChange = (event) => {
-        const name = event.target.value;
-        setSex(name);
-    };
+    // const handleSexChange = (event) => {
+    //     const name = event.target.value;
+    //     setSex(name);
+    // };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (props.state.account._id && props.state.account.name) {
+        if (props.state.type === 'shelter') {
 
             const registrationData = {
                 name: name,
@@ -85,8 +85,7 @@ function AnimalRegistration(props) {
                     <select
                     name="sex"
                     id="sex"
-                    name="sex"
-                    onChange={handleSexChange}
+                    onChange={e => setSex(e.target.value)}
                 >
                     <option value="male">Male</option>
                     <option value="female">Female</option>

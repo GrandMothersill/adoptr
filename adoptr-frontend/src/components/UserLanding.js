@@ -1,5 +1,6 @@
 import React from "react";
 import { Redirect } from "react-router-dom"
+import TinderSwipe from "./TinderSwipe";
 
 function UserLanding(props) {
 
@@ -9,7 +10,10 @@ function UserLanding(props) {
     return <Redirect to="/shelterlanding" />
   } else {
     return (
-      <h1>Hello User {props.state.account.name}</h1>
+      <div>
+        <h1>Hello User {props.state.account.name}</h1>
+        <TinderSwipe />
+      </div>
     )
   }
 }
