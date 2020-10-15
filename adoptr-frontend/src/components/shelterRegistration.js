@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
+import { Redirect } from "react-router-dom"
 
 function ShelterRegistration(props) {
+    const [landingRedirect, setLandingRedirect] = useState(false);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -62,10 +64,15 @@ function ShelterRegistration(props) {
             .post("http://localhost:3001/shelters", registrationData)
             .then((response) => {
                 props.login(registrationData)
+                setLandingRedirect(true);
             })
             .catch((err) => {
                 alert(err);
             });
+    }
+
+    if (landingRedirect) {
+        return <Redirect to="/shelterlanding" />
     }
 
     return (

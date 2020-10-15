@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
-import UserRegistration from "./components/userRegistration.js";
-import AnimalRegistration from "./components/animalRegistration.js";
-import ShelterRegistration from "./components/shelterRegistration.js";
-import Login from "./components/ShelterLogin";
+import UserRegistration from "./components/UserRegistration.js";
+import AnimalRegistration from "./components/AnimalRegistration.js";
+import ShelterRegistration from "./components/ShelterRegistration.js";
+import ShelterLogin from "./components/ShelterLogin";
+import UserLanding from "./components/UserLanding";
+import ShelterLanding from "./components/ShelterLanding";
 import Nav from "./components/Nav";
 import Landing from "./components/Landing"
 import AnimalProfile from "./components/AnimalProfile"
@@ -30,7 +32,9 @@ function App() {
           <Route path='/users' render={() => <UserRegistration login={setUser} state={state} />} />
           <Route path='/shelters' render={() => <ShelterRegistration login={setShelter} state={state} />} />
           <Route path='/login' render={() => <UserLogin login={setUser} />} />
-          <Route path='/shelterlogin' render={() => <Login login={setShelter} />} />
+          <Route path='/shelterlogin' render={() => <ShelterLogin login={setShelter} />} />
+          <Route path="/landing" render={() => <UserLanding state={state} />}  />
+          <Route path="/shelterlanding" render={() => <ShelterLanding state={state} />}  />
           <Route path='/' render={() => <Landing state={state} />}  />
         </Switch>
       </div>

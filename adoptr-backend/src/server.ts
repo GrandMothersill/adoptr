@@ -49,11 +49,10 @@ MongoClient.connect(
         app.get("/login", (req, res) => {
             db.collection("users").find({ email: req.query.email }).toArray()
                 .then(results => {
-                    console.log(results[0])
                     if (results[0]) {
                         const dbpassword = results[0].password
                         if (bcrypt.compareSync(req.query.password, dbpassword)) {
-                            res.send(results);
+                            res.send(results[0]);
                         } else {
                             res.send(false);
                         }
@@ -65,12 +64,20 @@ MongoClient.connect(
         });
 
         app.get("/shelterlogin", (req, res) => {
-            console.log("QUERY", req.query)
-            db.collection("shelters").find({ email: req.query.email, password: req.query.password }).toArray()
-                .then(results => {
-                    res.send(results)
-                })
-                .catch(error => console.error(error))
+            db.collection("shelters").find({ email: req.query.email }).toArray()
+            .then(results => {
+                if (results[0]) {
+                    const dbpassword = results[0].password
+                    if (bcrypt.compareSync(req.query.password, dbpassword)) {
+                        res.send(results[0]);
+                    } else {
+                        res.send(false);
+                    }
+                } else {
+                    res.send(false);
+                }    
+            })
+            .catch(error => console.error(error))
         });
         ////////////////////////////////////////////////////////////////////////////////////////////////
         app.get("/users", (req, res) => {
@@ -100,7 +107,8 @@ MongoClient.connect(
         });
 
         app.post("/shelters", (req, res) => {
-            sheltersCollection.insertOne(req.body)
+            const hashedPassword = bcrypt.hashSync(req.body.password, 10);
+            sheltersCollection.insertOne({...req.body, password: hashedPassword})
                 .then(result => {
                     res.redirect('/shelters');
                 })

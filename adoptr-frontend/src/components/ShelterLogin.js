@@ -58,23 +58,27 @@ export default function ShelterLogin(props) {
   const handleSubmit = (event) => {
       event.preventDefault();
 
-      //// NEED TO ACCOUNT FOR EDGE CASES AND ERRORS AND IF THE EMAIL/PASSWORD INCORRECT
-
-      axios
-          .get(`http://localhost:3001/shelterlogin/?email=${email}&password=${password}`)
+      if (!email || !password) {
+        alert("Please fill in all fields")
+      } else {
+        axios
+          .get(`http://localhost:3001/login/?email=${email}&password=${password}`)
           .then((response) => {
-              const data = response.data[0];
-              console.log(data)
-              props.login(data)
+            if (response.data) {
+              props.login(response.data)
               setLandingRedirect(true);
+            } else {
+              alert("wrong credentials")
+            }
           })
-          .catch((err) => {
-              alert(err);
-          });
+            .catch((err) => {
+                alert(err);
+            });
+      }
   }
 
   if (landingRedirect) {
-    return <Redirect to="/" />
+    return <Redirect to="/shelterlanding" />
   }
 
   return (

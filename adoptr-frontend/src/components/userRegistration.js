@@ -33,7 +33,7 @@ function UserRegistration(props) {
     }
 
     if (landingRedirect) {
-        return <Redirect to="/" />
+        return <Redirect to="/landing" />
     }
 
     return (
