@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const MongoClient = require("mongodb").MongoClient;
 const cors = require("cors");
+const bcrypt = require('bcrypt');
 const app = express();
 const port = process.env.PORT || 3001
 // const connection_url = `mongodb+srv://adoptrdb:${process.env.MONGO_ATLAS_PW}@cluster0.jt8pq.mongodb.net/${process.env.MONGO_ATLAS_UN}?retryWrites=true&w=majority`
@@ -46,10 +47,19 @@ MongoClient.connect(
         });
         ////////////////////////////////////////////////////////////////////////////////////////////////
         app.get("/login", (req, res) => {
-            console.log("QUERY", req.query)
-            db.collection("users").find({ email: req.query.email, password: req.query.password }).toArray()
+            db.collection("users").find({ email: req.query.email }).toArray()
                 .then(results => {
-                    res.send(results)
+                    console.log(results[0])
+                    if (results[0]) {
+                        const dbpassword = results[0].password
+                        if (bcrypt.compareSync(req.query.password, dbpassword)) {
+                            res.send(results);
+                        } else {
+                            res.send(false);
+                        }
+                    } else {
+                        res.send(false);
+                    }    
                 })
                 .catch(error => console.error(error))
         });
@@ -73,7 +83,8 @@ MongoClient.connect(
         });
 
         app.post("/users", (req, res) => {
-            usersCollection.insertOne(req.body)
+            const hashedPassword = bcrypt.hashSync(req.body.password, 10);
+            usersCollection.insertOne({...req.body, password: hashedPassword})
                 .then(result => {
                     res.redirect('/');
                 })
