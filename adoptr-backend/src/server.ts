@@ -97,6 +97,20 @@ MongoClient.connect(
                 })
                 .catch(error => res.status(409).send(error));
         });
+
+        app.put("/users/reject/:id", (req, res) => {
+            console.log("BODAY", req.body)
+            usersCollection.updateOne(
+                { _id: req.body.userID },
+                {
+                    $push: { rejected_animals: req.body.animalID },
+                }
+            )
+                .then(result => {
+                    res.send(result);
+                })
+                .catch(error => console.log(error));
+        });
         ////////////////////////////////////////////////////////////////////////////////////////////////
         app.get("/shelters", (req, res) => {
             db.collection("shelters").find().toArray()

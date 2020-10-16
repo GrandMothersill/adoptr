@@ -43,6 +43,9 @@
   }
   
   .card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
     background-color: #fff;
     width: 70vw;
@@ -53,6 +56,18 @@
     border-radius: 20px;
     background-size: cover;
     background-position: center;
+  }
+
+  .animalIMG {
+    position: absolute;
+    height: auto;
+    width: 100%;
+    max-height: 200px;
+    max-width: 200px;
+    margin: 5px;
+    border-radius: 20px;
+    top: 20px;
+    left: 20px;
   }
   
   .cardContent {
