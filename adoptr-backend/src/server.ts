@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const MongoClient = require("mongodb").MongoClient;
+// const ObjectId = require("mongodb").ObjectId;
 const cors = require("cors");
 const bcrypt = require('bcrypt');
 const app = express();
@@ -45,6 +46,15 @@ MongoClient.connect(
                 })
                 .catch(error => console.log(error));
         });
+
+        app.get("/profiles", (req, res) => {
+            // const idObject = new ObjectId(req.query.id);
+            db.collection("animals").find({shelterInfo: { shelter_name: req.query.name, shelter_id: req.query.id }}).toArray()
+                .then(results => {
+                    res.send(results[0]);
+                })
+                .catch(error => console.error(error))
+            });
         ////////////////////////////////////////////////////////////////////////////////////////////////
         app.get("/login", (req, res) => {
             db.collection("users").find({ email: req.query.email }).toArray()
