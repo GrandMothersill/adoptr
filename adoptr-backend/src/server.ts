@@ -65,6 +65,7 @@ MongoClient.connect(
 
         app.get("/shelterlogin", (req, res) => {
             db.collection("shelters").find({ email: req.query.email }).toArray()
+<<<<<<< HEAD
                 .then(results => {
                     if (results[0]) {
                         const dbpassword = results[0].password
@@ -73,6 +74,15 @@ MongoClient.connect(
                         } else {
                             res.send(false);
                         }
+=======
+            .then(results => {
+                if (results[0]) {
+                    const dbpassword = results[0].password
+                    if (bcrypt.compareSync(req.query.password, dbpassword)) {
+                        const getId = results.next()._id;
+                        console.log(getId)
+                        res.send(results[0]);
+>>>>>>> dashboard
                     } else {
                         res.send(false);
                     }
