@@ -4,15 +4,20 @@ export default function useApplicationData() {
     //Hook to store the state and update it
     const [state, setState] = useState({
         account: {},
-        type: ""
+        type: "",
+        rejected_animals: []
     });
     //Functions to update state
-    const setUser = (user) => setState({ ...state, account: user, type: "user", rejected_animals: user.rejected_animals });
-    const setShelter = (shelter) => setState({ ...state, account: shelter, type: "shelter" });
+    const setUser = (user) => setState(prevState => { return { ...prevState, account: user, type: "user", rejected_animals: user.rejected_animals } });
+    const setShelter = (shelter) => setState(prevState => { return { ...prevState, account: shelter, type: "shelter", rejected_animals: [] } });
     const logout = () => {
         setState({ ...state, account: {}, type: "" });
         localStorage.clear()
-    }
+    };
+
+    const setRejectedAnimal = (animalID) => setState(prevState => { return { ...prevState, rejected_animals: prevState.rejected_animals.concat(animalID) } })
+
+
 
     //Gets the user/shelter information from localstorage each time there is a refresh and set the state at first load)
     useEffect(() => {
@@ -32,6 +37,7 @@ export default function useApplicationData() {
         state,
         setUser,
         setShelter,
-        logout
+        logout,
+        setRejectedAnimal
     };
 }

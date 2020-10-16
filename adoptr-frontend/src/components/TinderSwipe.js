@@ -50,6 +50,7 @@ function TinderSwipe(props) {
     }
 
     const handleReject = (animalID, userID) => {
+        props.setRejectedAnimal(animalID)
         axios
             .put(`http://localhost:3001/users/reject`, { userID: userID, animalID: animalID })
             .then((response) => {
@@ -58,7 +59,7 @@ function TinderSwipe(props) {
             .catch((err) => {
                 alert(err);
             });
-    }
+    };
 
 
 
