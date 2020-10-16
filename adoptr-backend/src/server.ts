@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 const app = express();
 const port = process.env.PORT || 3001
 // const connection_url = `mongodb+srv://adoptrdb:${process.env.MONGO_ATLAS_PW}@cluster0.jt8pq.mongodb.net/${process.env.MONGO_ATLAS_UN}?retryWrites=true&w=majority`
-
+const ObjectId = require('mongodb').ObjectId
 
 // process.env.WHATEVER - put pass and username in env for more security
 MongoClient.connect(
@@ -65,26 +65,16 @@ MongoClient.connect(
 
         app.get("/shelterlogin", (req, res) => {
             db.collection("shelters").find({ email: req.query.email }).toArray()
-<<<<<<< HEAD
                 .then(results => {
                     if (results[0]) {
                         const dbpassword = results[0].password
                         if (bcrypt.compareSync(req.query.password, dbpassword)) {
+                            const getId = results.next()._id;
+                            console.log(getId)
                             res.send(results[0]);
                         } else {
                             res.send(false);
                         }
-=======
-            .then(results => {
-                if (results[0]) {
-                    const dbpassword = results[0].password
-                    if (bcrypt.compareSync(req.query.password, dbpassword)) {
-                        const getId = results.next()._id;
-                        console.log(getId)
-                        res.send(results[0]);
->>>>>>> dashboard
-                    } else {
-                        res.send(false);
                     }
                 })
                 .catch(error => console.error(error))
@@ -108,10 +98,10 @@ MongoClient.connect(
                 .catch(error => res.status(409).send(error));
         });
 
-        app.put("/users/reject/:id", (req, res) => {
+        app.put("/users/reject", (req, res) => {
             console.log("BODAY", req.body)
             usersCollection.updateOne(
-                { _id: req.body.userID },
+                { _id: ObjectId(req.body.userID) },
                 {
                     $push: { rejected_animals: req.body.animalID },
                 }

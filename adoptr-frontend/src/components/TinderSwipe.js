@@ -46,7 +46,7 @@ function TinderSwipe(props) {
 
     const handleReject = (animalID, userID) => {
         axios
-            .put(`http://localhost:3001/users/reject/:${userID}`, { userID: userID, animalID: animalID })
+            .put(`http://localhost:3001/users/reject`, { userID: userID, animalID: animalID })
             .then((response) => {
                 console.log("REJECTION RESPONSE", response);
             })
