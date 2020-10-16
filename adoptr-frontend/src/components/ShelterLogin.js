@@ -65,6 +65,7 @@ export default function ShelterLogin(props) {
           .get(`http://localhost:3001/login/?email=${email}&password=${password}`)
           .then((response) => {
             if (response.data) {
+              console.log(response)
               props.login(response.data)
               setLandingRedirect(true);
             } else {

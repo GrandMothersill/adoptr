@@ -69,6 +69,8 @@ MongoClient.connect(
                 if (results[0]) {
                     const dbpassword = results[0].password
                     if (bcrypt.compareSync(req.query.password, dbpassword)) {
+                        const getId = results.next()._id;
+                        console.log(getId)
                         res.send(results[0]);
                     } else {
                         res.send(false);

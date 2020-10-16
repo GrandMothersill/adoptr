@@ -38,8 +38,8 @@ function AnimalRegistration(props) {
                     spayedNeudered: spayedNeudered
                 },
                 shelterInfo: {
-                    shelter_id: props.state.account.name,
-                    shelter_name: props.state.account._id
+                    shelter_name: props.state.account.name,
+                    shelter_id: props.state.account._id
                 }
             }
 

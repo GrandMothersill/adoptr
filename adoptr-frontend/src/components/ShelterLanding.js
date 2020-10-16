@@ -27,6 +27,9 @@ function ShelterLanding(props) {
   } else if (props.state.type === "user") {
     return <Redirect to="/landing" />
   } else {
+
+    console.log(props.state.account.id)
+    axios.get("http://localhost:3001/login/?id=")    
     return (
       <div className="landing">
         <h1>Welcome, {props.state.account.name}</h1>
