@@ -33,9 +33,9 @@ function App() {
           <Route path='/shelters' render={() => <ShelterRegistration login={setShelter} state={state} />} />
           <Route path='/login' render={() => <UserLogin login={setUser} />} />
           <Route path='/shelterlogin' render={() => <ShelterLogin login={setShelter} />} />
-          <Route path="/landing" render={() => <UserLanding state={state} />}  />
-          <Route path="/shelterlanding" render={() => <ShelterLanding state={state} />}  />
-          <Route path='/' render={() => <Landing state={state} />}  />
+          <Route path="/landing" render={() => <UserLanding state={state} />} />
+          <Route path="/shelterlanding" render={() => <ShelterLanding state={state} />} />
+          <Route path='/' render={() => <Landing state={state} />} />
         </Switch>
       </div>
     </Router>

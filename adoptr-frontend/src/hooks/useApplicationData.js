@@ -7,7 +7,7 @@ export default function useApplicationData() {
         type: ""
     });
     //Functions to update state
-    const setUser = (user) => setState({ ...state, account: user, type: "user" });
+    const setUser = (user) => setState({ ...state, account: user, type: "user", rejected_animals: user.rejected_animals });
     const setShelter = (shelter) => setState({ ...state, account: shelter, type: "shelter" });
     const logout = () => {
         setState({ ...state, account: {}, type: "" });
