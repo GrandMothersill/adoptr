@@ -51,7 +51,7 @@ MongoClient.connect(
             // const idObject = new ObjectId(req.query.id);
             db.collection("animals").find({shelterInfo: { shelter_name: req.query.name, shelter_id: req.query.id }}).toArray()
                 .then(results => {
-                    res.send(results[0]);
+                    res.send(results);
                 })
                 .catch(error => console.error(error))
             });
