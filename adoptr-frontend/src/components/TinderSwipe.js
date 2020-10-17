@@ -5,8 +5,6 @@ import axios from "axios";
 
 
 
-
-
 function TinderSwipe(props) {
 
     const [animalProfiles, setAnimalProfiles] = useState([]);
