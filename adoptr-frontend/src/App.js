@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
 import UserRegistration from "./components/UserRegistration.js";
-import AnimalRegistration from "./components/AnimalRegistration.js";
+import AnimalRegistration from "./components/animalRegistration.js";
 import ShelterRegistration from "./components/ShelterRegistration.js";
 import ShelterLogin from "./components/ShelterLogin";
 import UserLanding from "./components/UserLanding";

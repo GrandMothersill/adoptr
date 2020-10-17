@@ -105,7 +105,13 @@ function TinderSwipe(props) {
         <div className='cardContainer'>
             {props.state.account.name}
             {animalProfiles.map((animal) =>
-                <TinderCard className='swipe' key={animal._id} onSwipe={(dir) => swiped(dir, animal._id)} onCardLeftScreen={(dir) => outOfFrame(dir, animal._id)}>
+                <TinderCard
+                    className='swipe'
+                    key={animal._id}
+                    onSwipe={(dir) => swiped(dir, animal._id)}
+                    onCardLeftScreen={(dir) => outOfFrame(dir, animal._id)}
+                    preventSwipe={['up', 'down']}
+                >
                     <div style={{ backgroundImage: 'url(' + animal.url + ')' }} className='card'>
                         <img className='animalIMG' src={animal.animal_photos[0]} alt='animalPhoto'></img>
                         <p>Name: {animal.name}</p>
