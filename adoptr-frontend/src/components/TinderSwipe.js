@@ -17,7 +17,7 @@ function TinderSwipe(props) {
         return data.filter(animal => !props.state.rejected_animals.includes(animal._id)).filter(
             animal => !props.userMatches.includes(animal._id)
         )
-    }
+    };
 
     useEffect(() => {
 

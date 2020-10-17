@@ -13,7 +13,7 @@ export default function useApplicationData() {
     const setUser = (user) => setState(prevState => { return { ...prevState, account: user, type: "user", rejected_animals: user.rejected_animals } });
     const setShelter = (shelter) => setState(prevState => { return { ...prevState, account: shelter, type: "shelter", rejected_animals: [] } });
     const logout = () => {
-        setState({ ...state, account: {}, type: "" });
+        setState({ account: {}, type: "", rejected_animals: [] });
         localStorage.clear()
     };
 
