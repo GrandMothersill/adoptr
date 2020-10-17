@@ -63,8 +63,19 @@ function ShelterRegistration(props) {
         axios
             .post("http://localhost:3001/shelters", registrationData)
             .then((response) => {
-                props.login(registrationData)
-                setLandingRedirect(true);
+                axios
+                    .get(`http://localhost:3001/shelterlogin/?email=${email}&password=${password}`)
+                    .then((response) => {
+                        if (response.data) {
+                            props.login(response.data)
+                            setLandingRedirect(true);
+                        } else {
+                            alert("wrong credentials")
+                        }
+                    })
+                    .catch((err) => {
+                        alert(err);
+                    });
             })
             .catch((err) => {
                 alert(err);

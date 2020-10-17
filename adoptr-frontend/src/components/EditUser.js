@@ -2,42 +2,32 @@ import React, { useState } from 'react';
 import axios from "axios";
 import { Redirect } from "react-router-dom"
 
-function UserRegistration(props) {
+function EditUser(props) {
     const [landingRedirect, setLandingRedirect] = useState(false);
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [userPhoto, setUserPhoto] = useState("");
+    const [name, setName] = useState(props.state.account.name);
+    const [email, setEmail] = useState(props.state.account.email);
+    const [password, setPassword] = useState(props.state.account.password);
+    const [userPhoto, setUserPhoto] = useState(props.state.account.user_photo);
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const registrationData = {
+            userID: props.state.account._id,
             name: name,
             email: email,
             password: password,
             user_photo: userPhoto,
-            rejected_animals: []
+            rejected_animals: props.state.rejected_animals
         }
 
+        console.log(registrationData);
+
         axios
-            .post("http://localhost:3001/users", registrationData)
+            .put("http://localhost:3001/user", registrationData)
             .then((response) => {
-
-
-                axios
-                    .get(`http://localhost:3001/login/?email=${email}&password=${password}`)
-                    .then((response) => {
-                        if (response.data) {
-                            props.login(response.data)
-                            setLandingRedirect(true);
-                        } else {
-                            alert("wrong credentials")
-                        }
-                    })
-                    .catch((err) => {
-                        alert(err);
-                    });
-
+                console.log(response);
+                // props.login()
+                // setLandingRedirect(true);
             })
             .catch((err) => {
                 alert(err);
@@ -52,7 +42,7 @@ function UserRegistration(props) {
 
     return (
         <form onSubmit={handleSubmit}>
-            <h1>Create Account</h1>
+            <h1>Edit Account</h1>
             <label>
                 Full Name
                 <input
@@ -99,4 +89,4 @@ function UserRegistration(props) {
     );
 }
 
-export default UserRegistration;
+export default EditUser;

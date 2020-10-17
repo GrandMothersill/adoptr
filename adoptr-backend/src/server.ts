@@ -104,9 +104,29 @@ MongoClient.connect(
             const hashedPassword = bcrypt.hashSync(req.body.password, 10);
             usersCollection.insertOne({ ...req.body, password: hashedPassword })
                 .then(result => {
-                    res.redirect('/');
+                    res.send(result);
+                    // res.redirect('/');
                 })
                 .catch(error => res.status(409).send(error));
+        });
+
+        app.put("/user", (req, res) => {
+            const hashedPassword = bcrypt.hashSync(req.body.password, 10);
+            usersCollection.updateOne(
+                { _id: ObjectId(req.body.userID) },
+                {
+                    $set: {
+                        name: req.body.name,
+                        email: req.body.email,
+                        password: hashedPassword,
+                        user_photo: req.body.user_photo
+                    }
+                }
+            )
+                .then(result => {
+                    res.send(result);
+                })
+                .catch(error => console.log(error));
         });
 
         app.put("/users/reject", (req, res) => {

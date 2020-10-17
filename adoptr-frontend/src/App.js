@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
 import UserRegistration from "./components/UserRegistration.js";
+import EditUser from "./components/EditUser.js";
 import AnimalRegistration from "./components/animalRegistration.js";
 import ShelterRegistration from "./components/ShelterRegistration.js";
 import ShelterLogin from "./components/ShelterLogin";
@@ -30,6 +31,7 @@ function App() {
           <Route path='/profiles' exact component={AnimalProfile} />
           <Route path='/animals' render={() => <AnimalRegistration state={state} />} />
           <Route path='/users' render={() => <UserRegistration login={setUser} state={state} />} />
+          <Route path='/user/edit' render={() => <EditUser state={state} />} />
           <Route path='/shelters' render={() => <ShelterRegistration login={setShelter} state={state} />} />
           <Route path='/login' render={() => <UserLogin login={setUser} />} />
           <Route path='/shelterlogin' render={() => <ShelterLogin login={setShelter} />} />
