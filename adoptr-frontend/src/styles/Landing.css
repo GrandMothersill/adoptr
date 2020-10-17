@@ -1,3 +1,16 @@
 .landing {
   padding: 2%;
 }
+
+.card {
+  margin: auto;
+  float: none;
+}
+
+.dashboard-actions {
+  margin: 2% 0;
+}
+
+.action {
+  margin-left: 15px;
+}

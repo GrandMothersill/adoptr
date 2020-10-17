@@ -3,6 +3,7 @@ import axios from "axios";
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
+
 function Dashboard(props) {
   const [loading, setLoading] = useState(true);
   const [profiles, setProfiles] = useState();
@@ -30,7 +31,7 @@ function Dashboard(props) {
           <Card.Text>
             {profile.bio}
           </Card.Text>
-          <Button variant="primary">Go somewhere</Button>
+          <Button variant="primary">See {profile.name}'s matches</Button>
         </Card.Body>
       </Card>
       )

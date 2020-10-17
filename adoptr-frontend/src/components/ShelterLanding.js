@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import { Redirect, Link } from "react-router-dom"
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
 import "../styles/Landing.css";
 import Dashboard from "./Dashboard";
+import Button from 'react-bootstrap/Button';
 
 function ShelterLanding(props) {
   // const [isLoading, setLoading] = useState(true);
@@ -17,10 +15,14 @@ function ShelterLanding(props) {
 
   return (
     <div className="landing">
-      <h1>Welcome, {props.state.account.name}</h1>
-      <Link to="/animals">Create New Animal Profile</Link>
-      <Link to="/profiles">Profiles</Link>
-      <div className="row"><Dashboard name={props.state.account.name} id={props.state.account._id} /></div>
+      <h1>Welcome to your dashboard, {props.state.account.name}</h1>
+      <p>Edit your account, create new animal profiles and keep track of your animals and their matches all in one place!</p>
+      <div className="dashboard-actions">
+        <Button variant="warning">Edit Account</Button>
+        <Link to="/animals"><Button variant="warning" className="action">Create New Animal Profile</Button></Link>
+      </div>
+      {/* <Link to="/profiles">Profiles</Link> */}
+      <div className="row dashboard"><Dashboard name={props.state.account.name} id={props.state.account._id} /></div>
     </div>
   )
 }
