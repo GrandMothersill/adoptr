@@ -17,6 +17,7 @@ MongoClient.connect(
         const animalsCollection = db.collection("animals");
         const usersCollection = db.collection("users");
         const sheltersCollection = db.collection("shelters");
+        const matchesCollection = db.collection("matches");
         app.use(cors());
         app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({ extended: true }));
@@ -128,9 +129,31 @@ MongoClient.connect(
                 })
                 .catch(error => res.status(409).send(error));
         });
+
+        ////////////////////////////////////////////////////////////////////////////////
+
+        app.post("/matches", (req, res) => {
+            matchesCollection.insertOne(req.body)
+                .then(result => {
+                    res.send(result)
+                })
+                .catch(error => console.log(error));
+        });
+
+        app.get("/matches/user", (req, res) => {
+            db.collection("matches").find({ userID: req.query.userID }).toArray()
+                .then(results => {
+                    console.log(results);
+                    res.send(results);
+                })
+                .catch(error => console.error(error))
+        });
+
+
+
+
     })
     .catch(error => console.error(error));
-
 
 
 

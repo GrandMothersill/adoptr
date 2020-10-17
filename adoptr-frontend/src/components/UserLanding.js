@@ -12,7 +12,7 @@ function UserLanding(props) {
     return (
       <div>
         <h1>Hello User {props.state.account.name}</h1>
-        <TinderSwipe setRejectedAnimal={props.setRejectedAnimal} state={props.state} />
+        <TinderSwipe setUserMatches={props.setUserMatches} userMatches={props.userMatches} setNewMatch={props.setNewMatch} setRejectedAnimal={props.setRejectedAnimal} state={props.state} />
       </div>
     )
   }

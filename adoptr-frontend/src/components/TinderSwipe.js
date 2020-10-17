@@ -14,21 +14,40 @@ function TinderSwipe(props) {
     //// BUILD FUNCTION TO FILTER OUT ANIMAL IDS INCLUDED IN THAT  ARRAY IN THE CURRENT USER'S PROFILE, THIS IS IN STATE
 
     const filterRejectedAnimals = (data) => {
-        return data.filter(animal => !props.state.rejected_animals.includes(animal._id))
+        return data.filter(animal => !props.state.rejected_animals.includes(animal._id)).filter(
+            animal => !props.userMatches.includes(animal._id)
+        )
     }
 
     useEffect(() => {
-        axios.get("http://localhost:3001/animals")
+
+        axios.get(`http://localhost:3001/matches/user/?userID=${props.state.account._id}`)
             .then((response) => {
                 const data = response.data;
-                console.log("animal profiles", data)
-                console.log(props.state.account.rejected_animals)
-                console.log("filtered animals", filterRejectedAnimals(data))
-                setAnimalProfiles(filterRejectedAnimals(data))
+                console.log("GETTING USER MATCHES", data)
+                props.setUserMatches(data.map(entry => entry.animalID))
+
+                return axios.get("http://localhost:3001/animals")
+                    .then((response) => {
+                        const data = response.data;
+                        console.log("animal profiles", data)
+                        console.log("rejected animals", props.state.account.rejected_animals)
+                        console.log("filtered animals", filterRejectedAnimals(data))
+                        setAnimalProfiles(filterRejectedAnimals(data))
+                    })
+                    .catch((err) => {
+                        alert(err);
+                    });
+
             })
             .catch((err) => {
                 alert(err);
             });
+
+
+
+
+
     }, []);
 
 
@@ -46,11 +65,18 @@ function TinderSwipe(props) {
 
 
     const handleMatch = (animalID, userID) => {
-
+        axios
+            .post(`http://localhost:3001/matches`, { userID: userID, animalID: animalID })
+            .then((response) => {
+                console.log("MATCH RESPONSE", response);
+            })
+            .catch((err) => {
+                alert(err);
+            });
+        props.setNewMatch(animalID)
     }
 
     const handleReject = (animalID, userID) => {
-        props.setRejectedAnimal(animalID)
         axios
             .put(`http://localhost:3001/users/reject`, { userID: userID, animalID: animalID })
             .then((response) => {
@@ -59,6 +85,7 @@ function TinderSwipe(props) {
             .catch((err) => {
                 alert(err);
             });
+        props.setRejectedAnimal(animalID)
     };
 
 
@@ -70,6 +97,7 @@ function TinderSwipe(props) {
             handleReject(animalID, props.state.account._id)
         } else if (direction === 'right') {
             console.log(animalID + ' WAS MATCHED =D')
+            handleMatch(animalID, props.state.account._id)
         }
     }
 
