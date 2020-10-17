@@ -100,7 +100,6 @@ MongoClient.connect(
         });
 
         app.put("/users/reject", (req, res) => {
-            console.log("BODAY", req.body)
             usersCollection.updateOne(
                 { _id: ObjectId(req.body.userID) },
                 {
@@ -143,7 +142,6 @@ MongoClient.connect(
         app.get("/matches/user", (req, res) => {
             db.collection("matches").find({ userID: req.query.userID }).toArray()
                 .then(results => {
-                    console.log(results);
                     res.send(results);
                 })
                 .catch(error => console.error(error))
