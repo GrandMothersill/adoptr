@@ -12,6 +12,7 @@ function Landing(props) {
     return (
       <div className="landing">
         <h1>Making "Adopt Don't Shop" Easy</h1>
+        <p>Start viewing animals in you area! </p>
       </div>
     )
   }

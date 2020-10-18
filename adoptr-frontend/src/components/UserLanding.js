@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect } from "react-router-dom"
+import { Redirect, Link } from "react-router-dom";
 import TinderSwipe from "./TinderSwipe";
 
 function UserLanding(props) {
@@ -11,7 +11,8 @@ function UserLanding(props) {
   } else {
     return (
       <div>
-        <h1>Hello User {props.state.account.name}</h1>
+        <h1>Hello User {props.state.account.name} and {props.state.account._id}</h1>
+        <Link to="/usermatches">View your matches</Link>
         <TinderSwipe setUserMatches={props.setUserMatches} userMatches={props.userMatches} setNewMatch={props.setNewMatch} setRejectedAnimal={props.setRejectedAnimal} state={props.state} />
       </div>
     )

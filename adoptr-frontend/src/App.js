@@ -11,6 +11,7 @@ import Nav from "./components/Nav";
 import Landing from "./components/Landing"
 import AnimalProfile from "./components/AnimalProfile"
 import UserLogin from "./components/UserLogin"
+import UserMatches from "./components/UserMatches";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import useApplicationData from "./hooks/useApplicationData";
 
@@ -35,6 +36,7 @@ function App() {
           <Route path='/shelterlogin' render={() => <ShelterLogin login={setShelter} />} />
           <Route path="/landing" render={() => <UserLanding setUserMatches={setUserMatches} userMatches={userMatches} setNewMatch={setNewMatch} setRejectedAnimal={setRejectedAnimal} state={state} />} />
           <Route path="/shelterlanding" render={() => <ShelterLanding state={state} />} />
+          <Route path="/usermatches" render={() => <UserMatches state={state} />} />
           <Route path='/' render={() => <Landing state={state} />} />
         </Switch>
       </div>
