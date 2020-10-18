@@ -1,0 +1,54 @@
+.paws {
+  font-size: 150px;
+  position: absolute;
+  color: #f3b32f;
+  z-index: -1;
+}
+
+.one {
+  transform: rotate(35deg);
+  bottom: 20px;
+  left: -10px;
+}
+
+.two {
+  transform: rotate(35deg);
+  bottom: 200px;
+  left: 100px;
+}
+
+.three {
+  transform: rotate(50deg);
+  bottom: 100px;
+  left: 300px;
+}
+
+.four {
+  transform: rotate(50deg);
+  bottom: 310px;
+  left: 430px;
+}
+
+.five {
+  transform: rotate(65deg);
+  bottom: 180px;
+  left: 610px;
+}
+
+.six {
+  transform: rotate(65deg);
+  bottom: 420px;
+  left: 660px;
+}
+
+.seven {
+  transform: rotate(65deg);
+  bottom: 260px;
+  left: 900px;
+}
+
+.eight {
+  transform: rotate(65deg);
+  bottom: 530px;
+  left: 990px;
+}

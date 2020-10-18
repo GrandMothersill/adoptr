@@ -8,6 +8,8 @@ nav {
   font-family: "Montserrat", sans-serif;
   font-size: 2vh;
   padding: 0 2%;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
 .nav-link {

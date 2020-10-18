@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { Spring } from 'react-spring/renderprops';
 import axios from "axios";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -13,20 +14,10 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { Redirect } from "react-router-dom"
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Adoptr
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import { Redirect } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPaw } from '@fortawesome/free-solid-svg-icons';
+import "../styles/Login.css"
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -82,7 +73,30 @@ export default function UserLogin(props) {
 }
 
   return (
-    <Container component="main" maxWidth="xs">
+    <div className="login">
+    <Spring
+      config={{duration: 5000}}
+      from={{opacity: 0}}
+      to={{opacity: 1}}>
+      {props => (
+        <div style={props}>
+          <FontAwesomeIcon className="paws one" icon={faPaw} />
+          <FontAwesomeIcon className="paws two" icon={faPaw} />
+          <FontAwesomeIcon className="paws three" icon={faPaw} />
+          <FontAwesomeIcon className="paws four" icon={faPaw} />
+          <FontAwesomeIcon className="paws five" icon={faPaw} />
+          <FontAwesomeIcon className="paws six" icon={faPaw} />
+          <FontAwesomeIcon className="paws seven" icon={faPaw} />
+          <FontAwesomeIcon className="paws eight" icon={faPaw} />
+          <FontAwesomeIcon className="paws nine" icon={faPaw} />
+          <FontAwesomeIcon className="paws ten" icon={faPaw} />
+          <FontAwesomeIcon className="paws eleven" icon={faPaw} />
+        </div>
+      )}
+      
+    </Spring>
+    
+    <Container component="main" maxWidth="xs" className="login-form">
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -138,9 +152,7 @@ export default function UserLogin(props) {
           </Grid>
         </form>
       </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
     </Container>
+    </div>
   );
 }
