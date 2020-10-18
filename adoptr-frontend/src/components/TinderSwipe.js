@@ -9,6 +9,7 @@ function TinderSwipe(props) {
 
     const [animalProfiles, setAnimalProfiles] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [speciesSearch, setSpeciesSearch] = useState("All");
 
     //// BUILD FUNCTION TO FILTER OUT ANIMAL IDS INCLUDED IN THAT  ARRAY IN THE CURRENT USER'S PROFILE, THIS IS IN STATE
 
@@ -58,6 +59,14 @@ function TinderSwipe(props) {
         // console.log(nameToDelete + ' goes ' + direction)
     }
 
+    const filterBySpecies = (animals, query) => {
+        if (query === "All") {
+            return animals
+        } else {
+            return animals.filter(animal => animal.species === query)
+        };
+    };
+
 
     const handleMatch = (animalID, userID) => {
         axios
@@ -99,34 +108,49 @@ function TinderSwipe(props) {
         return (<h1>Loading...</h1>)
     } else {
         return (
-
-            <div className='cardContainer'>
-                {props.state.account.name}
-                {animalProfiles.map((animal) =>
-                    <TinderCard
-                        className='swipe'
-                        key={animal._id}
-                        onSwipe={(dir) => swiped(dir, animal._id)}
-                        onCardLeftScreen={(dir) => outOfFrame(dir, animal._id)}
-                        preventSwipe={['up', 'down']}
+            <div>
+                <label>
+                    Species Shown
+                <select
+                        name="species"
+                        id="species"
+                        onChange={e => setSpeciesSearch(e.target.value)}
                     >
-                        <div style={{ backgroundImage: 'url(' + animal.url + ')' }} className='card'>
-                            <img className='animalIMG' src={animal.animal_photos[0]} alt='animalPhoto'></img>
-                            <p>Name: {animal.name}</p>
-                            <p>Species: {animal.species}</p>
-                            <p>Breed: {animal.breedAndInfo.breed}</p>
-                            <p>Sex: {animal.sex}</p>
-                            <p>Age: {animal.age}</p>
-                            <p>Colour: {animal.breedAndInfo.colour}</p>
-                            <p>Size: {animal.breedAndInfo.size}</p>
-                            <p>Spayed/Neudered?{animal.breedAndInfo.spayedNeudered ? 'Yes' : 'No'}</p>
-                            <p>Foster? {animal.foster ? 'Yes' : 'No'}</p>
-                            <p>Shelter Name:{animal.shelterInfo.shelter_name}</p>
-                            <p>Bio: {animal.bio}</p>
-                        </div>
-                    </TinderCard>
-                )}
+                        <option value="All">All</option>
+                        <option value="Dog">Dog</option>
+                        <option value="Cat">Cat</option>
+                        <option value="Critter">Critter</option>
+                    </select>
+                </label>
 
+                <div className='cardContainer'>
+
+                    {filterBySpecies(animalProfiles, speciesSearch).map((animal) =>
+                        <TinderCard
+                            className='swipe'
+                            key={animal._id}
+                            onSwipe={(dir) => swiped(dir, animal._id)}
+                            onCardLeftScreen={(dir) => outOfFrame(dir, animal._id)}
+                            preventSwipe={['up', 'down']}
+                        >
+                            <div style={{ backgroundImage: 'url(' + animal.url + ')' }} className='card'>
+                                <img className='animalIMG' src={animal.animal_photos[0]} alt='animalPhoto'></img>
+                                <p>Name: {animal.name}</p>
+                                <p>Species: {animal.species}</p>
+                                <p>Breed: {animal.breedAndInfo.breed}</p>
+                                <p>Sex: {animal.sex}</p>
+                                <p>Age: {animal.age}</p>
+                                <p>Colour: {animal.breedAndInfo.colour}</p>
+                                <p>Size: {animal.breedAndInfo.size}</p>
+                                <p>Spayed/Neudered?{animal.breedAndInfo.spayedNeudered ? 'Yes' : 'No'}</p>
+                                <p>Foster? {animal.foster ? 'Yes' : 'No'}</p>
+                                <p>Shelter Name:{animal.shelterInfo.shelter_name}</p>
+                                <p>Bio: {animal.bio}</p>
+                            </div>
+                        </TinderCard>
+                    )}
+
+                </div>
             </div>
         )
     };
