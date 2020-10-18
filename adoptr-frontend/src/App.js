@@ -4,7 +4,7 @@ import './styles/App.css';
 import UserRegistration from "./components/UserRegistration.js";
 import EditUser from "./components/EditUser.js";
 import EditShelter from "./components/EditShelter.js";
-import AnimalRegistration from "./components/animalRegistration.js";
+import AnimalRegistration from "./components/AnimalRegistration.js";
 import ShelterRegistration from "./components/ShelterRegistration.js";
 import ShelterLogin from "./components/ShelterLogin";
 import UserLanding from "./components/UserLanding";
