@@ -19,7 +19,7 @@ function ShelterLanding(props) {
       .catch((err) => {
         alert(err);
       })
-  });
+  }, []);
 
 
 

@@ -37,7 +37,7 @@ function ShelterRegistration(props) {
                 latitude: e.coords.latitude
             });
         }, coordError, coordOptions);
-    });
+    }, []);
 
 
     const handleSubmit = (event) => {

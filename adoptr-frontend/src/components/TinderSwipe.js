@@ -40,7 +40,7 @@ function TinderSwipe(props) {
             .catch((err) => {
                 alert(err);
             });
-    });
+    }, []);
 
 
     // const onSwipe = (direction) => {
