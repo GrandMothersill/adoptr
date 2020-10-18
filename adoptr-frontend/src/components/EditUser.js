@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { Redirect } from "react-router-dom"
 
@@ -8,6 +8,13 @@ function EditUser(props) {
     const [email, setEmail] = useState(props.state.account.email);
     const [password, setPassword] = useState('');
     const [userPhoto, setUserPhoto] = useState(props.state.account.user_photo);
+
+
+    useEffect(() => {
+        setName(props.state.account.name)
+    }, []);
+
+    // THIS DOES NOT WORK
 
     const handleSubmit = (event) => {
         event.preventDefault();
