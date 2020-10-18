@@ -6,7 +6,7 @@ function EditUser(props) {
     const [landingRedirect, setLandingRedirect] = useState(false);
     const [name, setName] = useState(props.state.account.name);
     const [email, setEmail] = useState(props.state.account.email);
-    const [password, setPassword] = useState(props.state.account.password);
+    const [password, setPassword] = useState('');
     const [userPhoto, setUserPhoto] = useState(props.state.account.user_photo);
 
     const handleSubmit = (event) => {
@@ -15,19 +15,27 @@ function EditUser(props) {
             userID: props.state.account._id,
             name: name,
             email: email,
-            password: password,
             user_photo: userPhoto,
             rejected_animals: props.state.rejected_animals
         }
-
-        console.log(registrationData);
 
         axios
             .put("http://localhost:3001/user", registrationData)
             .then((response) => {
                 console.log(response);
-                // props.login()
-                // setLandingRedirect(true);
+                return axios
+                    .get(`http://localhost:3001/login/?email=${registrationData.email}&password=${password}`)
+                    .then((response) => {
+                        if (response.data) {
+                            props.login(response.data)
+                            setLandingRedirect(true);
+                        } else {
+                            alert("wrong credentials")
+                        }
+                    })
+                    .catch((err) => {
+                        alert(err);
+                    });
             })
             .catch((err) => {
                 alert(err);
@@ -64,22 +72,23 @@ function EditUser(props) {
             </label>
             <br></br>
             <label>
-                Password:
-                <input
-                    name="password"
-                    type="password"
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
-                    required />
-            </label>
-            <br></br>
-            <label>
                 Display Picture:
                 <input
                     name="userPhoto"
                     type="userPhoto"
                     value={userPhoto}
                     onChange={e => setUserPhoto(e.target.value)}
+                    required />
+            </label>
+            <br></br>
+            <p>Please input your password to confirm edits</p>
+            <label>
+                Password:
+                <input
+                    name="password"
+                    type="password"
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
                     required />
             </label>
             <br></br>

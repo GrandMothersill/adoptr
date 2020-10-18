@@ -24,7 +24,7 @@ function UserRegistration(props) {
             .then((response) => {
 
 
-                axios
+                return axios
                     .get(`http://localhost:3001/login/?email=${email}&password=${password}`)
                     .then((response) => {
                         if (response.data) {

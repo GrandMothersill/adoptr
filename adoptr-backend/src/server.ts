@@ -111,14 +111,12 @@ MongoClient.connect(
         });
 
         app.put("/user", (req, res) => {
-            const hashedPassword = bcrypt.hashSync(req.body.password, 10);
             usersCollection.updateOne(
                 { _id: ObjectId(req.body.userID) },
                 {
                     $set: {
                         name: req.body.name,
                         email: req.body.email,
-                        password: hashedPassword,
                         user_photo: req.body.user_photo
                     }
                 }
@@ -158,6 +156,36 @@ MongoClient.connect(
                 })
                 .catch(error => res.status(409).send(error));
         });
+
+
+        app.put("/shelter", (req, res) => {
+            console.log(req.body);
+            sheltersCollection.updateOne(
+                { _id: ObjectId(req.body.shelterID) },
+                {
+                    $set: {
+                        name: req.body.name,
+                        email: req.body.email,
+                        bio: req.body.bio,
+                        phone: req.body.phone,
+                        address: {
+                            street_number: req.body.address.street_number,
+                            street: req.body.address.street,
+                            city: req.body.address.city,
+                            province: req.body.address.province,
+                            postal_code: req.body.address.postal_code
+                        },
+                        location: req.body.location
+                    }
+                }
+            )
+                .then(result => {
+                    res.send(result);
+                })
+                .catch(error => console.log(error));
+        });
+
+
 
         ////////////////////////////////////////////////////////////////////////////////
 

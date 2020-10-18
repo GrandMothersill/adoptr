@@ -4,16 +4,16 @@ import { Redirect } from "react-router-dom"
 
 function ShelterRegistration(props) {
     const [landingRedirect, setLandingRedirect] = useState(false);
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
+    const [name, setName] = useState(props.state.account.name);
+    const [email, setEmail] = useState(props.state.account.email);
     const [password, setPassword] = useState("");
-    const [bio, setBio] = useState("");
-    const [phone, setPhone] = useState("");
-    const [streetNumber, setStreetNumber] = useState("");
-    const [street, setStreet] = useState("");
-    const [city, setCity] = useState("");
-    const [province, setProvince] = useState("");
-    const [postalCode, setPostalCode] = useState("");
+    const [bio, setBio] = useState(props.state.account.bio);
+    const [phone, setPhone] = useState(props.state.account.phone);
+    const [streetNumber, setStreetNumber] = useState(props.state.account.address.street_number);
+    const [street, setStreet] = useState(props.state.account.address.street);
+    const [city, setCity] = useState(props.state.account.address.city);
+    const [province, setProvince] = useState(props.state.account.address.province);
+    const [postalCode, setPostalCode] = useState(props.state.account.address.postal_code);
 
     const [coordinates, setCoordinates] = useState({ longitude: null, latitude: null });
 
@@ -44,9 +44,9 @@ function ShelterRegistration(props) {
         event.preventDefault();
 
         const registrationData = {
+            shelterID: props.state.account._id,
             name: name,
             email: email,
-            password: password,
             bio: bio,
             phone: phone,
             address: {
@@ -61,10 +61,11 @@ function ShelterRegistration(props) {
 
         ////////// ADD ERRROR HANDLING FOR IF COORDINATES CANNOT BE FOUND
         axios
-            .post("http://localhost:3001/shelters", registrationData)
+            .put("http://localhost:3001/shelter", registrationData)
             .then((response) => {
+                console.log(response);
                 return axios
-                    .get(`http://localhost:3001/shelterlogin/?email=${email}&password=${password}`)
+                    .get(`http://localhost:3001/shelterlogin/?email=${registrationData.email}&password=${password}`)
                     .then((response) => {
                         if (response.data) {
                             props.login(response.data)
@@ -106,16 +107,6 @@ function ShelterRegistration(props) {
                     type="email"
                     value={email}
                     onChange={e => setEmail(e.target.value)}
-                    required />
-            </label>
-            <br></br>
-            <label>
-                Password:
-                <input
-                    name="password"
-                    type="password"
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
                     required />
             </label>
             <br></br>
@@ -186,6 +177,17 @@ function ShelterRegistration(props) {
                     type="text"
                     value={postalCode}
                     onChange={e => setPostalCode(e.target.value)}
+                    required />
+            </label>
+            <br></br>
+            <p>Please input your password to confirm edits</p>
+            <label>
+                Password:
+                <input
+                    name="password"
+                    type="password"
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
                     required />
             </label>
             <br></br>
