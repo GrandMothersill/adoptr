@@ -17,19 +17,20 @@ function TinderSwipe(props) {
         )
     };
 
+    let userAccountID = props.state.account._id
+    let setUserMatches = props.setUserMatches
+
     useEffect(() => {
 
-        axios.get(`http://localhost:3001/matches/user/?userID=${props.state.account._id}`)
+        axios.get(`http://localhost:3001/matches/user/?userID=${userAccountID}`)
             .then((response) => {
                 const data = response.data;
                 console.log("GETTING USER MATCHES", data)
-                props.setUserMatches(data.map(entry => entry.animalID))
+                setUserMatches(data.map(entry => entry.animalID))
 
                 return axios.get("http://localhost:3001/animals")
                     .then((response) => {
                         const data = response.data;
-                        console.log("animal profiles", data)
-                        console.log("rejected animals", props.state.account.rejected_animals)
                         console.log("filtered animals", filterRejectedAnimals(data))
                         setAnimalProfiles(filterRejectedAnimals(data))
                     })
