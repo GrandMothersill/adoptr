@@ -1,7 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const MongoClient = require("mongodb").MongoClient;
-// const ObjectId = require("mongodb").ObjectId;
 const cors = require("cors");
 const bcrypt = require('bcrypt');
 const app = express();
@@ -39,6 +38,17 @@ MongoClient.connect(
                 })
                 .catch(error => console.error(error))
         });
+
+        app.get("/profile", (req, res) => {
+            const idObject = new ObjectId(req.query.id);
+            db.collection("animals").find({
+                _id: idObject
+            }).toArray()
+                .then(results => {
+                    res.send(results);
+                })
+                .catch(error => console.error(error))
+        })
 
         app.post("/animals", (req, res) => {
             animalsCollection.insertOne(req.body)
@@ -80,8 +90,6 @@ MongoClient.connect(
                     if (results[0]) {
                         const dbpassword = results[0].password
                         if (bcrypt.compareSync(req.query.password, dbpassword)) {
-                            // const getId = results.next()._id;
-                            // console.log(getId)
                             res.send(results[0]);
                         } else {
                             res.send(false);
@@ -204,9 +212,6 @@ MongoClient.connect(
                 })
                 .catch(error => console.error(error))
         });
-
-
-
 
     })
     .catch(error => console.error(error));
