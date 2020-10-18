@@ -5,14 +5,14 @@ import { Redirect } from "react-router-dom"
 function AnimalRegistration(props) {
     const [landingRedirect, setLandingRedirect] = useState(false);
     const [name, setName] = useState("");
-    const [species, setSpecies] = useState("");
+    const [species, setSpecies] = useState("dog");
     const [sex, setSex] = useState("male");
     const [age, setAge] = useState("");
     const [animalPhoto, setAnimalPhoto] = useState("");
     const [bio, setBio] = useState("");
     const [breed, setBreed] = useState("");
     const [colour, setColour] = useState("");
-    const [size, setSize] = useState("");
+    const [size, setSize] = useState("small");
     const [spayedNeudered, setSpayedNeudered] = useState(false);
     const [foster, setFoster] = useState(false);
 
@@ -79,12 +79,15 @@ function AnimalRegistration(props) {
             <br></br>
             <label>
                 Species
-                <input
+                <select
                     name="species"
-                    type="text"
-                    value={species}
+                    id="species"
                     onChange={e => setSpecies(e.target.value)}
-                    required />
+                >
+                    <option value="dog">Dog</option>
+                    <option value="cat">Cat</option>
+                    <option value="critter">Critter</option>
+                </select>
             </label>
             <br></br>
             <label>
@@ -153,12 +156,16 @@ function AnimalRegistration(props) {
             <label>
                 {/* MAKE THIS A DROP DOWN: S, M, L, XL */}
                 Size:
-                <input
+                <select
                     name="size"
-                    type="text"
-                    value={size}
+                    id="size"
                     onChange={e => setSize(e.target.value)}
-                    required />
+                >
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                    <option value="x-large">X-Large</option>
+                </select>
             </label>
             <br></br>
             <label>
@@ -182,7 +189,7 @@ function AnimalRegistration(props) {
             </label>
             <br></br>
             <button>Submit</button>
-        </form>
+        </form >
     );
 }
 
