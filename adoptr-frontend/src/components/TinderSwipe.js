@@ -11,6 +11,8 @@ function TinderSwipe(props) {
     const [loading, setLoading] = useState(true);
     const [speciesSearch, setSpeciesSearch] = useState("All");
 
+    const [coordinates, setCoordinates] = useState({ longitude: null, latitude: null });
+
     //// BUILD FUNCTION TO FILTER OUT ANIMAL IDS INCLUDED IN THAT  ARRAY IN THE CURRENT USER'S PROFILE, THIS IS IN STATE
 
     const filterRejectedAnimals = (data) => {
@@ -45,6 +47,57 @@ function TinderSwipe(props) {
                 alert(err);
             });
     }, []);
+
+
+    const coordError = (err) => {
+        console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+
+    const coordOptions = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+    };
+
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition(e => {
+            console.log(e.coords.longitude, e.coords.latitude)
+            setCoordinates({
+                longitude: e.coords.longitude,
+                latitude: e.coords.latitude
+            });
+        }, coordError, coordOptions);
+    }, []);
+
+    /// credit: https://www.geodatasource.com
+    function distance(crds1, crds2, unit) {
+        let lat1 = crds1.latitude
+        let lat2 = crds2.latitude
+        let lon1 = crds1.longitude
+        let lon2 = crds2.longitude
+        if ((lat1 == lat2) && (lon1 == lon2)) {
+            return 0;
+        }
+        else {
+            const radlat1 = Math.PI * lat1 / 180;
+            const radlat2 = Math.PI * lat2 / 180;
+            const theta = lon1 - lon2;
+            const radtheta = Math.PI * theta / 180;
+            let dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+            if (dist > 1) {
+                dist = 1;
+            }
+            dist = Math.acos(dist);
+            dist = dist * 180 / Math.PI;
+            dist = dist * 60 * 1.1515;
+            if (unit == "K") { dist = dist * 1.609344 }
+            if (unit == "N") { dist = dist * 0.8684 }
+            return dist;
+        };
+    };
+
+
+
 
 
     // const onSwipe = (direction) => {
@@ -122,7 +175,8 @@ function TinderSwipe(props) {
                         <option value="Critter">Critter</option>
                     </select>
                 </label>
-
+                <p>{coordinates.longitude}</p>
+                <p>{coordinates.latitude}</p>
                 <div className='cardContainer'>
 
                     {filterBySpecies(animalProfiles, speciesSearch).map((animal) =>
@@ -136,6 +190,7 @@ function TinderSwipe(props) {
                             <div style={{ backgroundImage: 'url(' + animal.url + ')' }} className='card'>
                                 <img className='animalIMG' src={animal.animal_photos[0]} alt='animalPhoto'></img>
                                 <p>Name: {animal.name}</p>
+                                <p>{distance(animal.coordinates, coordinates, 'K').toFixed(1)} kms away</p>
                                 <p>Species: {animal.species}</p>
                                 <p>Breed: {animal.breedAndInfo.breed}</p>
                                 <p>Sex: {animal.sex}</p>
@@ -146,6 +201,8 @@ function TinderSwipe(props) {
                                 <p>Foster? {animal.foster ? 'Yes' : 'No'}</p>
                                 <p>Shelter Name:{animal.shelterInfo.shelter_name}</p>
                                 <p>Bio: {animal.bio}</p>
+                                <p>Longitude: {animal.coordinates.longitude}</p>
+                                <p>Latitude: {animal.coordinates.latitude}</p>
                             </div>
                         </TinderCard>
                     )}

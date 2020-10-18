@@ -42,7 +42,8 @@ function AnimalRegistration(props) {
                 shelterInfo: {
                     shelter_name: props.state.account.name,
                     shelter_id: props.state.account._id
-                }
+                },
+                coordinates: props.state.account.location
             }
 
             axios

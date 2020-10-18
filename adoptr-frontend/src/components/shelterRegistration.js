@@ -20,7 +20,7 @@ function ShelterRegistration(props) {
 
     function coordError(err) {
         console.warn(`ERROR(${err.code}): ${err.message}`);
-    }
+    };
 
     var coordOptions = {
         enableHighAccuracy: true,
