@@ -10,9 +10,9 @@ function EditUser(props) {
     const [userPhoto, setUserPhoto] = useState(props.state.account.user_photo);
 
 
-    useEffect(() => {
-        setName(props.state.account.name)
-    }, []);
+    // useEffect(() => {
+    //     setName(props.state.account.name)
+    // }, []);
 
     // THIS DOES NOT WORK
 
