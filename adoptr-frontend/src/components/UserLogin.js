@@ -1,15 +1,10 @@
 import React, {useState} from 'react';
 import axios from "axios";
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -18,6 +13,7 @@ import { Spring } from "react-spring/renderprops";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaw } from '@fortawesome/free-solid-svg-icons';
 import "../styles/Login.css"
+import animals from "../images/animals.png";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -219,9 +215,7 @@ export default function UserLogin(props) {
       <Container component="main" maxWidth="xs" className="login-form">
         <CssBaseline />
         <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
+          <img className="animals" src={animals} alt="animals"/>
           <Typography component="h1" variant="h5">
             User Login
           </Typography>
@@ -256,13 +250,14 @@ export default function UserLogin(props) {
               variant="contained"
               color="primary"
               className={classes.submit}
+              style={{"background-color": "black"}}
             >
               Sign In
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="/users" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <Link href="/users" variant="body2" style={{color: "black"}}>
+                  Don't have an account? Create one.
                 </Link>
               </Grid>
             </Grid>
