@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 import Button from '@material-ui/core/Button';
@@ -43,25 +43,25 @@ export default function UserLogin(props) {
   const [password, setPassword] = useState("");
 
   const handleSubmit = (event) => {
-      event.preventDefault();
+    event.preventDefault();
 
-      if (!email || !password) {
-        alert("Please fill in all fields")
-      } else {
-        axios
-          .get(`http://localhost:3001/login/?email=${email}&password=${password}`)
-          .then((response) => {
-            if (response.data) {
-              props.login(response.data)
-              setLandingRedirect(true);
-            } else {
-              alert("wrong credentials")
-            }
-          })
-            .catch((err) => {
-                alert(err);
-            });
-      }
+    if (!email || !password) {
+      alert("Please fill in all fields")
+    } else {
+      axios
+        .get(`http://localhost:3001/login/?email=${email}&password=${password}`)
+        .then((response) => {
+          if (response.data) {
+            props.login(response.data)
+            setLandingRedirect(true);
+          } else {
+            alert("wrong credentials")
+          }
+        })
+        .catch((err) => {
+          alert(err);
+        });
+    }
   }
 
   if (landingRedirect) {
@@ -72,9 +72,9 @@ export default function UserLogin(props) {
     <div className="login">
       <div className="animation">
         <Spring
-          config={{duration: 1000}}
-          from={{opacity: 0}}
-          to={{opacity: 1}}>
+          config={{ duration: 1000 }}
+          from={{ opacity: 0 }}
+          to={{ opacity: 1 }}>
           {props => (
             <div style={props}>
               <FontAwesomeIcon className="paws one" icon={faPaw} />
@@ -82,130 +82,130 @@ export default function UserLogin(props) {
           )}
         </Spring>
         <Spring
-          config={{duration: 1000, delay: 200}}
-          from={{opacity: 0}}
-          to={{opacity: 1}}>
-                {props => (
+          config={{ duration: 1000, delay: 200 }}
+          from={{ opacity: 0 }}
+          to={{ opacity: 1 }}>
+          {props => (
             <div style={props}>
               <FontAwesomeIcon className="paws two" icon={faPaw} />
             </div>
           )}
         </Spring>
         <Spring
-          config={{duration: 1000, delay: 400}}
-          from={{opacity: 0}}
-          to={{opacity: 1}}>
-                {props => (
+          config={{ duration: 1000, delay: 400 }}
+          from={{ opacity: 0 }}
+          to={{ opacity: 1 }}>
+          {props => (
             <div style={props}>
               <FontAwesomeIcon className="paws three" icon={faPaw} />
             </div>
           )}
         </Spring>
         <Spring
-          config={{duration: 1000, delay: 600}}
-          from={{opacity: 0}}
-          to={{opacity: 1}}>
-                {props => (
+          config={{ duration: 1000, delay: 600 }}
+          from={{ opacity: 0 }}
+          to={{ opacity: 1 }}>
+          {props => (
             <div style={props}>
               <FontAwesomeIcon className="paws four" icon={faPaw} />
             </div>
           )}
         </Spring>
         <Spring
-          config={{duration: 1000, delay: 800}}
-          from={{opacity: 0}}
-          to={{opacity: 1}}>
-                {props => (
+          config={{ duration: 1000, delay: 800 }}
+          from={{ opacity: 0 }}
+          to={{ opacity: 1 }}>
+          {props => (
             <div style={props}>
               <FontAwesomeIcon className="paws five" icon={faPaw} />
             </div>
           )}
         </Spring>
         <Spring
-          config={{duration: 1000, delay: 1000}}
-          from={{opacity: 0}}
-          to={{opacity: 1}}>
-                {props => (
+          config={{ duration: 1000, delay: 1000 }}
+          from={{ opacity: 0 }}
+          to={{ opacity: 1 }}>
+          {props => (
             <div style={props}>
               <FontAwesomeIcon className="paws six" icon={faPaw} />
             </div>
           )}
         </Spring>
         <Spring
-          config={{duration: 1000, delay: 1200}}
-          from={{opacity: 0}}
-          to={{opacity: 1}}>
-                {props => (
+          config={{ duration: 1000, delay: 1200 }}
+          from={{ opacity: 0 }}
+          to={{ opacity: 1 }}>
+          {props => (
             <div style={props}>
               <FontAwesomeIcon className="paws seven" icon={faPaw} />
             </div>
           )}
         </Spring>
         <Spring
-          config={{duration: 1000, delay: 1400}}
-          from={{opacity: 0}}
-          to={{opacity: 1}}>
-                {props => (
+          config={{ duration: 1000, delay: 1400 }}
+          from={{ opacity: 0 }}
+          to={{ opacity: 1 }}>
+          {props => (
             <div style={props}>
               <FontAwesomeIcon className="paws eight" icon={faPaw} />
             </div>
           )}
         </Spring>
         <Spring
-          config={{duration: 1000, delay: 1600}}
-          from={{opacity: 0}}
-          to={{opacity: 1}}>
-                {props => (
+          config={{ duration: 1000, delay: 1600 }}
+          from={{ opacity: 0 }}
+          to={{ opacity: 1 }}>
+          {props => (
             <div style={props}>
               <FontAwesomeIcon className="paws nine" icon={faPaw} />
             </div>
           )}
         </Spring>
         <Spring
-          config={{duration: 1000, delay: 1800}}
-          from={{opacity: 0}}
-          to={{opacity: 1}}>
-                {props => (
+          config={{ duration: 1000, delay: 1800 }}
+          from={{ opacity: 0 }}
+          to={{ opacity: 1 }}>
+          {props => (
             <div style={props}>
               <FontAwesomeIcon className="paws ten" icon={faPaw} />
             </div>
           )}
         </Spring>
         <Spring
-          config={{duration: 1000, delay: 2000}}
-          from={{opacity: 0}}
-          to={{opacity: 1}}>
-                {props => (
+          config={{ duration: 1000, delay: 2000 }}
+          from={{ opacity: 0 }}
+          to={{ opacity: 1 }}>
+          {props => (
             <div style={props}>
               <FontAwesomeIcon className="paws eleven" icon={faPaw} />
             </div>
           )}
         </Spring>
         <Spring
-          config={{duration: 1000, delay: 2200}}
-          from={{opacity: 0}}
-          to={{opacity: 1}}>
-                {props => (
+          config={{ duration: 1000, delay: 2200 }}
+          from={{ opacity: 0 }}
+          to={{ opacity: 1 }}>
+          {props => (
             <div style={props}>
               <FontAwesomeIcon className="paws twelve" icon={faPaw} />
             </div>
           )}
         </Spring>
         <Spring
-          config={{duration: 1000, delay: 2400}}
-          from={{opacity: 0}}
-          to={{opacity: 1}}>
-                {props => (
+          config={{ duration: 1000, delay: 2400 }}
+          from={{ opacity: 0 }}
+          to={{ opacity: 1 }}>
+          {props => (
             <div style={props}>
               <FontAwesomeIcon className="paws thirteen" icon={faPaw} />
             </div>
           )}
         </Spring>
         <Spring
-          config={{duration: 1000, delay: 2600}}
-          from={{opacity: 0}}
-          to={{opacity: 1}}>
-                {props => (
+          config={{ duration: 1000, delay: 2600 }}
+          from={{ opacity: 0 }}
+          to={{ opacity: 1 }}>
+          {props => (
             <div style={props}>
               <FontAwesomeIcon className="paws fourteen" icon={faPaw} />
             </div>
@@ -215,7 +215,7 @@ export default function UserLogin(props) {
       <Container component="main" maxWidth="xs" className="login-form">
         <CssBaseline />
         <div className={classes.paper}>
-          <img className="animals" src={animals} alt="animals"/>
+          <img className="animals" src={animals} alt="animals" />
           <Typography component="h1" variant="h5">
             User Login
           </Typography>
@@ -250,13 +250,13 @@ export default function UserLogin(props) {
               variant="contained"
               color="primary"
               className={classes.submit}
-              style={{"background-color": "black"}}
+              style={{ "backgroundColor": "black" }}
             >
               Sign In
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="/users" variant="body2" style={{color: "black"}}>
+                <Link href="/users" variant="body2" style={{ color: "black" }}>
                   Don't have an account? Create one.
                 </Link>
               </Grid>

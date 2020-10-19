@@ -19,29 +19,29 @@ function Landing(props) {
             <p>Making "Adopt Don't Shop" Easy</p>
             <p className="sub-headline">Start viewing animals in you area! </p>
           </div>
-          <img className="arrow" src={arrow} alt="arrow"/>
-          
+          <img className="arrow" src={arrow} alt="arrow" />
+
           {/* <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> */}
         </div>
 
         <div className="features">
-          <div class="feature">
-          <FontAwesomeIcon className="fa" icon={faCheckCircle} />
-            <h3 class="feature-description">Easy to use.</h3>
-            <p class="feature-details">So easy to use, even your new fur buddy could do it.</p>
+          <div className="feature">
+            <FontAwesomeIcon className="fa" icon={faCheckCircle} />
+            <h3 className="feature-description">Easy to use.</h3>
+            <p className="feature-details">So easy to use, even your new fur buddy could do it.</p>
           </div>
-          <div class="feature">
+          <div className="feature">
             <FontAwesomeIcon className="fa" icon={faBullseye} />
-            <h3 class="feature-description">Elite Clientele.</h3>
-            <p class="feature-details">We have all the animals, the greatest animals.</p>
+            <h3 className="feature-description">Elite Clientele.</h3>
+            <p className="feature-details">We have all the animals, the greatest animals.</p>
           </div>
-          <div class="feature">
+          <div className="feature">
             <FontAwesomeIcon className="fa" icon={faHeart} />
-            <h3 class="feature-description">Guaranteed to work.</h3>
-            <p class="feature-details">Find your companion for life or your money back.</p>
+            <h3 className="feature-description">Guaranteed to work.</h3>
+            <p className="feature-details">Find your companion for life or your money back.</p>
           </div>
         </div>
-        
+
       </div>
     )
   }
