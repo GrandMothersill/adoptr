@@ -121,10 +121,10 @@ function ShelterRegistration(props) {
 
     return (
         <div>
-            <FontAwesomeIcon className="dog" icon={faDog} />
-            <FontAwesomeIcon className="cat" icon={faCat} />
-            <FontAwesomeIcon className="crow" icon={faCrow} />
-            <FontAwesomeIcon className="otter" icon={faOtter} />
+            <FontAwesomeIcon className="dog animation-target" icon={faDog} />
+            <FontAwesomeIcon className="cat animation-target" icon={faCat} />
+            <FontAwesomeIcon className="crow animation-target" icon={faCrow} />
+            <FontAwesomeIcon className="otter animation-target" icon={faOtter} />
             <Container component="main" maxWidth="xs">
             <CssBaseline />
             <div className={classes.paper}>

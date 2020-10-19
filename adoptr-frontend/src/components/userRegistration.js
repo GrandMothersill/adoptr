@@ -85,10 +85,10 @@ function UserRegistration(props) {
 
     return (
         <div>
-            <FontAwesomeIcon className="dog" icon={faDog} />
-            <FontAwesomeIcon className="cat" icon={faCat} />
-            <FontAwesomeIcon className="crow" icon={faCrow} />
-            <FontAwesomeIcon className="otter" icon={faOtter} />
+            <FontAwesomeIcon className="animation-target dog" icon={faDog}  style={{transform: [{rotateY: '90deg'}]}}/>
+            <FontAwesomeIcon className="animation-target cat" icon={faCat} />
+            <FontAwesomeIcon className="animation-target crow" icon={faCrow} />
+            <FontAwesomeIcon className="animation-target otter" icon={faOtter} />
             <Container component="main" maxWidth="xs">
             <CssBaseline />
             <div className={classes.paper}>
