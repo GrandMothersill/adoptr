@@ -9,6 +9,8 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDog, faCat, faCrow, faOtter } from '@fortawesome/free-solid-svg-icons';
 import animals from "../images/animals.png";
 import "../styles/Login.css"
 
@@ -82,88 +84,94 @@ function UserRegistration(props) {
     }
 
     return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <img className="animals" src={animals} alt="animals"/>
-        <Typography component="h1" variant="h5">
-          User Registration
-        </Typography>
-        <form className={classes.form} noValidate onSubmit={handleSubmit}>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="name"
-                label="Full Name"
-                name="name"
-                autoComplete="name"
-                onChange={e => setName(e.target.value)}
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="email"
-                label="Email Address"
-                type="text"
-                id="email"
-                autoComplete="email"
-                onChange={e => setEmail(e.target.value)}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="password"
-                onChange={e => setPassword(e.target.value)}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="photo"
-                label="Profile Photo"
-                type="text"
-                id="password"
-                autoComplete="photo"
-                onChange={e => setUserPhoto(e.target.value)}
-              />
-            </Grid>
-          </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            style={{"background-color": "black"}}
-          >
-            Sign Up
-          </Button>
-          <Grid container>
-            <Grid item>
-              <Link href="/login" variant="body2" style={{"color": "black"}}>
-                Already have an account? Login
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-    </Container>
+        <div>
+            <FontAwesomeIcon className="dog" icon={faDog} />
+            <FontAwesomeIcon className="cat" icon={faCat} />
+            <FontAwesomeIcon className="crow" icon={faCrow} />
+            <FontAwesomeIcon className="otter" icon={faOtter} />
+            <Container component="main" maxWidth="xs">
+            <CssBaseline />
+            <div className={classes.paper}>
+                <img className="animals" src={animals} alt="animals"/>
+                <Typography component="h1" variant="h5">
+                User Registration
+                </Typography>
+                <form className={classes.form} noValidate onSubmit={handleSubmit}>
+                <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                    <TextField
+                        variant="outlined"
+                        required
+                        fullWidth
+                        id="name"
+                        label="Full Name"
+                        name="name"
+                        autoComplete="name"
+                        onChange={e => setName(e.target.value)}
+                        autoFocus
+                    />
+                    </Grid>
+                    <Grid item xs={12}>
+                    <TextField
+                        variant="outlined"
+                        required
+                        fullWidth
+                        name="email"
+                        label="Email Address"
+                        type="text"
+                        id="email"
+                        autoComplete="email"
+                        onChange={e => setEmail(e.target.value)}
+                    />
+                    </Grid>
+                    <Grid item xs={12}>
+                    <TextField
+                        variant="outlined"
+                        required
+                        fullWidth
+                        name="password"
+                        label="Password"
+                        type="password"
+                        id="password"
+                        autoComplete="password"
+                        onChange={e => setPassword(e.target.value)}
+                    />
+                    </Grid>
+                    <Grid item xs={12}>
+                    <TextField
+                        variant="outlined"
+                        required
+                        fullWidth
+                        name="photo"
+                        label="Profile Photo"
+                        type="text"
+                        id="password"
+                        autoComplete="photo"
+                        onChange={e => setUserPhoto(e.target.value)}
+                    />
+                    </Grid>
+                </Grid>
+                <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}
+                    style={{"background-color": "black"}}
+                >
+                    Sign Up
+                </Button>
+                <Grid container>
+                    <Grid item>
+                    <Link href="/login" variant="body2" style={{"color": "black"}}>
+                        Already have an account? Login
+                    </Link>
+                    </Grid>
+                </Grid>
+                </form>
+            </div>
+            </Container>
+        </div>
     );
 }
 
