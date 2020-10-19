@@ -4,6 +4,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { Card, Button, ListGroup } from 'react-bootstrap';
 import distance from '../helpers/distance.js'
+import Messenger from './Messenger.js'
 
 function AnimalFullProfile(props) {
     let { id } = useParams();
@@ -60,33 +61,34 @@ function AnimalFullProfile(props) {
     }, []);
 
     return (
-
-        <Card style={{ width: '40rem' }} key={profile._id}>
-            <Card.Img style={{ height: '20rem', width: 'auto' }} variant="top" src={profile.animal_photos} />
-            <Card.Body>
-                <div style={{ display: 'flex' }} >
-                    <Card.Title>{profile.name}</Card.Title>
-                    <Card.Subtitle style={{ marginLeft: '50%' }}>Shelter: {profile.shelter_name}</Card.Subtitle>
-                </div>
-                <Card.Subtitle>{distance({ latitude: profile.latitude, longitude: profile.longitude }, coordinates, 'K').toFixed(1)} kms away</Card.Subtitle>
-                <Card.Text>{profile.bio} </Card.Text>
-                <div style={{ display: 'flex' }}>
-                    <ListGroup style={{ width: '15rem' }} variant="flush">
-                        <ListGroup.Item>Species: {profile.species}</ListGroup.Item>
-                        <ListGroup.Item>Breed: {profile.breed}</ListGroup.Item>
-                        <ListGroup.Item>Sex: {profile.sex}</ListGroup.Item>
-                        <ListGroup.Item>Age: {profile.age}</ListGroup.Item>
-                    </ListGroup>
-                    <ListGroup style={{ width: '15rem' }} variant="flush">
-                        <ListGroup.Item>Colour: {profile.colour}</ListGroup.Item>
-                        <ListGroup.Item>Size: {profile.size}</ListGroup.Item>
-                        <ListGroup.Item>Spayed/Neudered? {profile.spayedNeudered ? 'Yes' : 'No'}</ListGroup.Item>
-                        <ListGroup.Item>Foster? {profile.foster ? 'Yes' : 'No'}</ListGroup.Item>
-                    </ListGroup>
-                </div>
-            </Card.Body>
-        </Card >
-
+        <div style={{ display: 'flex', marginTop: '5rem' }}>
+            <Card style={{ width: '40rem' }} key={profile._id}>
+                <Card.Img style={{ height: '20rem', width: 'auto' }} variant="top" src={profile.animal_photos} />
+                <Card.Body>
+                    <div style={{ display: 'flex' }} >
+                        <Card.Title>{profile.name}</Card.Title>
+                        <Card.Subtitle style={{ marginLeft: '50%' }}>Shelter: {profile.shelter_name}</Card.Subtitle>
+                    </div>
+                    <Card.Subtitle>{distance({ latitude: profile.latitude, longitude: profile.longitude }, coordinates, 'K').toFixed(1)} kms away</Card.Subtitle>
+                    <Card.Text>{profile.bio} </Card.Text>
+                    <div style={{ display: 'flex' }}>
+                        <ListGroup style={{ width: '15rem' }} variant="flush">
+                            <ListGroup.Item>Species: {profile.species}</ListGroup.Item>
+                            <ListGroup.Item>Breed: {profile.breed}</ListGroup.Item>
+                            <ListGroup.Item>Sex: {profile.sex}</ListGroup.Item>
+                            <ListGroup.Item>Age: {profile.age}</ListGroup.Item>
+                        </ListGroup>
+                        <ListGroup style={{ width: '15rem' }} variant="flush">
+                            <ListGroup.Item>Colour: {profile.colour}</ListGroup.Item>
+                            <ListGroup.Item>Size: {profile.size}</ListGroup.Item>
+                            <ListGroup.Item>Spayed/Neudered? {profile.spayedNeudered ? 'Yes' : 'No'}</ListGroup.Item>
+                            <ListGroup.Item>Foster? {profile.foster ? 'Yes' : 'No'}</ListGroup.Item>
+                        </ListGroup>
+                    </div>
+                </Card.Body>
+            </Card >
+            <Messenger />
+        </div>
     )
 }
 

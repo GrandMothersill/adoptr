@@ -5,17 +5,16 @@ import Button from 'react-bootstrap/Button';
 
 function Messenger(props) {
 
-    <Card style={{ width: '18rem' }} key={profile._id}>
-        <Card.Img variant="top" src={profile.animal_photos[0]} />
-        <Card.Body>
-            <Card.Title>{profile.name}</Card.Title>
-            <Card.Text>
-                {profile.bio}
-            </Card.Text>
-            {props.state.account.type === 'shelter' ? <Button variant="primary">See {profile.name}'s matches</Button> : <Button variant="primary">See {profile.name}'s full profile</Button>}
-        </Card.Body>
-    </Card>
+    return (
 
+        <Card style={{ width: '18rem' }} >
+
+            <Card.Title>YAAASAASSASASAAS</Card.Title>
+            <Card.Body>THIS IS MESSENGER</Card.Body>
+
+
+        </Card>
+    )
 }
 
 
