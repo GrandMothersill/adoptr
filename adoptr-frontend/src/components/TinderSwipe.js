@@ -11,10 +11,9 @@ function TinderSwipe(props) {
     const [animalProfiles, setAnimalProfiles] = useState([]);
     const [loading, setLoading] = useState(true);
     const [speciesSearch, setSpeciesSearch] = useState("All");
-
     const [coordinates, setCoordinates] = useState({ longitude: null, latitude: null });
-
-    const [value, setValue] = useState(101);
+    const [maxDistance, setMaxDistance] = useState(101);
+    const [foster, setFoster] = useState(false);
 
     const filterRejectedAnimals = (data) => {
         return data.filter(animal => !props.state.rejected_animals.includes(animal._id)).filter(
@@ -127,7 +126,14 @@ function TinderSwipe(props) {
         } else {
             return animals.filter(animal => distance(animal.coordinates, coordinates, 'K').toFixed(1) <= query)
         };
+    };
 
+    const filterByFoster = (animals, query) => {
+        if (query == false) {
+            return animals
+        } else {
+            return animals.filter(animal => animal.foster === true)
+        };
     };
 
 
@@ -186,11 +192,20 @@ function TinderSwipe(props) {
                             <option value="Critter">Critter</option>
                         </select>
                     </label>
-                    <DistanceSlider value={value} setValue={setValue} />
+                    <DistanceSlider value={maxDistance} setValue={setMaxDistance} />
+                    <label style={{ margin: '10px' }}>
+                        Fostering?
+                <input
+                            name="foster"
+                            type="checkbox"
+                            checked={foster}
+                            onChange={() => setFoster(!foster)}
+                        />
+                    </label>
                 </div>
                 <div className='cardContainer'>
 
-                    {filterBySpecies(filterByDistance(animalProfiles, value), speciesSearch).map((animal) =>
+                    {filterBySpecies(filterByDistance(filterByFoster(animalProfiles, foster), maxDistance), speciesSearch).map((animal) =>
                         <TinderCard
                             className='swipe'
                             key={animal._id}
