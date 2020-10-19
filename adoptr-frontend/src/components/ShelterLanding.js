@@ -11,7 +11,7 @@ function ShelterLanding(props) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/profiles/?name=${props.state.account.name}&id=${props.state.account._id}`)
+      .get(`http://localhost:3001/profiles/?id=${props.state.account._id}`)
       .then((response) => {
         setProfiles(response.data);
         setLoading(false);
@@ -35,7 +35,7 @@ function ShelterLanding(props) {
         <h1>Welcome to your dashboard, {props.state.account.name} and {props.state.account._id}</h1>
         <p>Edit your account, create new animal profiles and keep track of your animals and their matches all in one place!</p>
         <div className="dashboard-actions">
-          <Button variant="warning">Edit Account</Button>
+          <Link to="/shelter/edit"><Button variant="warning">Edit Account</Button></Link>
           <Link to="/animals"><Button variant="warning" className="action">Create New Animal Profile</Button></Link>
         </div>
         <div className="row dashboard"><Dashboard profiles={profiles} /></div>

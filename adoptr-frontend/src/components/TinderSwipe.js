@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useMemo } from "react"
 import './TinderSwipe.css';
 import TinderCard from 'react-tinder-card';
 import axios from "axios";
 import DistanceSlider from './DistanceSlider.js'
 
-
+const alreadyRemoved = []
 
 function TinderSwipe(props) {
 
     const [animalProfiles, setAnimalProfiles] = useState([]);
     const [loading, setLoading] = useState(true);
     const [speciesSearch, setSpeciesSearch] = useState("All");
-
     const [coordinates, setCoordinates] = useState({ longitude: null, latitude: null });
+    const [maxDistance, setMaxDistance] = useState(101);
+    const [foster, setFoster] = useState(false);
 
-    const [value, setValue] = useState(101);
+    const childRefs = useMemo(() => Array(animalProfiles.length).fill(0).map(i => React.createRef()), [animalProfiles])
 
     const filterRejectedAnimals = (data) => {
         return data.filter(animal => !props.state.rejected_animals.includes(animal._id)).filter(
@@ -30,7 +31,6 @@ function TinderSwipe(props) {
         axios.get(`http://localhost:3001/matches/user/?userID=${userAccountID}`)
             .then((response) => {
                 const data = response.data;
-                console.log("GETTING USER MATCHES", data)
                 setUserMatches(data.map(entry => entry.animalID))
 
                 return axios.get("http://localhost:3001/animals")
@@ -109,9 +109,36 @@ function TinderSwipe(props) {
     //     console.log(myIdentifier + ' left the screen')
     // }
 
-    const swiped = (direction, nameToDelete) => {
-        // console.log(nameToDelete + ' goes ' + direction)
+    const swiped = (direction, idToDelete) => {
+        // console.log(idToDelete + ' goes ' + direction)
+        if (!alreadyRemoved.includes(idToDelete)) {
+            alreadyRemoved.push(idToDelete)
+        }
+    };
+
+    const outOfFrame = (direction, animalID) => {
+        // console.log(animalID + ' left the screen going ' + direction)
+        if (direction === 'left') {
+            console.log(animalID + ' WAS REJECTED')
+            handleReject(animalID, props.state.account._id)
+        } else if (direction === 'right') {
+            console.log(animalID + ' WAS MATCHED =D')
+            handleMatch(animalID, props.state.account._id)
+        }
     }
+
+    const swipe = (dir) => {
+        const cardsLeft = animalProfiles.filter(animal => !alreadyRemoved.includes(animal._id))
+        if (cardsLeft.length) {
+            const toBeRemoved = cardsLeft[cardsLeft.length - 1]._id // Find the card object to be removed
+            const index = animalProfiles.map(animal => animal._id).indexOf(toBeRemoved) // Find the index of which to make the reference to
+            alreadyRemoved.push(toBeRemoved) // Make sure the next card gets removed next time if this card do not have time to exit the screen
+            childRefs[index].current.swipe(dir) // Swipe the card!
+        }
+    }
+
+    // THIS IS NOT WORKING BECAUSE ANIMAL PROFILES IS NOT REMOVING ANIMALS ONCE THEY ARE PROCESSED
+
 
     const filterBySpecies = (animals, query) => {
         if (query === "All") {
@@ -127,7 +154,14 @@ function TinderSwipe(props) {
         } else {
             return animals.filter(animal => distance(animal.coordinates, coordinates, 'K').toFixed(1) <= query)
         };
+    };
 
+    const filterByFoster = (animals, query) => {
+        if (query == false) {
+            return animals
+        } else {
+            return animals.filter(animal => animal.foster === true)
+        };
     };
 
 
@@ -157,16 +191,9 @@ function TinderSwipe(props) {
 
 
 
-    const outOfFrame = (direction, animalID) => {
-        // console.log(name + ' left the screen going ' + direction)
-        if (direction === 'left') {
-            console.log(animalID + ' WAS REJECTED')
-            handleReject(animalID, props.state.account._id)
-        } else if (direction === 'right') {
-            console.log(animalID + ' WAS MATCHED =D')
-            handleMatch(animalID, props.state.account._id)
-        }
-    }
+
+
+
     if (loading) {
         return (<h1>Loading...</h1>)
     } else {
@@ -186,12 +213,22 @@ function TinderSwipe(props) {
                             <option value="Critter">Critter</option>
                         </select>
                     </label>
-                    <DistanceSlider value={value} setValue={setValue} />
+                    <DistanceSlider value={maxDistance} setValue={setMaxDistance} />
+                    <label style={{ margin: '10px' }}>
+                        Fostering?
+                <input
+                            name="foster"
+                            type="checkbox"
+                            checked={foster}
+                            onChange={() => setFoster(!foster)}
+                        />
+                    </label>
                 </div>
                 <div className='cardContainer'>
-
-                    {filterBySpecies(filterByDistance(animalProfiles, value), speciesSearch).map((animal) =>
+                    {animalProfiles.length === 0 ? <p>No more Cards</p> : <></>}
+                    {filterBySpecies(filterByDistance(filterByFoster(animalProfiles, foster), maxDistance), speciesSearch).map((animal, index) =>
                         <TinderCard
+                            ref={childRefs[index]}
                             className='swipe'
                             key={animal._id}
                             onSwipe={(dir) => swiped(dir, animal._id)}
@@ -204,18 +241,15 @@ function TinderSwipe(props) {
                                 <p>{distance(animal.coordinates, coordinates, 'K').toFixed(1)} kms away</p>
                                 <p>Species: {animal.species}</p>
                                 <p>Breed: {animal.breedAndInfo.breed}</p>
-                                <p>Sex: {animal.sex}</p>
-                                <p>Age: {animal.age}</p>
-                                <p>Colour: {animal.breedAndInfo.colour}</p>
-                                <p>Size: {animal.breedAndInfo.size}</p>
-                                <p>Spayed/Neudered?{animal.breedAndInfo.spayedNeudered ? 'Yes' : 'No'}</p>
                                 <p>Foster? {animal.foster ? 'Yes' : 'No'}</p>
-                                <p>Shelter Name:{animal.shelterInfo.shelter_name}</p>
                                 <p>Bio: {animal.bio}</p>
                             </div>
                         </TinderCard>
                     )}
-
+                </div>
+                <div className='buttons'>
+                    <button onClick={() => swipe('left')}>Swipe left!</button>
+                    <button onClick={() => swipe('right')}>Swipe right!</button>
                 </div>
             </div>
         )
