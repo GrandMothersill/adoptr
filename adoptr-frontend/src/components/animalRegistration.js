@@ -6,13 +6,13 @@ function AnimalRegistration(props) {
     const [landingRedirect, setLandingRedirect] = useState(false);
     const [name, setName] = useState("");
     const [species, setSpecies] = useState("Dog");
-    const [sex, setSex] = useState("male");
+    const [sex, setSex] = useState("Male");
     const [age, setAge] = useState("");
     const [animalPhoto, setAnimalPhoto] = useState("");
     const [bio, setBio] = useState("");
     const [breed, setBreed] = useState("");
     const [colour, setColour] = useState("");
-    const [size, setSize] = useState("small");
+    const [size, setSize] = useState("Small");
     const [spayedNeudered, setSpayedNeudered] = useState(false);
     const [foster, setFoster] = useState(false);
 
