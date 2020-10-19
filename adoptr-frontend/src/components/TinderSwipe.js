@@ -31,7 +31,6 @@ function TinderSwipe(props) {
         axios.get(`http://localhost:3001/matches/user/?userID=${userAccountID}`)
             .then((response) => {
                 const data = response.data;
-                console.log("GETTING USER MATCHES", data)
                 setUserMatches(data.map(entry => entry.animalID))
 
                 return axios.get("http://localhost:3001/animals")
@@ -130,14 +129,10 @@ function TinderSwipe(props) {
 
     const swipe = (dir) => {
         const cardsLeft = animalProfiles.filter(animal => !alreadyRemoved.includes(animal._id))
-        console.log("ALREADY REMOVED", alreadyRemoved)
-        console.log("CARDS LEFT", cardsLeft)
         if (cardsLeft.length) {
             const toBeRemoved = cardsLeft[cardsLeft.length - 1]._id // Find the card object to be removed
             const index = animalProfiles.map(animal => animal._id).indexOf(toBeRemoved) // Find the index of which to make the reference to
-            console.log("to be removed", toBeRemoved)
             alreadyRemoved.push(toBeRemoved) // Make sure the next card gets removed next time if this card do not have time to exit the screen
-            console.log(childRefs, index)
             childRefs[index].current.swipe(dir) // Swipe the card!
         }
     }
