@@ -3,14 +3,12 @@ import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaw } from '@fortawesome/free-solid-svg-icons'
 import Button from 'react-bootstrap/Button';
-import "../styles/Nav.css"
-
 
 function Nav(props) {
   
   return (
     <nav>
-      <Link to="/" className="nav-link"><h3>Adoptr  <FontAwesomeIcon icon={faPaw} /></h3></Link>
+      <Link to="/" ><h3 className={props.state.type ? "nav-link title" : "nav-link title about"}>Adoptr<FontAwesomeIcon className="paw" icon={faPaw} /></h3></Link>
       {props.state.type ? 
       <div className="nav-group">
         <p className="logged-user">Logged in as: {props.state.account.name}</p>

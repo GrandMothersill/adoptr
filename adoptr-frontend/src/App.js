@@ -1,23 +1,25 @@
-import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
-import UserRegistration from "./components/UserRegistration.js";
-import EditUser from "./components/EditUser.js";
-import EditShelter from "./components/EditShelter.js";
-import AnimalRegistration from "./components/AnimalRegistration.js";
-import ShelterRegistration from "./components/ShelterRegistration.js";
-import ShelterLogin from "./components/ShelterLogin";
-import UserLanding from "./components/UserLanding";
-import ShelterLanding from "./components/ShelterLanding";
+import './styles/Nav.css'
+
+
+import React from 'react';
 import Nav from "./components/Nav";
 import Landing from "./components/Landing"
-import AnimalProfile from "./components/AnimalProfile"
+import UserLanding from "./components/UserLanding";
+import ShelterLanding from "./components/ShelterLanding";
+import UserRegistration from "./components/UserRegistration.js";
+import ShelterRegistration from "./components/ShelterRegistration.js";
+import AnimalRegistration from "./components/AnimalRegistration.js";
+import EditUser from "./components/EditUser.js";
+import EditShelter from "./components/EditShelter.js";
 import UserLogin from "./components/UserLogin"
+import ShelterLogin from "./components/ShelterLogin";
+import AnimalProfile from "./components/AnimalProfile"
 import UserMatches from "./components/UserMatches";
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
 import useApplicationData from "./hooks/useApplicationData";
-
-
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
 

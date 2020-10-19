@@ -1,0 +1,94 @@
+.animals {
+  height: 50px;
+}
+
+.paws {
+  font-size: 150px;
+  position: absolute;
+  color: #f3b32f;
+  z-index: -1;
+}
+
+.one {
+  transform: rotate(35deg);
+  bottom: 20px;
+  left: -10px;
+}
+
+.two {
+  transform: rotate(35deg);
+  bottom: 200px;
+  left: 100px;
+}
+
+.three {
+  transform: rotate(50deg);
+  bottom: 100px;
+  left: 300px;
+}
+
+.four {
+  transform: rotate(35deg);
+  bottom: 310px;
+  left: 430px;
+}
+
+.five {
+  transform: rotate(65deg);
+  bottom: 180px;
+  left: 610px;
+}
+
+.six {
+  transform: rotate(35deg);
+  bottom: 420px;
+  left: 760px;
+}
+
+.seven {
+  transform: rotate(65deg);
+  bottom: 270px;
+  left: 950px;
+}
+
+.eight {
+  transform: rotate(35deg);
+  bottom: 530px;
+  left: 1090px;
+}
+
+.nine {
+  transform: rotate(75deg);
+  bottom: 370px;
+  left: 1280px;
+}
+
+.ten {
+  transform: rotate(35deg);
+  bottom: 640px;
+  left: 1420px;
+}
+
+.eleven {
+  transform: rotate(70deg);
+  bottom: 550px;
+  left: 1650px;
+}
+
+.twelve {
+  transform: rotate(35deg);
+  bottom: 750px;
+  left: 1750px;
+}
+
+.thirteen {
+  transform: rotate(70deg);
+  bottom: 600px;
+  left: 2000px;
+}
+
+.fourteen {
+  transform: rotate(40deg);
+  bottom: 900px;
+  left: 2000px;
+}

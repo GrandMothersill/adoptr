@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 
 function UserMatches(props) {
   const [loading, setLoading] = useState(true);
-  let profiles = []
+  let profiles;
 
   useEffect(() => {
     // async function fetchData() {
@@ -31,34 +31,42 @@ function UserMatches(props) {
     .get(`http://localhost:3001/matches/user/?userID=${props.state.account._id}`) 
     .then(response => {
       const matches = response.data;
-      matches.map(match => 
-        axios.get(`http://localhost:3001/profile/?id=${match.animalID}`)
-        .then(response => {
-          const profile = response.data[0];
-          profiles.push(profile);
-          console.log(profiles);
-          if (profiles.length === matches.length) {
-            console.log("profile length", profiles.length, "matches length", matches.length);
-            console.log("this is profiles", profiles)
-            setLoading(false);
-          }
-        })
-        .catch(err => {
-          alert(err);
-      }))
+      // matches.map(match => 
+      //   axios.get(`http://localhost:3001/profile/?id=${match.animalID}`)
+      //   .then(response => {
+      //     const profile = response.data[0];
+      //     profiles.push(profile);
+      //     console.log(profiles);
+      //     if (profiles.length === matches.length) {
+      //       console.log("profile length", profiles.length, "matches length", matches.length);
+      //       console.log("this is profiles", profiles)
+      //       setLoading(false);
+      //     }
+      //   })
+      //   .catch(err => {
+      //     alert(err);
+      // }))
+      axios.all(matches.map(match =>
+        axios.get(`http://localhost:3001/profile/?id=${match.animalID}`)))
+      .then(axios.spread(function (...res) {
+        console.log("this is the response", res)
+        profiles = res;
+        console.log("before setting", loading)
+        setLoading(false);
+      }));
     })
     .catch((err) => {
       alert(err);
     })
-    
   }, []);
 
   if (!loading) {
-    console.log("no longer loading. this is profiles", profiles)
+    console.log("after setting", loading);
+    console.log("no longer loading. this is profiles", profiles);
     return (
       <div className="landing">
         <h1>User Matches {props.state.account.name} and {props.state.account._id}</h1>
-        <div className="row dashboard"><Dashboard profiles={profiles} /></div>
+        {/* <div className="row dashboard"><Dashboard profiles={profiles} /></div> */}
       </div>
     )
   } else {

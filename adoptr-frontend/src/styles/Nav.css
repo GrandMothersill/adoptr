@@ -5,8 +5,11 @@ nav {
   background-color: #f3b32f;
   color: white;
   min-height: 8vh;
+  font-family: "Montserrat", sans-serif;
   font-size: 2vh;
   padding: 0 2%;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
 .nav-link {
@@ -30,4 +33,18 @@ nav {
 .logged-user {
   margin-top: 10px;
   margin-right: 10px;
+}
+
+.paw {
+  margin-left: 15px;
+}
+
+.title {
+  font-weight: 900;
+}
+
+.about {
+  font-size: 50px;
+  margin: 30% 40% 10%;
+  display: flex;
 }
