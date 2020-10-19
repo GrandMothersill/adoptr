@@ -14,7 +14,8 @@ function UserLanding(props) {
     return (
       <div>
         <h1>Hello User {props.state.account.name} and {props.state.account._id}</h1>
-        <Link to="/usermatches">View your matches</Link>
+        <Link to="/user/edit"><Button variant="warning">Edit Account</Button></Link>
+        <Link to="/usermatches"><Button variant="warning">View your matches</Button></Link>
         <TinderSwipe setUserMatches={props.setUserMatches} userMatches={props.userMatches} setNewMatch={props.setNewMatch} setRejectedAnimal={props.setRejectedAnimal} state={props.state} />
       </div>
     )
