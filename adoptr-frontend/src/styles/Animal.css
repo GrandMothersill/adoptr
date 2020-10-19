@@ -1,0 +1,29 @@
+.dog {
+  font-size: 230px;
+  position: absolute;
+  bottom: 100px;
+  left: 100px;
+}
+
+.crow {
+  font-size: 115px;
+  position: absolute;
+  bottom: 50px;
+  left: 500px;
+}
+
+.cat {
+  transform: scaleX(-1);
+  font-size: 184px;
+  position: absolute;
+  bottom: 100px;
+  right: 100px;
+}
+
+.otter {
+  transform: scaleX(-1);
+  font-size: 115px;
+  position: absolute;
+  bottom: 100px;
+  right: 380px;
+}

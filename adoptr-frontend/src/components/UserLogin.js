@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -8,12 +9,11 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { Redirect } from "react-router-dom";
 import { Spring } from "react-spring/renderprops";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaw } from '@fortawesome/free-solid-svg-icons';
-import "../styles/Login.css"
 import animals from "../images/animals.png";
+import "../styles/Login.css"
 
 const useStyles = makeStyles((theme) => ({
   paper: {

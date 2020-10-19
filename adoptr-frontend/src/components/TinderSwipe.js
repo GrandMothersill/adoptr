@@ -224,32 +224,32 @@ function TinderSwipe(props) {
                         />
                     </label>
                 </div>
-                <div className='cardContainer'>
-                    {animalProfiles.length === 0 ? <p>No more Cards</p> : <></>}
-                    {filterBySpecies(filterByDistance(filterByFoster(animalProfiles, foster), maxDistance), speciesSearch).map((animal, index) =>
-                        <TinderCard
-                            ref={childRefs[index]}
-                            className='swipe'
-                            key={animal._id}
-                            onSwipe={(dir) => swiped(dir, animal._id)}
-                            onCardLeftScreen={(dir) => outOfFrame(dir, animal._id)}
-                            preventSwipe={['up', 'down']}
-                        >
-                            <div style={{ backgroundImage: 'url(' + animal.url + ')' }} className='card'>
-                                <img className='animalIMG' src={animal.animal_photos[0]} alt='animalPhoto'></img>
-                                <p>Name: {animal.name}</p>
-                                <p>{distance(animal.coordinates, coordinates, 'K').toFixed(1)} kms away</p>
-                                <p>Species: {animal.species}</p>
-                                <p>Breed: {animal.breedAndInfo.breed}</p>
-                                <p>Foster? {animal.foster ? 'Yes' : 'No'}</p>
-                                <p>Bio: {animal.bio}</p>
-                            </div>
-                        </TinderCard>
-                    )}
-                </div>
-                <div className='buttons'>
-                    <button onClick={() => swipe('left')}>Swipe left!</button>
-                    <button onClick={() => swipe('right')}>Swipe right!</button>
+                <div className='swiping'>
+                    <button onClick={() => swipe('left')} className="swiping-button">Swipe left!</button>  
+                    <div className='cardContainer'>
+                        {animalProfiles.length === 0 ? <p>No more Cards</p> : <></>}
+                        {filterBySpecies(filterByDistance(filterByFoster(animalProfiles, foster), maxDistance), speciesSearch).map((animal, index) =>
+                            <TinderCard
+                                ref={childRefs[index]}
+                                className='swipe'
+                                key={animal._id}
+                                onSwipe={(dir) => swiped(dir, animal._id)}
+                                onCardLeftScreen={(dir) => outOfFrame(dir, animal._id)}
+                                preventSwipe={['up', 'down']}
+                            >
+                                <div style={{ backgroundImage: 'url(' + animal.url + ')' }} className='card'>
+                                    <img className='animalIMG' src={animal.animal_photos[0]} alt='animalPhoto'></img>
+                                    <p>Name: {animal.name}</p>
+                                    <p>{distance(animal.coordinates, coordinates, 'K').toFixed(1)} kms away</p>
+                                    <p>Species: {animal.species}</p>
+                                    <p>Breed: {animal.breedAndInfo.breed}</p>
+                                    <p>Foster? {animal.foster ? 'Yes' : 'No'}</p>
+                                    <p>Bio: {animal.bio}</p>
+                                </div>
+                            </TinderCard>
+                        )}
+                    </div>
+                    <button onClick={() => swipe('right')} className="swiping-button">Swipe right!</button>
                 </div>
             </div>
         )
