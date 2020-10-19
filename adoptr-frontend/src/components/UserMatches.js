@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
+import { Redirect } from "react-router-dom";
 import Dashboard from "./Dashboard";
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
@@ -7,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 function UserMatches(props) {
   const [loading, setLoading] = useState(true);
   const [profiles, setProfiles] = useState([]);
+
 
   useEffect(() => {
     // async function fetchData() {
@@ -27,6 +29,15 @@ function UserMatches(props) {
 
     // fetchData();
 
+<<<<<<< HEAD
+=======
+    if (!props.state.type) {
+      return <Redirect to="/" />
+    } else if (props.state.type === "user") {
+      return <Redirect to="/landing" />
+    }  
+    
+>>>>>>> continueStyling
     axios
       .get(`http://localhost:3001/matches/user/?userID=${props.state.account._id}`)
       .then(response => {
