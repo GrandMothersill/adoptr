@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import './TinderSwipe.css';
 import TinderCard from 'react-tinder-card';
 import axios from "axios";
+import DistanceSlider from './DistanceSlider.js'
 
 
 
@@ -12,6 +13,8 @@ function TinderSwipe(props) {
     const [speciesSearch, setSpeciesSearch] = useState("All");
 
     const [coordinates, setCoordinates] = useState({ longitude: null, latitude: null });
+
+    const [value, setValue] = useState(101);
 
     //// BUILD FUNCTION TO FILTER OUT ANIMAL IDS INCLUDED IN THAT  ARRAY IN THE CURRENT USER'S PROFILE, THIS IS IN STATE
 
@@ -161,22 +164,23 @@ function TinderSwipe(props) {
         return (<h1>Loading...</h1>)
     } else {
         return (
-            <div>
-                <label>
-                    Species Shown
+            <div style={{ margin: '10px' }}>
+                <div style={{ display: 'flex' }}>
+                    <label>
+                        Species Shown
                 <select
-                        name="species"
-                        id="species"
-                        onChange={e => setSpeciesSearch(e.target.value)}
-                    >
-                        <option value="All">All</option>
-                        <option value="Dog">Dog</option>
-                        <option value="Cat">Cat</option>
-                        <option value="Critter">Critter</option>
-                    </select>
-                </label>
-                <p>{coordinates.longitude}</p>
-                <p>{coordinates.latitude}</p>
+                            name="species"
+                            id="species"
+                            onChange={e => setSpeciesSearch(e.target.value)}
+                        >
+                            <option value="All">All</option>
+                            <option value="Dog">Dog</option>
+                            <option value="Cat">Cat</option>
+                            <option value="Critter">Critter</option>
+                        </select>
+                    </label>
+                    <DistanceSlider value={value} setValue={setValue} />
+                </div>
                 <div className='cardContainer'>
 
                     {filterBySpecies(animalProfiles, speciesSearch).map((animal) =>
@@ -201,8 +205,6 @@ function TinderSwipe(props) {
                                 <p>Foster? {animal.foster ? 'Yes' : 'No'}</p>
                                 <p>Shelter Name:{animal.shelterInfo.shelter_name}</p>
                                 <p>Bio: {animal.bio}</p>
-                                <p>Longitude: {animal.coordinates.longitude}</p>
-                                <p>Latitude: {animal.coordinates.latitude}</p>
                             </div>
                         </TinderCard>
                     )}

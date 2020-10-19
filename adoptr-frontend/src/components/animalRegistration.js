@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom"
 function AnimalRegistration(props) {
     const [landingRedirect, setLandingRedirect] = useState(false);
     const [name, setName] = useState("");
-    const [species, setSpecies] = useState("dog");
+    const [species, setSpecies] = useState("Dog");
     const [sex, setSex] = useState("male");
     const [age, setAge] = useState("");
     const [animalPhoto, setAnimalPhoto] = useState("");
@@ -85,9 +85,9 @@ function AnimalRegistration(props) {
                     id="species"
                     onChange={e => setSpecies(e.target.value)}
                 >
-                    <option value="dog">Dog</option>
-                    <option value="cat">Cat</option>
-                    <option value="critter">Critter</option>
+                    <option value="Dog">Dog</option>
+                    <option value="Cat">Cat</option>
+                    <option value="Critter">Critter</option>
                 </select>
             </label>
             <br></br>
@@ -98,9 +98,9 @@ function AnimalRegistration(props) {
                     id="sex"
                     onChange={e => setSex(e.target.value)}
                 >
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
                 </select>
             </label>
             <br></br>
@@ -162,10 +162,10 @@ function AnimalRegistration(props) {
                     id="size"
                     onChange={e => setSize(e.target.value)}
                 >
-                    <option value="small">Small</option>
-                    <option value="medium">Medium</option>
-                    <option value="large">Large</option>
-                    <option value="x-large">X-Large</option>
+                    <option value="Small">Small</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Large">Large</option>
+                    <option value="X-Large">X-Large</option>
                 </select>
             </label>
             <br></br>
