@@ -1142,10 +1142,10 @@
 }
 
 .crow {
-  font-size: 115px;
+  font-size: 100px;
   position: absolute;
   bottom: 50px;
-  left: 460px;
+  left: 450px;
 }
 
 .cat {
@@ -1153,13 +1153,13 @@
   font-size: 184px;
   position: absolute;
   bottom: 80px;
-  right: 400px;
+  right: 350px;
 }
 
 .otter {
   transform: scaleX(-1);
-  font-size: 115px;
+  font-size: 100px;
   position: absolute;
   bottom: 50px;
-  right: 100px;
+  right: 80px;
 }
