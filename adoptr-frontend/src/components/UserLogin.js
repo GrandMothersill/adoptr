@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import { Spring } from "react-spring/renderprops";
 import axios from "axios";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -15,6 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Redirect } from "react-router-dom";
+import { Spring } from "react-spring/renderprops";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaw } from '@fortawesome/free-solid-svg-icons';
 import "../styles/Login.css"
@@ -74,203 +74,201 @@ export default function UserLogin(props) {
 
   return (
     <div className="login">
-    <Spring
-      config={{duration: 1000}}
-      from={{opacity: 0}}
-      to={{opacity: 1}}>
-      {props => (
-        <div style={props}>
-          <FontAwesomeIcon className="paws one" icon={faPaw} />
-        </div>
-      )}
-    </Spring>
-    <Spring
-      config={{duration: 1000, delay: 200}}
-      from={{opacity: 0}}
-      to={{opacity: 1}}>
-            {props => (
-        <div style={props}>
-          <FontAwesomeIcon className="paws two" icon={faPaw} />
-        </div>
-      )}
-    </Spring>
-    <Spring
-      config={{duration: 1000, delay: 400}}
-      from={{opacity: 0}}
-      to={{opacity: 1}}>
-            {props => (
-        <div style={props}>
-          <FontAwesomeIcon className="paws three" icon={faPaw} />
-        </div>
-      )}
-    </Spring>
-    <Spring
-      config={{duration: 1000, delay: 600}}
-      from={{opacity: 0}}
-      to={{opacity: 1}}>
-            {props => (
-        <div style={props}>
-          <FontAwesomeIcon className="paws four" icon={faPaw} />
-        </div>
-      )}
-    </Spring>
-    <Spring
-      config={{duration: 1000, delay: 800}}
-      from={{opacity: 0}}
-      to={{opacity: 1}}>
-            {props => (
-        <div style={props}>
-          <FontAwesomeIcon className="paws five" icon={faPaw} />
-        </div>
-      )}
-    </Spring>
-    <Spring
-      config={{duration: 1000, delay: 1000}}
-      from={{opacity: 0}}
-      to={{opacity: 1}}>
-            {props => (
-        <div style={props}>
-          <FontAwesomeIcon className="paws six" icon={faPaw} />
-        </div>
-      )}
-    </Spring>
-    <Spring
-      config={{duration: 1000, delay: 1200}}
-      from={{opacity: 0}}
-      to={{opacity: 1}}>
-            {props => (
-        <div style={props}>
-          <FontAwesomeIcon className="paws seven" icon={faPaw} />
-        </div>
-      )}
-    </Spring>
-    <Spring
-      config={{duration: 1000, delay: 1400}}
-      from={{opacity: 0}}
-      to={{opacity: 1}}>
-            {props => (
-        <div style={props}>
-          <FontAwesomeIcon className="paws eight" icon={faPaw} />
-        </div>
-      )}
-    </Spring>
-    <Spring
-      config={{duration: 1000, delay: 1600}}
-      from={{opacity: 0}}
-      to={{opacity: 1}}>
-            {props => (
-        <div style={props}>
-          <FontAwesomeIcon className="paws nine" icon={faPaw} />
-        </div>
-      )}
-    </Spring>
-    <Spring
-      config={{duration: 1000, delay: 1800}}
-      from={{opacity: 0}}
-      to={{opacity: 1}}>
-            {props => (
-        <div style={props}>
-          <FontAwesomeIcon className="paws ten" icon={faPaw} />
-        </div>
-      )}
-    </Spring>
-    <Spring
-      config={{duration: 1000, delay: 2000}}
-      from={{opacity: 0}}
-      to={{opacity: 1}}>
-            {props => (
-        <div style={props}>
-          <FontAwesomeIcon className="paws eleven" icon={faPaw} />
-        </div>
-      )}
-    </Spring>
-    <Spring
-      config={{duration: 1000, delay: 2200}}
-      from={{opacity: 0}}
-      to={{opacity: 1}}>
-            {props => (
-        <div style={props}>
-          <FontAwesomeIcon className="paws twelve" icon={faPaw} />
-        </div>
-      )}
-    </Spring>
-    <Spring
-      config={{duration: 1000, delay: 2400}}
-      from={{opacity: 0}}
-      to={{opacity: 1}}>
-            {props => (
-        <div style={props}>
-          <FontAwesomeIcon className="paws thirteen" icon={faPaw} />
-        </div>
-      )}
-    </Spring>
-    <Spring
-      config={{duration: 1000, delay: 2600}}
-      from={{opacity: 0}}
-      to={{opacity: 1}}>
-            {props => (
-        <div style={props}>
-          <FontAwesomeIcon className="paws fourteen" icon={faPaw} />
-        </div>
-      )}
-    </Spring>
-    <Container component="main" maxWidth="xs" className="login-form">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          User Login
-        </Typography>
-        <form className={classes.form} noValidate onSubmit={handleSubmit}>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-            onChange={e => setEmail(e.target.value)}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            onChange={e => setPassword(e.target.value)}
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign In
-          </Button>
-          <Grid container>
-            <Grid item>
-              <Link href="/users" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
+      <div className="animation">
+        <Spring
+          config={{duration: 1000}}
+          from={{opacity: 0}}
+          to={{opacity: 1}}>
+          {props => (
+            <div style={props}>
+              <FontAwesomeIcon className="paws one" icon={faPaw} />
+            </div>
+          )}
+        </Spring>
+        <Spring
+          config={{duration: 1000, delay: 200}}
+          from={{opacity: 0}}
+          to={{opacity: 1}}>
+                {props => (
+            <div style={props}>
+              <FontAwesomeIcon className="paws two" icon={faPaw} />
+            </div>
+          )}
+        </Spring>
+        <Spring
+          config={{duration: 1000, delay: 400}}
+          from={{opacity: 0}}
+          to={{opacity: 1}}>
+                {props => (
+            <div style={props}>
+              <FontAwesomeIcon className="paws three" icon={faPaw} />
+            </div>
+          )}
+        </Spring>
+        <Spring
+          config={{duration: 1000, delay: 600}}
+          from={{opacity: 0}}
+          to={{opacity: 1}}>
+                {props => (
+            <div style={props}>
+              <FontAwesomeIcon className="paws four" icon={faPaw} />
+            </div>
+          )}
+        </Spring>
+        <Spring
+          config={{duration: 1000, delay: 800}}
+          from={{opacity: 0}}
+          to={{opacity: 1}}>
+                {props => (
+            <div style={props}>
+              <FontAwesomeIcon className="paws five" icon={faPaw} />
+            </div>
+          )}
+        </Spring>
+        <Spring
+          config={{duration: 1000, delay: 1000}}
+          from={{opacity: 0}}
+          to={{opacity: 1}}>
+                {props => (
+            <div style={props}>
+              <FontAwesomeIcon className="paws six" icon={faPaw} />
+            </div>
+          )}
+        </Spring>
+        <Spring
+          config={{duration: 1000, delay: 1200}}
+          from={{opacity: 0}}
+          to={{opacity: 1}}>
+                {props => (
+            <div style={props}>
+              <FontAwesomeIcon className="paws seven" icon={faPaw} />
+            </div>
+          )}
+        </Spring>
+        <Spring
+          config={{duration: 1000, delay: 1400}}
+          from={{opacity: 0}}
+          to={{opacity: 1}}>
+                {props => (
+            <div style={props}>
+              <FontAwesomeIcon className="paws eight" icon={faPaw} />
+            </div>
+          )}
+        </Spring>
+        <Spring
+          config={{duration: 1000, delay: 1600}}
+          from={{opacity: 0}}
+          to={{opacity: 1}}>
+                {props => (
+            <div style={props}>
+              <FontAwesomeIcon className="paws nine" icon={faPaw} />
+            </div>
+          )}
+        </Spring>
+        <Spring
+          config={{duration: 1000, delay: 1800}}
+          from={{opacity: 0}}
+          to={{opacity: 1}}>
+                {props => (
+            <div style={props}>
+              <FontAwesomeIcon className="paws ten" icon={faPaw} />
+            </div>
+          )}
+        </Spring>
+        <Spring
+          config={{duration: 1000, delay: 2000}}
+          from={{opacity: 0}}
+          to={{opacity: 1}}>
+                {props => (
+            <div style={props}>
+              <FontAwesomeIcon className="paws eleven" icon={faPaw} />
+            </div>
+          )}
+        </Spring>
+        <Spring
+          config={{duration: 1000, delay: 2200}}
+          from={{opacity: 0}}
+          to={{opacity: 1}}>
+                {props => (
+            <div style={props}>
+              <FontAwesomeIcon className="paws twelve" icon={faPaw} />
+            </div>
+          )}
+        </Spring>
+        <Spring
+          config={{duration: 1000, delay: 2400}}
+          from={{opacity: 0}}
+          to={{opacity: 1}}>
+                {props => (
+            <div style={props}>
+              <FontAwesomeIcon className="paws thirteen" icon={faPaw} />
+            </div>
+          )}
+        </Spring>
+        <Spring
+          config={{duration: 1000, delay: 2600}}
+          from={{opacity: 0}}
+          to={{opacity: 1}}>
+                {props => (
+            <div style={props}>
+              <FontAwesomeIcon className="paws fourteen" icon={faPaw} />
+            </div>
+          )}
+        </Spring>
       </div>
-    </Container>
+      <Container component="main" maxWidth="xs" className="login-form">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            User Login
+          </Typography>
+          <form className={classes.form} noValidate onSubmit={handleSubmit}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              onChange={e => setEmail(e.target.value)}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              onChange={e => setPassword(e.target.value)}
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Sign In
+            </Button>
+            <Grid container>
+              <Grid item>
+                <Link href="/users" variant="body2">
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
+            </Grid>
+          </form>
+        </div>
+      </Container>
     </div>
   );
 }
