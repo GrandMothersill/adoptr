@@ -28,16 +28,12 @@ function UserMatches(props) {
     // }
 
     // fetchData();
-
-<<<<<<< HEAD
-=======
     if (!props.state.type) {
       return <Redirect to="/" />
     } else if (props.state.type === "user") {
       return <Redirect to="/landing" />
     }  
     
->>>>>>> continueStyling
     axios
       .get(`http://localhost:3001/matches/user/?userID=${props.state.account._id}`)
       .then(response => {
