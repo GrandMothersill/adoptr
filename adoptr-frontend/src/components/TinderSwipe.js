@@ -16,8 +16,6 @@ function TinderSwipe(props) {
 
     const [value, setValue] = useState(101);
 
-    //// BUILD FUNCTION TO FILTER OUT ANIMAL IDS INCLUDED IN THAT  ARRAY IN THE CURRENT USER'S PROFILE, THIS IS IN STATE
-
     const filterRejectedAnimals = (data) => {
         return data.filter(animal => !props.state.rejected_animals.includes(animal._id)).filter(
             animal => !props.userMatches.includes(animal._id)
@@ -123,6 +121,15 @@ function TinderSwipe(props) {
         };
     };
 
+    const filterByDistance = (animals, query) => {
+        if (query == 101) {
+            return animals
+        } else {
+            return animals.filter(animal => distance(animal.coordinates, coordinates, 'K').toFixed(1) <= query)
+        };
+
+    };
+
 
     const handleMatch = (animalID, userID) => {
         axios
@@ -183,7 +190,7 @@ function TinderSwipe(props) {
                 </div>
                 <div className='cardContainer'>
 
-                    {filterBySpecies(animalProfiles, speciesSearch).map((animal) =>
+                    {filterBySpecies(filterByDistance(animalProfiles, value), speciesSearch).map((animal) =>
                         <TinderCard
                             className='swipe'
                             key={animal._id}

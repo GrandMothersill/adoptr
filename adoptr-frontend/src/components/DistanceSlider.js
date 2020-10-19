@@ -19,9 +19,9 @@ export default function DistanceSlider(props) {
     };
 
     return (
-        <div style={{ width: '100px' }}>
+        <div style={{ width: '200px', display: 'flex' }}>
             <Typography id="non-linear-slider" gutterBottom>
-                Distance
+                Max Distance
       </Typography>
             <Slider
                 value={props.value}
@@ -32,7 +32,7 @@ export default function DistanceSlider(props) {
                 getAriaValueText={valueLabelFormat}
                 valueLabelFormat={props.value.toFixed(0) != 101 ? props.value.toFixed(0) : '100+'}
                 onChange={handleChange}
-                valueLabelDisplay="auto"
+                valueLabelDisplay="on"
                 aria-labelledby="non-linear-slider"
             />
         </div>
