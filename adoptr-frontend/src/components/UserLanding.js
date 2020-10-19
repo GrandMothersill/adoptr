@@ -12,10 +12,12 @@ function UserLanding(props) {
     return <Redirect to="/shelterlanding" />
   } else {
     return (
-      <div>
-        <h1>Hello User {props.state.account.name} and {props.state.account._id}</h1>
-        <Link to="/user/edit"><Button variant="warning">Edit Account</Button></Link>
-        <Link to="/usermatches"><Button variant="warning">View your matches</Button></Link>
+      <div className="landing">
+        <h1>Welcome, {props.state.account.name}</h1>
+        <div className="dashboard-actions">
+          <Link to="/user/edit"><Button variant="warning">Edit Account</Button></Link>
+          <Link to="/usermatches"><Button variant="warning" className="action">View your matches</Button></Link>
+        </div>
         <TinderSwipe setUserMatches={props.setUserMatches} userMatches={props.userMatches} setNewMatch={props.setNewMatch} setRejectedAnimal={props.setRejectedAnimal} state={props.state} />
       </div>
     )
