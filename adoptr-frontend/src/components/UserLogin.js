@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Spring } from 'react-spring/renderprops';
+import { Spring } from "react-spring/renderprops";
 import axios from "axios";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -70,32 +70,150 @@ export default function UserLogin(props) {
 
   if (landingRedirect) {
     return <Redirect to="/landing" />
-}
+  }
 
   return (
     <div className="login">
     <Spring
-      config={{duration: 5000}}
+      config={{duration: 1000}}
       from={{opacity: 0}}
       to={{opacity: 1}}>
       {props => (
         <div style={props}>
           <FontAwesomeIcon className="paws one" icon={faPaw} />
+        </div>
+      )}
+    </Spring>
+    <Spring
+      config={{duration: 1000, delay: 200}}
+      from={{opacity: 0}}
+      to={{opacity: 1}}>
+            {props => (
+        <div style={props}>
           <FontAwesomeIcon className="paws two" icon={faPaw} />
+        </div>
+      )}
+    </Spring>
+    <Spring
+      config={{duration: 1000, delay: 400}}
+      from={{opacity: 0}}
+      to={{opacity: 1}}>
+            {props => (
+        <div style={props}>
           <FontAwesomeIcon className="paws three" icon={faPaw} />
+        </div>
+      )}
+    </Spring>
+    <Spring
+      config={{duration: 1000, delay: 600}}
+      from={{opacity: 0}}
+      to={{opacity: 1}}>
+            {props => (
+        <div style={props}>
           <FontAwesomeIcon className="paws four" icon={faPaw} />
+        </div>
+      )}
+    </Spring>
+    <Spring
+      config={{duration: 1000, delay: 800}}
+      from={{opacity: 0}}
+      to={{opacity: 1}}>
+            {props => (
+        <div style={props}>
           <FontAwesomeIcon className="paws five" icon={faPaw} />
+        </div>
+      )}
+    </Spring>
+    <Spring
+      config={{duration: 1000, delay: 1000}}
+      from={{opacity: 0}}
+      to={{opacity: 1}}>
+            {props => (
+        <div style={props}>
           <FontAwesomeIcon className="paws six" icon={faPaw} />
+        </div>
+      )}
+    </Spring>
+    <Spring
+      config={{duration: 1000, delay: 1200}}
+      from={{opacity: 0}}
+      to={{opacity: 1}}>
+            {props => (
+        <div style={props}>
           <FontAwesomeIcon className="paws seven" icon={faPaw} />
+        </div>
+      )}
+    </Spring>
+    <Spring
+      config={{duration: 1000, delay: 1400}}
+      from={{opacity: 0}}
+      to={{opacity: 1}}>
+            {props => (
+        <div style={props}>
           <FontAwesomeIcon className="paws eight" icon={faPaw} />
+        </div>
+      )}
+    </Spring>
+    <Spring
+      config={{duration: 1000, delay: 1600}}
+      from={{opacity: 0}}
+      to={{opacity: 1}}>
+            {props => (
+        <div style={props}>
           <FontAwesomeIcon className="paws nine" icon={faPaw} />
+        </div>
+      )}
+    </Spring>
+    <Spring
+      config={{duration: 1000, delay: 1800}}
+      from={{opacity: 0}}
+      to={{opacity: 1}}>
+            {props => (
+        <div style={props}>
           <FontAwesomeIcon className="paws ten" icon={faPaw} />
+        </div>
+      )}
+    </Spring>
+    <Spring
+      config={{duration: 1000, delay: 2000}}
+      from={{opacity: 0}}
+      to={{opacity: 1}}>
+            {props => (
+        <div style={props}>
           <FontAwesomeIcon className="paws eleven" icon={faPaw} />
         </div>
       )}
-      
     </Spring>
-    
+    <Spring
+      config={{duration: 1000, delay: 2200}}
+      from={{opacity: 0}}
+      to={{opacity: 1}}>
+            {props => (
+        <div style={props}>
+          <FontAwesomeIcon className="paws twelve" icon={faPaw} />
+        </div>
+      )}
+    </Spring>
+    <Spring
+      config={{duration: 1000, delay: 2400}}
+      from={{opacity: 0}}
+      to={{opacity: 1}}>
+            {props => (
+        <div style={props}>
+          <FontAwesomeIcon className="paws thirteen" icon={faPaw} />
+        </div>
+      )}
+    </Spring>
+    <Spring
+      config={{duration: 1000, delay: 2600}}
+      from={{opacity: 0}}
+      to={{opacity: 1}}>
+            {props => (
+        <div style={props}>
+          <FontAwesomeIcon className="paws fourteen" icon={faPaw} />
+        </div>
+      )}
+    </Spring>
     <Container component="main" maxWidth="xs" className="login-form">
       <CssBaseline />
       <div className={classes.paper}>

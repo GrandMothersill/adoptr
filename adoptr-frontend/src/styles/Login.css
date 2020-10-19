@@ -24,7 +24,7 @@
 }
 
 .four {
-  transform: rotate(50deg);
+  transform: rotate(35deg);
   bottom: 310px;
   left: 430px;
 }
@@ -36,19 +36,55 @@
 }
 
 .six {
-  transform: rotate(65deg);
+  transform: rotate(35deg);
   bottom: 420px;
-  left: 660px;
+  left: 760px;
 }
 
 .seven {
   transform: rotate(65deg);
-  bottom: 260px;
-  left: 900px;
+  bottom: 270px;
+  left: 950px;
 }
 
 .eight {
-  transform: rotate(65deg);
+  transform: rotate(35deg);
   bottom: 530px;
-  left: 990px;
+  left: 1090px;
+}
+
+.nine {
+  transform: rotate(75deg);
+  bottom: 370px;
+  left: 1280px;
+}
+
+.ten {
+  transform: rotate(35deg);
+  bottom: 640px;
+  left: 1420px;
+}
+
+.eleven {
+  transform: rotate(70deg);
+  bottom: 550px;
+  left: 1650px;
+}
+
+.twelve {
+  transform: rotate(35deg);
+  bottom: 750px;
+  left: 1750px;
+}
+
+.thirteen {
+  transform: rotate(70deg);
+  bottom: 600px;
+  left: 2000px;
+}
+
+.fourteen {
+  transform: rotate(40deg);
+  bottom: 900px;
+  left: 2000px;
 }
