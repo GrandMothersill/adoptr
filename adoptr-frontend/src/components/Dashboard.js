@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-
+import { Link, useParams } from "react-router-dom"
 
 function Dashboard(props) {
   const profiles = props.profiles;
@@ -16,9 +16,9 @@ function Dashboard(props) {
           <Card.Text>
             {profile.bio}
           </Card.Text>
-          {props.state.account.type === 'shelter' ? <Button variant="primary">See {profile.name}'s matches</Button> : <Button variant="primary">See {profile.name}'s full profile</Button>}
+          {props.state.account.type === 'shelter' ? <Button variant="primary">See {profile.name}'s matches</Button> : <Link to={`/animal/profile/${profile._id}`}><Button variant="primary">See {profile.name}'s full profile</Button></Link>}
         </Card.Body>
-      </Card>
+      </Card >
     )
   })
 

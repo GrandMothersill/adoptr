@@ -16,6 +16,7 @@ import EditShelter from "./components/EditShelter.js";
 import UserLogin from "./components/UserLogin"
 import ShelterLogin from "./components/ShelterLogin";
 import AnimalProfile from "./components/AnimalProfile"
+import AnimalFullProfile from "./components/AnimalFullProfile"
 import UserMatches from "./components/UserMatches";
 
 import useApplicationData from "./hooks/useApplicationData";
@@ -34,6 +35,7 @@ function App() {
         <Switch>
           <Route path='/profiles' exact component={AnimalProfile} />
           <Route path='/animals' render={() => <AnimalRegistration state={state} />} />
+          <Route path='/animal/profile/:id' render={() => <AnimalFullProfile state={state} />} />
           <Route path='/users' render={() => <UserRegistration login={setUser} state={state} />} />
           <Route path='/user/edit' render={() => <EditUser login={setUser} state={state} />} />
           <Route path='/shelters' render={() => <ShelterRegistration login={setShelter} state={state} />} />
