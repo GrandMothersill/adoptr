@@ -11,7 +11,7 @@ function ShelterLanding(props) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/profiles/?name=${props.state.account.name}&id=${props.state.account._id}`)
+      .get(`http://localhost:3001/profiles/?id=${props.state.account._id}`)
       .then((response) => {
         setProfiles(response.data);
         setLoading(false);

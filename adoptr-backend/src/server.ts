@@ -60,7 +60,7 @@ MongoClient.connect(
 
         app.get("/profiles", (req, res) => {
             // const idObject = new ObjectId(req.query.id);
-            db.collection("animals").find({ shelterInfo: { shelter_name: req.query.name, shelter_id: req.query.id } }).toArray()
+            db.collection("animals").find({ "shelterInfo.shelter_id": req.query.id }).toArray()
                 .then(results => {
                     res.send(results);
                 })
