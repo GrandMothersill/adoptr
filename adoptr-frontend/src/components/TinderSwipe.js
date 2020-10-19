@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useMemo } from "react"
-import './TinderSwipe.css';
 import TinderCard from 'react-tinder-card';
 import axios from "axios";
 import DistanceSlider from './DistanceSlider.js'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import './TinderSwipe.css';
 
 const alreadyRemoved = []
 
@@ -198,14 +200,14 @@ function TinderSwipe(props) {
         return (<h1>Loading...</h1>)
     } else {
         return (
-            <div style={{ margin: '10px' }}>
-                <div style={{ display: 'flex' }}>
+            <div className="swipe-container">
+                <div className="swipe-filter">
                     <label>
                         Species Shown
-                <select
-                            name="species"
-                            id="species"
-                            onChange={e => setSpeciesSearch(e.target.value)}
+                        <select
+                        name="species"
+                        id="species"
+                        onChange={e => setSpeciesSearch(e.target.value)}
                         >
                             <option value="All">All</option>
                             <option value="Dog">Dog</option>
@@ -214,18 +216,18 @@ function TinderSwipe(props) {
                         </select>
                     </label>
                     <DistanceSlider value={maxDistance} setValue={setMaxDistance} />
-                    <label style={{ margin: '10px' }}>
+                    <label>
                         Fostering?
-                <input
-                            name="foster"
-                            type="checkbox"
-                            checked={foster}
-                            onChange={() => setFoster(!foster)}
+                        <input
+                        name="foster"
+                        type="checkbox"
+                        checked={foster}
+                        onChange={() => setFoster(!foster)}
                         />
                     </label>
                 </div>
                 <div className='swiping'>
-                    <button onClick={() => swipe('left')} className="swiping-button">Swipe left!</button>  
+                    <FontAwesomeIcon className="swipe-button red" icon={faTimesCircle} onClick={() => swipe('left')}/> 
                     <div className='cardContainer'>
                         {animalProfiles.length === 0 ? <p>No more Cards</p> : <></>}
                         {filterBySpecies(filterByDistance(filterByFoster(animalProfiles, foster), maxDistance), speciesSearch).map((animal, index) =>
@@ -235,8 +237,7 @@ function TinderSwipe(props) {
                                 key={animal._id}
                                 onSwipe={(dir) => swiped(dir, animal._id)}
                                 onCardLeftScreen={(dir) => outOfFrame(dir, animal._id)}
-                                preventSwipe={['up', 'down']}
-                            >
+                                preventSwipe={['up', 'down']}>
                                 <div style={{ backgroundImage: 'url(' + animal.url + ')' }} className='card'>
                                     <img className='animalIMG' src={animal.animal_photos[0]} alt='animalPhoto'></img>
                                     <p>Name: {animal.name}</p>
@@ -249,7 +250,7 @@ function TinderSwipe(props) {
                             </TinderCard>
                         )}
                     </div>
-                    <button onClick={() => swipe('right')} className="swiping-button">Swipe right!</button>
+                    <FontAwesomeIcon className="swipe-button green" icon={faCheckCircle} onClick={() => swipe('right')} />
                 </div>
             </div>
         )

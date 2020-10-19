@@ -73,7 +73,7 @@ function UserMatches(props) {
     return (
       <div className="landing">
         <h1>User Matches {props.state.account.name} and {props.state.account._id}</h1>
-        <div className="row dashboard"><Dashboard state={props.state} profiles={profiles} /></div>
+        <div className="row dashboard"><Dashboard state={props.state} profiles={profiles} type={props.state.account.type}/></div>
       </div>
     )
   } else {

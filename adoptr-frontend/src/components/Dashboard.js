@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import { Redirect } from "react-router-dom"
 
 
 function Dashboard(props) {
@@ -16,7 +17,7 @@ function Dashboard(props) {
           <Card.Text>
             {profile.bio}
           </Card.Text>
-          {props.state.account.type === 'shelter' ? <Button variant="primary">See {profile.name}'s matches</Button> : <Button variant="primary">See {profile.name}'s full profile</Button>}
+          {props.type === 'shelter' ? <Button variant="primary">See {profile.name}'s matches</Button> : <Button variant="primary">See {profile.name}'s full profile</Button>}
         </Card.Body>
       </Card>
     )

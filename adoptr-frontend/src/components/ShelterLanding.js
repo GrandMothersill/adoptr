@@ -38,7 +38,7 @@ function ShelterLanding(props) {
           <Link to="/shelter/edit"><Button variant="warning">Edit Account</Button></Link>
           <Link to="/animals"><Button variant="warning" className="action">Create New Animal Profile</Button></Link>
         </div>
-        <div className="row dashboard"><Dashboard profiles={profiles} /></div>
+        <div className="row dashboard"><Dashboard profiles={profiles} type={props.state.account.type}/></div>
       </div>
     )
   } else {
