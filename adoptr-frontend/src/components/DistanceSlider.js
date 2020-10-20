@@ -20,9 +20,9 @@ export default function DistanceSlider(props) {
 
     return (
         <div style={{ width: '200px', display: 'flex' }}>
-            <Typography id="non-linear-slider" gutterBottom>
+            <Typography id="non-linear-slider" gutterBottom className="filter">
                 Max Distance
-      </Typography>
+            </Typography>
             <Slider
                 value={props.value}
                 min={1}

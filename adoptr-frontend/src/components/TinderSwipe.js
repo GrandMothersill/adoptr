@@ -202,14 +202,12 @@ function TinderSwipe(props) {
         return (
             <div className="swipe-container">
                 <div className="swipe-filter">
-                    <h3>Filter by</h3>
-                    <label>
-                        Species:
-                        <select
+                    <h3 style={{"padding-bottom": "30px"}}>Filter By:</h3>
+                    <label className="filter">
+                        Species <select
                         name="species"
                         id="species"
-                        onChange={e => setSpeciesSearch(e.target.value)}
-                        >
+                        onChange={e => setSpeciesSearch(e.target.value)}>
                             <option value="All">All</option>
                             <option value="Dog">Dog</option>
                             <option value="Cat">Cat</option>
@@ -217,14 +215,12 @@ function TinderSwipe(props) {
                         </select>
                     </label>
                     <DistanceSlider value={maxDistance} setValue={setMaxDistance} />
-                    <label>
-                        Fostering?
-                        <input
+                    <label className="filter">
+                        Fostering? <input
                         name="foster"
                         type="checkbox"
                         checked={foster}
-                        onChange={() => setFoster(!foster)}
-                        />
+                        onChange={() => setFoster(!foster)}/>
                     </label>
                 </div>
                 <div className='swiping'>
@@ -249,7 +245,7 @@ function TinderSwipe(props) {
                                         <FontAwesomeIcon className="icon" icon={faPaw}/> {animal.species} ({animal.breedAndInfo.breed})
                                         <br />
                                         <FontAwesomeIcon className="icon" icon={faSearch}/> Looking for a forever home {animal.foster ? 'or loving temporary home' : ''}</p>
-                                        <p style={{"font-size": "130%"}}>{animal.bio}</p>
+                                        <p style={{"font-size": "150%"}}>{animal.bio}</p>
                                         </div>
                                     </div>
                                 

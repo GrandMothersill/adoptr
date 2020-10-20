@@ -11,6 +11,8 @@
 .dashboard-actions {
   margin: 2% 0;
   color: white;
+  font-weight: bold;
+  font-size: 120%;
 }
 
 .action {
