@@ -3,7 +3,7 @@ import TinderCard from 'react-tinder-card';
 import axios from "axios";
 import DistanceSlider from './DistanceSlider.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faTimesCircle, faMapMarker, faPaw, faSearch } from '@fortawesome/free-solid-svg-icons';
 import './TinderSwipe.css';
 
 const alreadyRemoved = []
@@ -238,17 +238,20 @@ function TinderSwipe(props) {
                                 onSwipe={(dir) => swiped(dir, animal._id)}
                                 onCardLeftScreen={(dir) => outOfFrame(dir, animal._id)}
                                 preventSwipe={['up', 'down']}>
-                                <div style={{ backgroundImage: 'url(' + animal.url + ')' }} className='swipe-card'>
-                                    <img className='animalIMG' src={animal.animal_photos[0]} alt='animalPhoto'></img>
-                                    <div className="info">
-                                    <p>Name: {animal.name}</p>
-                                    <p>{distance(animal.coordinates, coordinates, 'K').toFixed(1)} kms away</p>
-                                    <p>Species: {animal.species}</p>
-                                    <p>Breed: {animal.breedAndInfo.breed}</p>
-                                    <p>Foster? {animal.foster ? 'Yes' : 'No'}</p>
-                                    <p>Bio: {animal.bio}</p>
+                                    <div className="swipe-card">
+                                        <div style={{ backgroundImage: 'url(' + animal.animal_photos[0] + ')' }} className='swipe-photo'>
+                                        </div>
+                                        <div className="info">
+                                        <h3>{animal.name}, <span style={{opacity: 0.5}}>{animal.age} years old</span></h3>
+                                        <p><FontAwesomeIcon className="icon" icon={faMapMarker}/> {distance(animal.coordinates, coordinates, 'K').toFixed(1)} kms away
+                                        <br />
+                                        <FontAwesomeIcon className="icon" icon={faPaw}/> {animal.species} ({animal.breedAndInfo.breed})
+                                        <br />
+                                        <FontAwesomeIcon className="icon" icon={faSearch}/> Looking for a forever home {animal.foster ? 'or loving temporary home' : ''}</p>
+                                        <p style={{"font-size": "130%"}}>{animal.bio}</p>
+                                        </div>
                                     </div>
-                                </div>
+                                
                             </TinderCard>
                         )}
                     </div>
