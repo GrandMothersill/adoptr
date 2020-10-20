@@ -38,7 +38,7 @@
   align-items: center;
 }
 
-.card {
+.swipe-card {
   background-color: white;
   width: 75vw;
   max-width: 600px;

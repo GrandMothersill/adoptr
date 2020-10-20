@@ -228,7 +228,7 @@ function TinderSwipe(props) {
                 </div>
                 <div className='swiping'>
                     <FontAwesomeIcon className="swipe-button red" icon={faTimesCircle} onClick={() => swipe('left')}/> 
-                    <div className='cardContainer'>
+                    <div className='swipe-card-container'>
                         {animalProfiles.length === 0 ? <p>No more Cards</p> : <></>}
                         {filterBySpecies(filterByDistance(filterByFoster(animalProfiles, foster), maxDistance), speciesSearch).map((animal, index) =>
                             <TinderCard
@@ -238,7 +238,7 @@ function TinderSwipe(props) {
                                 onSwipe={(dir) => swiped(dir, animal._id)}
                                 onCardLeftScreen={(dir) => outOfFrame(dir, animal._id)}
                                 preventSwipe={['up', 'down']}>
-                                <div style={{ backgroundImage: 'url(' + animal.url + ')' }} className='card'>
+                                <div style={{ backgroundImage: 'url(' + animal.url + ')' }} className='swipe-card'>
                                     <img className='animalIMG' src={animal.animal_photos[0]} alt='animalPhoto'></img>
                                     <div className="info">
                                     <p>Name: {animal.name}</p>
