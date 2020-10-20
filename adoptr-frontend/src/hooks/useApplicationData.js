@@ -20,6 +20,8 @@ export default function useApplicationData() {
     const setRejectedAnimal = (animalID) => setState(prevState => { return { ...prevState, rejected_animals: prevState.rejected_animals.concat(animalID) } })
     const setNewMatch = (animalID) => setUserMatches(prevState => { return [...prevState, animalID] })
 
+    const resetRejectedAnimal = () => setState(prevState => { return { ...prevState, rejected_animals: [] } })
+
 
     //Gets the user/shelter information from localstorage each time there is a refresh and set the state at first load)
     useEffect(() => {
@@ -56,5 +58,6 @@ export default function useApplicationData() {
         userMatches,
         setNewMatch,
         setUserMatches,
+        resetRejectedAnimal
     };
 }
