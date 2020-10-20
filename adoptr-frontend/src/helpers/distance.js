@@ -1,8 +1,6 @@
 /// credit: https://www.geodatasource.com
 export default function distance(crds1, crds2, unit) {
 
-    console.log(crds1, crds2)
-
     let lat1 = crds1.latitude
     let lat2 = crds2.latitude
     let lon1 = crds1.longitude

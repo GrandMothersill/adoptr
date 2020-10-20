@@ -18,6 +18,7 @@ MongoClient.connect(
         const usersCollection = db.collection("users");
         const sheltersCollection = db.collection("shelters");
         const matchesCollection = db.collection("matches");
+        const chatsCollection = db.collection("chats")
         app.use(cors());
         app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({ extended: true }));
@@ -213,9 +214,33 @@ MongoClient.connect(
                 .catch(error => console.error(error))
         });
 
+        //////////////////////////////////////////////////////////////////////
+
+        app.get("/messages", (req, res) => {
+            chatsCollection.find({ userID: req.query.userID, animalID: req.query.animalID }).toArray()
+                .then(results => {
+                    const formattedResults = {
+                        messages: results[0].messages,
+                        chatID: results[0]._id
+                    };
+                    res.send(formattedResults);
+                })
+                .catch(error => console.error(error))
+        });
+
+        app.put("/messages/new", (req, res) => {
+            chatsCollection.updateOne(
+                { _id: ObjectId(req.body.chatID) },
+                {
+                    $push: { messages: { message: req.body.newMessage, sender: req.body.sender } },
+                }
+            )
+                .then(result => {
+                    res.send(result);
+                })
+                .catch(error => console.log(error));
+        });
     })
     .catch(error => console.error(error));
-
-
 
 // npm run start:watch - to start server   
