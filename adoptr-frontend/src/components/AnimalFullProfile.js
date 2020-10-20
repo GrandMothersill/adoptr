@@ -17,6 +17,7 @@ function AnimalFullProfile(props) {
             .then((response) => {
                 const data = response.data[0]
                 const spreadProfile = {
+                    id: data._id,
                     name: data.name,
                     species: data.species,
                     sex: data.sex,
@@ -87,7 +88,7 @@ function AnimalFullProfile(props) {
                     </div>
                 </Card.Body>
             </Card >
-            <Messenger />
+            <Messenger userID={props.state.account._id} animalID={profile.id} shelterID={profile.shelter_id} userName={props.state.account.name} animalName={profile.name} shelterName={profile.shelter_name} />
         </div>
     )
 }

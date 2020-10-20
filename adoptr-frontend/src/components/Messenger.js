@@ -12,7 +12,6 @@ function Messenger(props) {
             <Card.Title>YAAASAASSASASAAS</Card.Title>
             <Card.Body>THIS IS MESSENGER</Card.Body>
 
-
         </Card>
     )
 }
