@@ -10,7 +10,6 @@ function Messenger(props) {
     const [chatID, setChatID] = useState([]);
     const [toggle, setToggle] = useState(false);
     const [userName, setUserName] = useState("");
-    const [showMessenger, setShowMessenger] = useState(true);
 
     useEffect(() => {
         axios.get(`http://localhost:3001/messages/?animalID=${props.animalID}&userID=${props.userID}`)
@@ -19,10 +18,8 @@ function Messenger(props) {
                 console.log("AXIOS M", data)
                 setMessages(data.messages)
                 setChatID(data.chatID)
-                setShowMessenger(true)
             })
             .catch((err) => {
-                alert(err);
             });
     }, [props.animalID, toggle]);
 
@@ -34,7 +31,6 @@ function Messenger(props) {
                 setUserName(data.name)
             })
             .catch((err) => {
-                alert(err);
             });
     }, []);
 
@@ -55,26 +51,31 @@ function Messenger(props) {
 
     }
 
-    return (
+    if (props.userType !== "user" && !messages[0]) {
+        return <></>
+    } else {
 
-        <Card style={{ width: '18rem', display: showMessenger ? 'default' : 'none' }} >
+        return (
 
-            <Card.Title>{props.userType === 'user' ? `Chat with ${props.animalName}'s shelter` : `Chat With ${userName}`}</Card.Title>
-            {messages.map(message => <p key={message.timestamp} style={{ color: message.sender === "user" ? 'red' : 'blue' }} >{message.sender === "user" ? `${props.userName}:  ` : `${props.shelterName}:  `}{message.message}</p>)}
-            <form onSubmit={handleSubmit}>
-                <label>
-                    New Message:
+            <Card style={{ width: '18rem' }} >
+                <Card.Title>{props.userType === 'user' ? `Chat with ${props.animalName}'s shelter` : `Chat With ${userName}`}</Card.Title>
+                {messages.map(message => <p key={message.timestamp} style={{ color: message.sender === "user" ? 'red' : 'blue' }} >{message.sender === "user" ? `${userName}:  ` : `${props.shelterName}:  `}{message.message}</p>)}
+                <form onSubmit={handleSubmit}>
+                    <label>
+                        New Message:
                 <input
-                        name="newMessage"
-                        type="text"
-                        value={newMessage}
-                        onChange={e => setNewMessage(e.target.value)}
-                    />
-                </label>
-                <button></button>
-            </form>
-        </Card>
-    )
+                            name="newMessage"
+                            type="text"
+                            value={newMessage}
+                            onChange={e => setNewMessage(e.target.value)}
+                        />
+                    </label>
+                    <button></button>
+                </form>
+            </Card>
+
+        )
+    }
 }
 
 

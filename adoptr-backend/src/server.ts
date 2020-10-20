@@ -214,7 +214,7 @@ MongoClient.connect(
 
         ////////////////////////////////////////////////////////////////////////////////
 
-        app.post("/matches", (req, res) => {
+        app.put("/matches", (req, res) => {
             matchesCollection.insertOne(req.body)
                 .then(result => {
                     res.send(result)
@@ -247,7 +247,7 @@ MongoClient.connect(
                     .then(results => {
                         if (results[0]) {
                             const formattedResults = {
-                                messages: results[0].messages || 0,
+                                messages: results[0].messages || [],
                                 chatID: results[0]._id || 0
                             };
                             res.send(formattedResults);
@@ -265,6 +265,14 @@ MongoClient.connect(
                     $push: { messages: { message: req.body.newMessage, sender: req.body.sender, timestamp: Date.now() } },
                 }
             )
+                .then(result => {
+                    res.send(result);
+                })
+                .catch(error => console.log(error));
+        });
+
+        app.put("/chats/new", (req, res) => {
+            chatsCollection.insertOne(req.body)
                 .then(result => {
                     res.send(result);
                 })

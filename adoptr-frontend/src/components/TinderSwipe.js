@@ -139,9 +139,17 @@ function TinderSwipe(props) {
 
     const handleMatch = (animalID, userID) => {
         axios
-            .post(`http://localhost:3001/matches`, { userID: userID, animalID: animalID })
+            .put(`http://localhost:3001/matches`, { userID: userID, animalID: animalID })
             .then((response) => {
                 console.log("MATCH RESPONSE", response);
+                axios
+                    .put(`http://localhost:3001/chats/new`, { userID: userID, animalID: animalID, messages: [] })
+                    .then((response) => {
+                        console.log("chat response new put", response);
+                    })
+                    .catch((err) => {
+                        alert(err);
+                    });
             })
             .catch((err) => {
                 alert(err);
