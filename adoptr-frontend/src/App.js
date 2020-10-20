@@ -26,7 +26,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 function App() {
 
 
-  const { state, setUser, setShelter, logout, setRejectedAnimal, userMatches, setNewMatch, setUserMatches } = useApplicationData();
+  const { state, setUser, setShelter, logout, setRejectedAnimal, userMatches, setNewMatch, setUserMatches, resetRejectedAnimal } = useApplicationData();
 
 
   return (
@@ -44,7 +44,7 @@ function App() {
           <Route path='/shelter/edit' render={() => <EditShelter login={setShelter} state={state} />} />
           <Route path='/login' render={() => <UserLogin login={setUser} />} />
           <Route path='/shelterlogin' render={() => <ShelterLogin login={setShelter} />} />
-          <Route path="/landing" render={() => <UserLanding setUserMatches={setUserMatches} userMatches={userMatches} setNewMatch={setNewMatch} setRejectedAnimal={setRejectedAnimal} state={state} />} />
+          <Route path="/landing" render={() => <UserLanding resetRejectedAnimal={resetRejectedAnimal} setUserMatches={setUserMatches} userMatches={userMatches} setNewMatch={setNewMatch} setRejectedAnimal={setRejectedAnimal} state={state} />} />
           <Route path="/shelterlanding" render={() => <ShelterLanding state={state} />} />
           <Route path="/usermatches" render={() => <UserMatches state={state} />} />
           <Route path='/' render={() => <Landing state={state} />} />
