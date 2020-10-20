@@ -1,7 +1,8 @@
 import React from "react";
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import { Link } from "react-router-dom"
+import { Redirect } from "react-router-dom"
+import "../styles/Dashboard.css";
 
 function Dashboard(props) {
   const profiles = props.profiles;
@@ -16,7 +17,7 @@ function Dashboard(props) {
           <Card.Text>
             {profile.bio}
           </Card.Text>
-          {props.type === 'shelter' ? <Link to={`/animal/matches/${profile._id}/${profile.name}`}><Button variant="primary">See {profile.name}'s matches</Button></Link> : <Link to={`/animal/profile/${profile._id}`}><Button variant="primary">See {profile.name}'s full profile</Button></Link>}
+          {props.type === 'shelter' ? <Button variant="primary">See {profile.name}'s matches</Button> : <Button variant="primary">See {profile.name}'s full profile</Button>}
         </Card.Body>
       </Card >
     )

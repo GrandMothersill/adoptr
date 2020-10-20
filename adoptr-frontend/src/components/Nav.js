@@ -17,7 +17,6 @@ function Nav(props) {
         <Link to="/login" className="nav-link">User Login</Link>
         <Link to="/shelterlogin" className="nav-link">Shelter Login</Link>
       </div>}
-      
     </nav>
   )
 };

@@ -257,7 +257,7 @@ export default function ShelterLogin(props) {
             <Grid container>
               <Grid item>
                 <Link href="/shelters" variant="body2" style={{color: "black"}}>
-                  Don't have an account? Create one.
+                  Don't have an account? Register.
                 </Link>
               </Grid>
             </Grid>

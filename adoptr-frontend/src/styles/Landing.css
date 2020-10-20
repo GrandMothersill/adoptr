@@ -1,4 +1,5 @@
 .landing {
+  background-color: rgba(243, 179, 47, 0.5);
   padding: 2%;
 }
 
@@ -9,6 +10,9 @@
 
 .dashboard-actions {
   margin: 2% 0;
+  color: white;
+  font-weight: bold;
+  font-size: 120%;
 }
 
 .action {

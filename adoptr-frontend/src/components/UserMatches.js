@@ -35,7 +35,7 @@ function UserMatches(props) {
     // console.log("no longer loading. this is profiles", profiles);
     return (
       <div className="landing">
-        <h1>User Matches {props.state.account.name} and {props.state.account._id}</h1>
+        <h1>{props.state.account.name}'s Matches</h1>
         <div className="row dashboard"><Dashboard profiles={profiles} type={props.state.type}/></div>
       </div>
     )

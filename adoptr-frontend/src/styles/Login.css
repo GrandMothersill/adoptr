@@ -97,6 +97,36 @@
 
 /* register pages */
 
+.dog {
+  font-size: 230px;
+  position: absolute;
+  bottom: 100px;
+  left: 100px;
+}
+
+.crow {
+  font-size: 100px;
+  position: absolute;
+  bottom: 50px;
+  left: 450px;
+}
+
+.cat {
+  transform: scaleX(-1);
+  font-size: 184px;
+  position: absolute;
+  bottom: 80px;
+  right: 350px;
+}
+
+.otter {
+  transform: scaleX(-1);
+  font-size: 100px;
+  position: absolute;
+  bottom: 50px;
+  right: 80px;
+}
+
 .animation-target {
   -webkit-animation: animation 1000ms linear both;
   animation: animation 1000ms linear both;
@@ -1132,34 +1162,4 @@
     -webkit-transform: matrix3d(2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
     transform: matrix3d(2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
   }
-}
-
-.dog {
-  font-size: 230px;
-  position: absolute;
-  bottom: 100px;
-  left: 100px;
-}
-
-.crow {
-  font-size: 100px;
-  position: absolute;
-  bottom: 50px;
-  left: 450px;
-}
-
-.cat {
-  transform: scaleX(-1);
-  font-size: 184px;
-  position: absolute;
-  bottom: 80px;
-  right: 350px;
-}
-
-.otter {
-  transform: scaleX(-1);
-  font-size: 100px;
-  position: absolute;
-  bottom: 50px;
-  right: 80px;
 }
