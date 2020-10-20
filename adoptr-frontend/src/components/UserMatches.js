@@ -51,9 +51,9 @@ function UserMatches(props) {
         axios.all(matches.map(match =>
           axios.get(`http://localhost:3001/profile/?id=${match.animalID}`)))
           .then(axios.spread(function (...res) {
-            console.log("this is the response", res)
+            // console.log("this is the response", res)
             setProfiles(res.map(res => res.data[0]));
-            console.log("before setting", loading)
+            // console.log("before setting", loading)
             setLoading(false);
           }));
       })
@@ -68,8 +68,8 @@ function UserMatches(props) {
     if (!props.state.type) {
       return <Redirect to="/" />
     }
-    console.log("after setting", loading);
-    console.log("no longer loading. this is profiles", profiles);
+    // console.log("after setting", loading);
+    // console.log("no longer loading. this is profiles", profiles);
     return (
       <div className="landing">
         <h1>User Matches {props.state.account.name} and {props.state.account._id}</h1>

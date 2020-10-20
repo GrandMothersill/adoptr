@@ -88,7 +88,7 @@ function AnimalFullProfile(props) {
                     </div>
                 </Card.Body>
             </Card >
-            <Messenger userID={props.state.account._id} animalID={profile.id} shelterID={profile.shelter_id} userName={props.state.account.name} animalName={profile.name} shelterName={profile.shelter_name} />
+            <Messenger userType={props.state.type} userID={props.state.account._id} animalID={profile.id} shelterID={profile.shelter_id} userName={props.state.account.name} animalName={profile.name} shelterName={profile.shelter_name} />
         </div>
     )
 }
