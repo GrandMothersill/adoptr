@@ -115,10 +115,12 @@ MongoClient.connect(
                 _id: idObject
             }).toArray()
                 .then(results => {
-                    const formattedResults = {
-                        name: results[0].name,
-                    };
-                    res.send(formattedResults);
+                    if (results[0]) {
+                        const formattedResults = {
+                            name: results[0].name,
+                        };
+                        res.send(formattedResults);
+                    }
                 })
                 .catch(error => console.error(error))
         });
@@ -240,15 +242,19 @@ MongoClient.connect(
         //////////////////////////////////////////////////////////////////////
 
         app.get("/messages", (req, res) => {
-            chatsCollection.find({ userID: req.query.userID, animalID: req.query.animalID }).toArray()
-                .then(results => {
-                    const formattedResults = {
-                        messages: results[0].messages,
-                        chatID: results[0]._id
-                    };
-                    res.send(formattedResults);
-                })
-                .catch(error => console.error(error))
+            if (req.query.userID && req.query.animalID) {
+                chatsCollection.find({ userID: req.query.userID, animalID: req.query.animalID }).toArray()
+                    .then(results => {
+                        if (results[0]) {
+                            const formattedResults = {
+                                messages: results[0].messages || 0,
+                                chatID: results[0]._id || 0
+                            };
+                            res.send(formattedResults);
+                        }
+                    })
+                    .catch(error => console.error(error))
+            };
         });
 
         app.put("/messages/new", (req, res) => {
@@ -256,7 +262,7 @@ MongoClient.connect(
             chatsCollection.updateOne(
                 { _id: ObjectId(req.body.chatID) },
                 {
-                    $push: { messages: { message: req.body.newMessage, sender: req.body.sender } },
+                    $push: { messages: { message: req.body.newMessage, sender: req.body.sender, timestamp: Date.now() } },
                 }
             )
                 .then(result => {

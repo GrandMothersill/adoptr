@@ -26,7 +26,7 @@ function AnimalMatchesChat(props) {
     return (
         <div>
             {matches.map(match =>
-                <div style={{ display: 'flex', marginTop: '5rem' }}>
+                <div key={match.userID} style={{ display: 'flex', marginTop: '5rem' }}>
                     <Messenger userType={props.state.type} userID={match.userID} animalID={id} shelterID={props.state.account._id} userName={111} animalName={name} shelterName={props.state.account.name} />
                 </div>
             )}

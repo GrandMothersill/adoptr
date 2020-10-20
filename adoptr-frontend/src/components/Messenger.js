@@ -10,14 +10,16 @@ function Messenger(props) {
     const [chatID, setChatID] = useState([]);
     const [toggle, setToggle] = useState(false);
     const [userName, setUserName] = useState("");
+    const [showMessenger, setShowMessenger] = useState(true);
 
     useEffect(() => {
         axios.get(`http://localhost:3001/messages/?animalID=${props.animalID}&userID=${props.userID}`)
             .then((response) => {
                 const data = response.data
-                console.log("AXIOS", data)
+                console.log("AXIOS M", data)
                 setMessages(data.messages)
                 setChatID(data.chatID)
+                setShowMessenger(true)
             })
             .catch((err) => {
                 alert(err);
@@ -55,10 +57,10 @@ function Messenger(props) {
 
     return (
 
-        <Card style={{ width: '18rem' }} >
+        <Card style={{ width: '18rem', display: showMessenger ? 'default' : 'none' }} >
 
             <Card.Title>{props.userType === 'user' ? `Chat with ${props.animalName}'s shelter` : `Chat With ${userName}`}</Card.Title>
-            {messages.map(message => <p style={{ color: message.sender === "user" ? 'red' : 'blue' }} >{message.sender === "user" ? `${props.userName}:  ` : `${props.shelterName}:  `}{message.message}</p>)}
+            {messages.map(message => <p key={message.timestamp} style={{ color: message.sender === "user" ? 'red' : 'blue' }} >{message.sender === "user" ? `${props.userName}:  ` : `${props.shelterName}:  `}{message.message}</p>)}
             <form onSubmit={handleSubmit}>
                 <label>
                     New Message:
