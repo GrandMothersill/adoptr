@@ -16,7 +16,7 @@ function Dashboard(props) {
           <Card.Text>
             {profile.bio}
           </Card.Text>
-          {props.type === 'shelter' ? <Button variant="primary">See {profile.name}'s matches</Button> : <Link to={`/animal/profile/${profile._id}`}><Button variant="primary">See {profile.name}'s full profile</Button></Link>}
+          {props.type === 'shelter' ? <Link to={`/animal/matches/${profile._id}/${profile.name}`}><Button variant="primary">See {profile.name}'s matches</Button></Link> : <Link to={`/animal/profile/${profile._id}`}><Button variant="primary">See {profile.name}'s full profile</Button></Link>}
         </Card.Body>
       </Card >
     )

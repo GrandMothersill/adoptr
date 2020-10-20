@@ -109,6 +109,20 @@ MongoClient.connect(
                 .catch(error => console.error(error))
         });
 
+        app.get("/user", (req, res) => {
+            const idObject = new ObjectId(req.query.userID);
+            db.collection("users").find({
+                _id: idObject
+            }).toArray()
+                .then(results => {
+                    const formattedResults = {
+                        name: results[0].name,
+                    };
+                    res.send(formattedResults);
+                })
+                .catch(error => console.error(error))
+        });
+
         app.post("/users", (req, res) => {
             const hashedPassword = bcrypt.hashSync(req.body.password, 10);
             usersCollection.insertOne({ ...req.body, password: hashedPassword })
@@ -214,6 +228,15 @@ MongoClient.connect(
                 .catch(error => console.error(error))
         });
 
+        app.get("/matches/animal", (req, res) => {
+            db.collection("matches").find({ animalID: req.query.animalID }).toArray()
+                .then(results => {
+                    res.send(results);
+                })
+                .catch(error => console.error(error))
+        });
+
+
         //////////////////////////////////////////////////////////////////////
 
         app.get("/messages", (req, res) => {
@@ -229,6 +252,7 @@ MongoClient.connect(
         });
 
         app.put("/messages/new", (req, res) => {
+            console.log("AHH HELLO", req.body)
             chatsCollection.updateOne(
                 { _id: ObjectId(req.body.chatID) },
                 {

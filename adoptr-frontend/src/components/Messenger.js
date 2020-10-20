@@ -9,6 +9,7 @@ function Messenger(props) {
     const [newMessage, setNewMessage] = useState("");
     const [chatID, setChatID] = useState([]);
     const [toggle, setToggle] = useState(false);
+    const [userName, setUserName] = useState("");
 
     useEffect(() => {
         axios.get(`http://localhost:3001/messages/?animalID=${props.animalID}&userID=${props.userID}`)
@@ -22,6 +23,18 @@ function Messenger(props) {
                 alert(err);
             });
     }, [props.animalID, toggle]);
+
+
+    useEffect(() => {
+        axios.get(`http://localhost:3001/user/?userID=${props.userID}`)
+            .then((response) => {
+                const data = response.data
+                setUserName(data.name)
+            })
+            .catch((err) => {
+                alert(err);
+            });
+    }, []);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -44,7 +57,7 @@ function Messenger(props) {
 
         <Card style={{ width: '18rem' }} >
 
-            <Card.Title>Chat with {props.animalName}'s shelter</Card.Title>
+            <Card.Title>{props.userType === 'user' ? `Chat with ${props.animalName}'s shelter` : `Chat With ${userName}`}</Card.Title>
             {messages.map(message => <p style={{ color: message.sender === "user" ? 'red' : 'blue' }} >{message.sender === "user" ? `${props.userName}:  ` : `${props.shelterName}:  `}{message.message}</p>)}
             <form onSubmit={handleSubmit}>
                 <label>
