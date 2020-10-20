@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios"
 import { Redirect, Link } from "react-router-dom"
-import "../styles/Landing.css";
 import Dashboard from "./Dashboard";
 import Button from 'react-bootstrap/Button';
+import "../styles/Landing.css";
 
 function ShelterLanding(props) {
   const [loading, setLoading] = useState(true);
@@ -30,6 +30,7 @@ function ShelterLanding(props) {
   }
 
   if (!loading) {
+    
     return (
       <div className="landing">
         <h1>Welcome to your dashboard, {props.state.account.name} and {props.state.account._id}</h1>
@@ -38,7 +39,7 @@ function ShelterLanding(props) {
           <Link to="/shelter/edit"><Button variant="warning">Edit Account</Button></Link>
           <Link to="/animals"><Button variant="warning" className="action">Create New Animal Profile</Button></Link>
         </div>
-        <div className="row dashboard"><Dashboard profiles={profiles} /></div>
+        <div className="row dashboard"><Dashboard profiles={profiles} type={props.state.type}/></div>
       </div>
     )
   } else {
