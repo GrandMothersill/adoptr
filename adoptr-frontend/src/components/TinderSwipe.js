@@ -202,8 +202,9 @@ function TinderSwipe(props) {
         return (
             <div className="swipe-container">
                 <div className="swipe-filter">
+                    <h3>Filter by</h3>
                     <label>
-                        Species Shown
+                        Species:
                         <select
                         name="species"
                         id="species"

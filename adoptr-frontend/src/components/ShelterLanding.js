@@ -35,8 +35,8 @@ function ShelterLanding(props) {
         <h1>Welcome to your dashboard, {props.state.account.name} and {props.state.account._id}</h1>
         <p>Edit your account, create new animal profiles and keep track of your animals and their matches all in one place!</p>
         <div className="dashboard-actions">
-          <Link to="/shelter/edit"><Button variant="warning">Edit Account</Button></Link>
-          <Link to="/animals"><Button variant="warning" className="action">Create New Animal Profile</Button></Link>
+          <Link to="/shelter/edit"><Button variant="warning" className="dashboard-actions">Edit Account</Button></Link>
+          <Link to="/animals"><Button variant="warning" className="dashboard-actions action">Create New Animal Profile</Button></Link>
         </div>
         <div className="row dashboard"><Dashboard profiles={profiles} type={props.state.account.type}/></div>
       </div>
