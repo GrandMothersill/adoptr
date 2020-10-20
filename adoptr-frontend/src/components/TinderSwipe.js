@@ -240,12 +240,14 @@ function TinderSwipe(props) {
                                 preventSwipe={['up', 'down']}>
                                 <div style={{ backgroundImage: 'url(' + animal.url + ')' }} className='card'>
                                     <img className='animalIMG' src={animal.animal_photos[0]} alt='animalPhoto'></img>
+                                    <div className="info">
                                     <p>Name: {animal.name}</p>
                                     <p>{distance(animal.coordinates, coordinates, 'K').toFixed(1)} kms away</p>
                                     <p>Species: {animal.species}</p>
                                     <p>Breed: {animal.breedAndInfo.breed}</p>
                                     <p>Foster? {animal.foster ? 'Yes' : 'No'}</p>
                                     <p>Bio: {animal.bio}</p>
+                                    </div>
                                 </div>
                             </TinderCard>
                         )}
