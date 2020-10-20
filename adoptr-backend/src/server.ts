@@ -18,6 +18,7 @@ MongoClient.connect(
         const usersCollection = db.collection("users");
         const sheltersCollection = db.collection("shelters");
         const matchesCollection = db.collection("matches");
+        const chatsCollection = db.collection("chats")
         app.use(cors());
         app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({ extended: true }));
@@ -104,6 +105,22 @@ MongoClient.connect(
                 .then(results => {
                     res.send(results)
                     console.log("GET USERS CALLED")
+                })
+                .catch(error => console.error(error))
+        });
+
+        app.get("/user", (req, res) => {
+            const idObject = new ObjectId(req.query.userID);
+            db.collection("users").find({
+                _id: idObject
+            }).toArray()
+                .then(results => {
+                    if (results[0]) {
+                        const formattedResults = {
+                            name: results[0].name,
+                        };
+                        res.send(formattedResults);
+                    }
                 })
                 .catch(error => console.error(error))
         });
@@ -197,7 +214,7 @@ MongoClient.connect(
 
         ////////////////////////////////////////////////////////////////////////////////
 
-        app.post("/matches", (req, res) => {
+        app.put("/matches", (req, res) => {
             matchesCollection.insertOne(req.body)
                 .then(result => {
                     res.send(result)
@@ -213,9 +230,55 @@ MongoClient.connect(
                 .catch(error => console.error(error))
         });
 
+        app.get("/matches/animal", (req, res) => {
+            db.collection("matches").find({ animalID: req.query.animalID }).toArray()
+                .then(results => {
+                    res.send(results);
+                })
+                .catch(error => console.error(error))
+        });
+
+
+        //////////////////////////////////////////////////////////////////////
+
+        app.get("/messages", (req, res) => {
+            if (req.query.userID && req.query.animalID) {
+                chatsCollection.find({ userID: req.query.userID, animalID: req.query.animalID }).toArray()
+                    .then(results => {
+                        if (results[0]) {
+                            const formattedResults = {
+                                messages: results[0].messages || [],
+                                chatID: results[0]._id || 0
+                            };
+                            res.send(formattedResults);
+                        }
+                    })
+                    .catch(error => console.error(error))
+            };
+        });
+
+        app.put("/messages/new", (req, res) => {
+            console.log("AHH HELLO", req.body)
+            chatsCollection.updateOne(
+                { _id: ObjectId(req.body.chatID) },
+                {
+                    $push: { messages: { message: req.body.newMessage, sender: req.body.sender, timestamp: Date.now() } },
+                }
+            )
+                .then(result => {
+                    res.send(result);
+                })
+                .catch(error => console.log(error));
+        });
+
+        app.put("/chats/new", (req, res) => {
+            chatsCollection.insertOne(req.body)
+                .then(result => {
+                    res.send(result);
+                })
+                .catch(error => console.log(error));
+        });
     })
     .catch(error => console.error(error));
-
-
 
 // npm run start:watch - to start server   

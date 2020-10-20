@@ -5,6 +5,7 @@ import DistanceSlider from './DistanceSlider.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faTimesCircle, faMapMarker, faPaw, faSearch } from '@fortawesome/free-solid-svg-icons';
 import './TinderSwipe.css';
+import distance from '../helpers/distance.js'
 
 const alreadyRemoved = []
 
@@ -71,35 +72,6 @@ function TinderSwipe(props) {
             });
         }, coordError, coordOptions);
     }, []);
-
-    /// credit: https://www.geodatasource.com
-    function distance(crds1, crds2, unit) {
-        let lat1 = crds1.latitude
-        let lat2 = crds2.latitude
-        let lon1 = crds1.longitude
-        let lon2 = crds2.longitude
-        if ((lat1 == lat2) && (lon1 == lon2)) {
-            return 0;
-        }
-        else {
-            const radlat1 = Math.PI * lat1 / 180;
-            const radlat2 = Math.PI * lat2 / 180;
-            const theta = lon1 - lon2;
-            const radtheta = Math.PI * theta / 180;
-            let dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-            if (dist > 1) {
-                dist = 1;
-            }
-            dist = Math.acos(dist);
-            dist = dist * 180 / Math.PI;
-            dist = dist * 60 * 1.1515;
-            if (unit == "K") { dist = dist * 1.609344 }
-            if (unit == "N") { dist = dist * 0.8684 }
-            return dist;
-        };
-    };
-
-
 
 
 
@@ -169,9 +141,17 @@ function TinderSwipe(props) {
 
     const handleMatch = (animalID, userID) => {
         axios
-            .post(`http://localhost:3001/matches`, { userID: userID, animalID: animalID })
+            .put(`http://localhost:3001/matches`, { userID: userID, animalID: animalID })
             .then((response) => {
                 console.log("MATCH RESPONSE", response);
+                axios
+                    .put(`http://localhost:3001/chats/new`, { userID: userID, animalID: animalID, messages: [] })
+                    .then((response) => {
+                        console.log("chat response new put", response);
+                    })
+                    .catch((err) => {
+                        alert(err);
+                    });
             })
             .catch((err) => {
                 alert(err);

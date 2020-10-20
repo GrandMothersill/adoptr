@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { Redirect } from "react-router-dom"
@@ -19,7 +19,7 @@ function Dashboard(props) {
           </Card.Text>
           {props.type === 'shelter' ? <Button variant="primary">See {profile.name}'s matches</Button> : <Button variant="primary">See {profile.name}'s full profile</Button>}
         </Card.Body>
-      </Card>
+      </Card >
     )
   })
 
