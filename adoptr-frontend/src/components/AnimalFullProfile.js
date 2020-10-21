@@ -67,7 +67,7 @@ function AnimalFullProfile(props) {
     } else {
 
         return (
-            <div style={{ display: 'flex', marginTop: '5rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '5rem' }}>
                 <Card style={{ width: '40rem' }} key={profile._id}>
                     <Card.Img style={{ height: '20rem', width: 'auto' }} variant="top" src={profile.animal_photos} />
                     <Card.Body>
@@ -93,7 +93,11 @@ function AnimalFullProfile(props) {
                         </div>
                     </Card.Body>
                 </Card >
-                <Messenger userType={props.state.type} userID={props.state.account._id} animalID={profile.id} shelterID={profile.shelter_id} userName={props.state.account.name} animalName={profile.name} shelterName={profile.shelter_name} />
+                <div id="animal-matches-chats">
+                    <div className="match-chat">
+                        <Messenger userType={props.state.type} userID={props.state.account._id} animalID={profile.id} shelterID={profile.shelter_id} userName={props.state.account.name} animalName={profile.name} shelterName={profile.shelter_name} />
+                    </div>
+                </div>
             </div>
         )
     }
