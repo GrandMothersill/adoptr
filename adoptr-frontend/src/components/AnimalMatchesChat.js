@@ -5,6 +5,7 @@ import { useParams, Redirect } from "react-router-dom";
 import { Card, Button, ListGroup } from 'react-bootstrap';
 import distance from '../helpers/distance.js'
 import Messenger from './Messenger.js'
+import "../styles/AnimalMatchesChat.css"
 
 function AnimalMatchesChat(props) {
     let { id, name } = useParams();
@@ -27,9 +28,9 @@ function AnimalMatchesChat(props) {
         return <Redirect to="/" />
     } else {
         return (
-            <div>
+            <div id="animal-matches-chats">
                 {matches.map(match =>
-                    <div key={match.userID} style={{ display: 'flex', marginTop: '5rem' }}>
+                    <div className="match-chat" key={match.userID}>
                         <Messenger userType={props.state.type} userID={match.userID} animalID={id} shelterID={props.state.account._id} animalName={name} shelterName={props.state.account.name} />
                     </div>
                 )}

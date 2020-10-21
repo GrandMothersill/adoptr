@@ -1,0 +1,87 @@
+
+.messenger-card {
+    width: 100%;
+    max-height: 60em;
+    min-height: 32.5em;
+    padding: 15px;
+    background-color: rgb(250, 242, 228);
+    box-shadow: 0px 0 10px rgba(2, 1, 0, 0.486); 
+    margin: 0px;
+}
+
+.sent-by-self {
+    color: blue;
+    width: 23rem;;
+    margin-left: auto;
+    margin-bottom: .5rem;
+    margin-top: .5rem;
+    padding: 3px;
+    border: 2px solid black;
+    border-radius: 15%;
+    background-color: rgb(222, 227, 245);
+}
+
+.sent-by-self:hover {
+    box-shadow: 0 0 11px rgba(33,33,33,.2); 
+  }
+
+.sent-by-other {
+    color: red;
+    width: 23rem;
+    margin-right: auto;
+    margin-bottom: .5rem;
+    margin-top: .5rem;
+    padding: 3px;
+    border: 2px solid black;
+    border-radius: 15%;
+    background-color: rgb(245, 222, 222);
+    }
+
+.sent-by-other:hover {
+    box-shadow: 0 0 11px rgba(33,33,33,.2); 
+    }
+
+.messenger-title {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 2em;
+    margin-bottom: .1rem;
+    }
+
+
+
+.messenger-line {
+    margin-top: .75rem;
+    margin-bottom: .5rem;
+}
+
+.messenger-messages-background {
+    background-color: rgba(228, 220, 207, 0.753);
+    margin-left: -15px;
+    margin-right: -15px;
+    margin-top: -.5rem;
+    margin-bottom: -.75rem;
+    box-shadow: 0 0 5px rgba(37, 26, 0, 0.336); 
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    min-height: 20em;
+    max-height: 20em;
+    overflow: auto;
+}
+
+.messenger-form {
+   display: flex;
+   flex-direction: column;
+   margin-top: auto;
+}
+
+.messenger-form-label {
+    margin-bottom: .5rem;
+    margin-top: .15rem;
+}
+
+.messenger-form-button {
+    margin-top: .75rem;
+}

@@ -1,0 +1,11 @@
+#animal-matches-chats{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.match-chat {
+    margin-top: 30px !important;
+}

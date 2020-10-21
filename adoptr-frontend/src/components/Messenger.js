@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import { Card, Button, Form } from 'react-bootstrap';
+
 import axios from "axios";
+import "../styles/Messenger.css"
+
+
 
 function Messenger(props) {
 
@@ -57,21 +60,26 @@ function Messenger(props) {
 
         return (
 
-            <Card style={{ width: '18rem' }} >
-                <Card.Title>{props.userType === 'user' ? `Chat with ${props.animalName}'s shelter` : `Chat With ${userName}`}</Card.Title>
-                {messages.map(message => <p key={message.timestamp} style={{ color: message.sender === "user" ? 'red' : 'blue' }} >{message.sender === "user" ? `${userName}:  ` : `${props.shelterName}:  `}{message.message}</p>)}
-                <form onSubmit={handleSubmit}>
-                    <label>
-                        New Message:
-                <input
-                            name="newMessage"
-                            type="text"
-                            value={newMessage}
-                            onChange={e => setNewMessage(e.target.value)}
-                        />
-                    </label>
-                    <button></button>
-                </form>
+            <Card className="messenger-card" >
+                <Card.Title className="messenger-title">{props.userType === 'user' ? `Message ${props.animalName}'s Shelter` : `Message ${userName}`}</Card.Title>
+                <hr className="messenger-line"></hr>
+                <div className="messenger-messages-background">
+                    {messages.map(message => <Card.Body key={message.timestamp} className={message.sender === props.userType ? 'sent-by-self' : 'sent-by-other'} ><b>{message.sender === "user" ? `${userName}:  ` : `${props.shelterName}:  `}</b>{message.message}</Card.Body>)}
+                </div>
+                <hr className="messenger-line"></hr>
+                <Form className="messenger-form" onSubmit={handleSubmit}>
+
+                    <Card.Subtitle className="messenger-form-label">New Message:</Card.Subtitle>
+                    <textarea
+                        name="newMessage"
+                        type="text"
+                        value={newMessage}
+
+                        className="messenger-input"
+                        onChange={e => setNewMessage(e.target.value)}
+                    />
+                    <Button onClick={handleSubmit} className="messenger-form-button" variant="warning">Send</Button>
+                </Form>
             </Card>
 
         )

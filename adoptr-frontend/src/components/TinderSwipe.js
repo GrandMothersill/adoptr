@@ -58,8 +58,8 @@ function TinderSwipe(props) {
     }
 
     const coordOptions = {
-        enableHighAccuracy: true,
-        timeout: 5000,
+        enableHighAccuracy: false,
+        timeout: 50000,
         maximumAge: 0
     };
 
@@ -182,12 +182,12 @@ function TinderSwipe(props) {
         return (
             <div className="swipe-container">
                 <div className="swipe-filter">
-                    <h3 style={{"padding-bottom": "30px"}}>Filter By:</h3>
+                    <h3 style={{ "padding-bottom": "30px" }}>Filter By:</h3>
                     <label className="filter">
                         Species <select
-                        name="species"
-                        id="species"
-                        onChange={e => setSpeciesSearch(e.target.value)}>
+                            name="species"
+                            id="species"
+                            onChange={e => setSpeciesSearch(e.target.value)}>
                             <option value="All">All</option>
                             <option value="Dog">Dog</option>
                             <option value="Cat">Cat</option>
@@ -197,14 +197,14 @@ function TinderSwipe(props) {
                     <DistanceSlider value={maxDistance} setValue={setMaxDistance} />
                     <label className="filter">
                         Fostering? <input
-                        name="foster"
-                        type="checkbox"
-                        checked={foster}
-                        onChange={() => setFoster(!foster)}/>
+                            name="foster"
+                            type="checkbox"
+                            checked={foster}
+                            onChange={() => setFoster(!foster)} />
                     </label>
                 </div>
                 <div className='swiping'>
-                    <FontAwesomeIcon className="swipe-button red" icon={faTimesCircle} onClick={() => swipe('left')}/> 
+                    <FontAwesomeIcon className="swipe-button red" icon={faTimesCircle} onClick={() => swipe('left')} />
                     <div className='swipe-card-container'>
                         {animalProfiles.length === 0 ? <p>No more Cards</p> : <></>}
                         {filterBySpecies(filterByDistance(filterByFoster(animalProfiles, foster), maxDistance), speciesSearch).map((animal, index) =>
@@ -215,20 +215,20 @@ function TinderSwipe(props) {
                                 onSwipe={(dir) => swiped(dir, animal._id)}
                                 onCardLeftScreen={(dir) => outOfFrame(dir, animal._id)}
                                 preventSwipe={['up', 'down']}>
-                                    <div className="swipe-card">
-                                        <div style={{ backgroundImage: 'url(' + animal.animal_photos[0] + ')' }} className='swipe-photo'>
-                                        </div>
-                                        <div className="info">
-                                        <h3>{animal.name}, <span style={{opacity: 0.5}}>{animal.age} years old</span></h3>
-                                        <p><FontAwesomeIcon className="icon" icon={faMapMarker}/> {distance(animal.coordinates, coordinates, 'K').toFixed(1)} kms away
-                                        <br />
-                                        <FontAwesomeIcon className="icon" icon={faPaw}/> {animal.species} ({animal.breedAndInfo.breed})
-                                        <br />
-                                        <FontAwesomeIcon className="icon" icon={faSearch}/> Looking for a forever home {animal.foster ? 'or loving temporary home' : ''}</p>
-                                        <p style={{"font-size": "150%"}}>{animal.bio}</p>
-                                        </div>
+                                <div className="swipe-card">
+                                    <div style={{ backgroundImage: 'url(' + animal.animal_photos[0] + ')' }} className='swipe-photo'>
                                     </div>
-                                
+                                    <div className="info">
+                                        <h3>{animal.name}, <span style={{ opacity: 0.5 }}>{animal.age} years old</span></h3>
+                                        <p><FontAwesomeIcon className="icon" icon={faMapMarker} /> {distance(animal.coordinates, coordinates, 'K').toFixed(1)} kms away
+                                        <br />
+                                            <FontAwesomeIcon className="icon" icon={faPaw} /> {animal.species} ({animal.breedAndInfo.breed})
+                                        <br />
+                                            <FontAwesomeIcon className="icon" icon={faSearch} /> Looking for a forever home {animal.foster ? 'or loving temporary home' : ''}</p>
+                                        <p style={{ "font-size": "150%" }}>{animal.bio}</p>
+                                    </div>
+                                </div>
+
                             </TinderCard>
                         )}
                     </div>
