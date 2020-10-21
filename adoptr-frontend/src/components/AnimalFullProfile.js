@@ -5,6 +5,12 @@ import { useParams, Redirect } from "react-router-dom";
 import { Card, Button, ListGroup } from 'react-bootstrap';
 import distance from '../helpers/distance.js'
 import Messenger from './Messenger.js'
+import "../styles/AnimalFullProfile.css"
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheckCircle, faTimesCircle, faMapMarker, faPaw, faSearch } from '@fortawesome/free-solid-svg-icons';
+import './TinderSwipe.css';
+import TinderCard from 'react-tinder-card';
 
 function AnimalFullProfile(props) {
     let { id } = useParams();
@@ -67,8 +73,8 @@ function AnimalFullProfile(props) {
     } else {
 
         return (
-            <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '5rem' }}>
-                <Card style={{ width: '40rem' }} key={profile._id}>
+            <div id="animal-matches-chats">
+                {/* <Card className="animal-full-profile" key={profile._id}>
                     <Card.Img style={{ height: '20rem', width: 'auto' }} variant="top" src={profile.animal_photos} />
                     <Card.Body>
                         <div style={{ display: 'flex' }} >
@@ -92,13 +98,43 @@ function AnimalFullProfile(props) {
                             </ListGroup>
                         </div>
                     </Card.Body>
-                </Card >
-                <div id="animal-matches-chats">
-                    <div className="match-chat">
-                        <Messenger userType={props.state.type} userID={props.state.account._id} animalID={profile.id} shelterID={profile.shelter_id} userName={props.state.account.name} animalName={profile.name} shelterName={profile.shelter_name} />
+                </Card > */}
+
+
+                <div>
+                    <div className="swipe-card-profile">
+                        <div style={{ backgroundImage: 'url(' + profile.animal_photos + ')' }} className='swipe-photo-profile'>
+                        </div>
+                        <div className="info-profile">
+                            <div className="info-profile-div">
+                                <h3>{profile.name}, {profile.sex}, <span style={{ opacity: 0.5 }}>{profile.age} years old</span></h3>
+                                <span style={{ marginTop: '.5em' }}>Shelter: <b>{profile.shelter_name}</b></span>
+                            </div>
+                            <p style={{ marginTop: '-.5em' }}>
+                                <div className="info-profile-div">
+                                    <span><FontAwesomeIcon className="icon" icon={faMapMarker} /> {distance({ latitude: profile.latitude, longitude: profile.longitude }, coordinates, 'K').toFixed(1)} kms away </span>
+                                    <span>Size: <b>{profile.size}</b> </span>
+                                </div>
+                                <div className="info-profile-div">
+                                    <span><FontAwesomeIcon className="icon" icon={faPaw} /> {profile.species} ({profile.breed})</span>
+                                    <span>Colour: <b>{profile.colour}</b> </span>
+                                </div>
+                                <div className="info-profile-div">
+                                    <span><FontAwesomeIcon className="icon" icon={faSearch} /> Looking for a forever {profile.foster ? ' or foster ' : ''} home</span>
+                                    <span>Spayed/Neudered: <b>{profile.spayedNeudered ? 'Yes' : 'No'}</b></span>
+                                </div>
+                            </p>
+                            <hr></hr>
+                            <p style={{ "font-size": "110%", overflow: 'auto', height: '50%', marginTop: '-1em' }}>{profile.bio}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+
+
+                <div>
+                    <Messenger userType={props.state.type} userID={props.state.account._id} animalID={profile.id} shelterID={profile.shelter_id} userName={props.state.account.name} animalName={profile.name} shelterName={profile.shelter_name} />
+                </div>
+            </div >
         )
     }
 }

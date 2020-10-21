@@ -11,7 +11,7 @@
 
 .sent-by-self {
     color: blue;
-    width: 23rem;;
+    width: 21rem;;
     margin-left: auto;
     margin-bottom: .5rem;
     margin-top: .5rem;
@@ -27,7 +27,7 @@
 
 .sent-by-other {
     color: red;
-    width: 23rem;
+    width: 21rem;
     margin-right: auto;
     margin-bottom: .5rem;
     margin-top: .5rem;
