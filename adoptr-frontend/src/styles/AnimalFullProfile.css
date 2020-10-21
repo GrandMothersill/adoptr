@@ -1,12 +1,4 @@
-.animal-full-profile {
-    width: 50%;
-    max-height: 60em;
-    min-height: 32.5em;
-    padding: 15px;
-    background-color: rgb(250, 242, 228);
-    box-shadow: 0px 0 10px rgba(2, 1, 0, 0.486); 
-    margin: 2rem 0px 0px 0px;
-}
+
 
 #animal-matches-chats{
     display: flex;
@@ -14,17 +6,18 @@
     align-items: center;
     flex-direction: row;
     flex-wrap: wrap;
+    background-color: rgba(243, 179, 47, 0.5);
+    height: 92vh;
 }
 
 .swipe-card-profile {
-    background-color: white;
+    background-color: rgb(250, 242, 228);
     width: 70vw;
     max-width: 600px;
     height: 83vh;
     max-height: 900px;
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.3);
     border-radius: 20px;
-    margin-top: 4.5vh;
   }
 
   .swipe-photo-profile {
