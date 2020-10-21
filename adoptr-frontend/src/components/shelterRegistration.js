@@ -274,12 +274,12 @@ function ShelterRegistration(props) {
                             style={{ "background-color": "black" }}
                         >
                             Sign Up
-                </Button>
+                        </Button>
                         <Grid container>
                             <Grid item>
                                 <Link href="/shelterlogin" variant="body2" style={{ "color": "black" }}>
                                     Already have an account? Login
-                    </Link>
+                                </Link>
                             </Grid>
                         </Grid>
                     </form>

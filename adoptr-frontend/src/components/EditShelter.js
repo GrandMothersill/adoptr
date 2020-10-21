@@ -1,8 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { Redirect } from "react-router-dom"
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import animals from "../images/animals.png";
+import "../styles/Login.css";
+
+const useStyles = makeStyles((theme) => ({
+    paper: {
+        marginTop: theme.spacing(8),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+    avatar: {
+        margin: theme.spacing(1),
+        backgroundColor: theme.palette.secondary.main,
+    },
+    form: {
+        width: '100%', // Fix IE 11 issue.
+        marginTop: theme.spacing(3),
+    },
+    submit: {
+        margin: theme.spacing(3, 0, 2),
+    },
+}));
 
 function ShelterRegistration(props) {
+    const classes = useStyles();
     const [landingRedirect, setLandingRedirect] = useState(false);
     const [name, setName] = useState(props.state.account.name);
     const [email, setEmail] = useState(props.state.account.email);
@@ -88,111 +118,169 @@ function ShelterRegistration(props) {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h1>Create Shelter</h1>
-            <label>
-                Name of Shelter
-                <input
-                    name="name"
-                    type="text"
-                    value={name}
-                    onChange={e => setName(e.target.value)}
-                    required />
-            </label>
-            <br></br>
-            <label>
-                Email
-                <input
-                    name="email"
-                    type="email"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    required />
-            </label>
-            <br></br>
-            <label>
-                Shelter Bio:
-                <input
-                    name="bio"
-                    type="text"
-                    value={bio}
-                    onChange={e => setBio(e.target.value)}
-                    required />
-            </label>
-            <br></br>
-            <label>
-                Phone Number:
-                <input
-                    name="phone"
-                    type="phoneNumber"
-                    value={phone}
-                    onChange={e => setPhone(e.target.value)}
-                    required />
-            </label>
-            <br></br>
-            <label>
-                Street Number:
-                <input
-                    name="street_number"
-                    type="text"
-                    value={streetNumber}
-                    onChange={e => setStreetNumber(e.target.value)}
-                    required />
-            </label>
-            <br></br>
-            <label>
-                Street:
-                <input
-                    name="street"
-                    type="text"
-                    value={street}
-                    onChange={e => setStreet(e.target.value)}
-                    required />
-            </label>
-            <br></br>
-            <label>
-                City:
-                <input
-                    name="city"
-                    type="text"
-                    value={city}
-                    onChange={e => setCity(e.target.value)}
-                    required />
-            </label>
-            <br></br>
-            <label>
-                Province:
-                <input
-                    name="province"
-                    type="text"
-                    value={province}
-                    onChange={e => setProvince(e.target.value)}
-                    required />
-            </label>
-            <br></br>
-            <label>
-                Postcal Code:
-                <input
-                    name="address"
-                    type="text"
-                    value={postalCode}
-                    onChange={e => setPostalCode(e.target.value)}
-                    required />
-            </label>
-            <br></br>
-            <p>Please input your password to confirm edits</p>
-            <label>
-                Password:
-                <input
-                    name="password"
-                    type="password"
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
-                    required />
-            </label>
-            <br></br>
-            <button>Submit</button>
-        </form>
+        <Container component="main" maxWidth="xs">
+            <CssBaseline />
+            <div className={classes.paper}>
+                <img className="animals" src={animals} alt="animals" />
+                <Typography component="h1" variant="h5">
+                    Edit Shelter Information
+                </Typography>
+                <form className={classes.form} noValidate onSubmit={handleSubmit}>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                id="name"
+                                label="Full Name"
+                                name="name"
+                                autoComplete="name"
+                                onChange={e => setName(e.target.value)}
+                                autoFocus
+                                value={name}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="email"
+                                label="Email Address"
+                                type="text"
+                                id="email"
+                                autoComplete="email"
+                                onChange={e => setEmail(e.target.value)}
+                                value={email}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="bio"
+                                label="Bio"
+                                type="text"
+                                id="bio"
+                                autoComplete="bio"
+                                onChange={e => setBio(e.target.value)}
+                                value={bio}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="phone"
+                                label="Phone Number"
+                                type="tel"
+                                id="phone"
+                                autoComplete="phone"
+                                onChange={e => setPhone(e.target.value)}
+                                value={phone}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={5}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="number"
+                                label="Street Number"
+                                type="text"
+                                id="number"
+                                autoComplete="number"
+                                onChange={e => setStreetNumber(e.target.value)}
+                                value={streetNumber}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={7}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="street"
+                                label="Street"
+                                type="text"
+                                id="street"
+                                autoComplete="street"
+                                onChange={e => setStreet(e.target.value)}
+                                value={street}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="city"
+                                label="City"
+                                type="text"
+                                id="city"
+                                autoComplete="city"
+                                onChange={e => setCity(e.target.value)}
+                                value={city}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="province"
+                                label="Province"
+                                type="text"
+                                id="province"
+                                autoComplete="province"
+                                onChange={e => setProvince(e.target.value)}
+                                value={province}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="code"
+                                label="Postal Code"
+                                type="text"
+                                id="code"
+                                autoComplete="code"
+                                onChange={e => setPostalCode(e.target.value)}
+                                value={postalCode}
+                            />
+                        </Grid>
+                        <p style={{"margin-top": "20px", "padding-left": "15px"}}>Please input your password to confirm edits</p>
+                        <Grid item xs={12} style={{"padding-top": 0}}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="password"
+                                label="Password"
+                                type="password"
+                                id="password"
+                                autoComplete="password"
+                                onChange={e => setPassword(e.target.value)}
+                            />
+                        </Grid>
+                    </Grid>
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                        style={{ "background-color": "black" }}
+                    >
+                        Submit
+                    </Button>
+                </form>
+            </div>
+        </Container>
     );
 }
 
