@@ -1,8 +1,6 @@
 .landing {
   background-color: rgba(243, 179, 47, 0.5);
-  display: flex;
- height: 92vh;
-  flex-direction: column;
+  padding: 2%;
 }
 
 .card {
