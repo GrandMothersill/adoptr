@@ -1,8 +1,8 @@
 
 .messenger-card {
-    width: 100%;
-    max-height: 60em;
-    min-height: 32.5em;
+    width: 130%;
+    max-height: 100em;
+    min-height: 40em;
     padding: 15px;
     background-color: rgb(250, 242, 228);
     box-shadow: 0px 0 10px rgba(2, 1, 0, 0.486); 
@@ -10,7 +10,7 @@
 }
 
 .sent-by-self {
-    color: blue;
+    color: rgb(31, 110, 214);
     width: 21rem;;
     margin-left: auto;
     margin-bottom: .5rem;
@@ -26,7 +26,7 @@
   }
 
 .sent-by-other {
-    color: red;
+    color: rgb(230, 80, 21);
     width: 21rem;
     margin-right: auto;
     margin-bottom: .5rem;
@@ -66,8 +66,8 @@
     padding-right: 10px;
     padding-bottom: 5px;
     padding-top: 5px;
-    min-height: 20em;
-    max-height: 20em;
+    min-height: 27.5em;
+    max-height: 27.5em;
     overflow: auto;
 }
 

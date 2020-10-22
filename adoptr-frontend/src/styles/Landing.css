@@ -1,6 +1,7 @@
 .landing {
   background-color: rgba(243, 179, 47, 0.5);
   padding: 2%;
+  min-height: 92vh;
 }
 
 .card {
@@ -21,11 +22,6 @@
   margin-left: .8rem;
 }
 
-.landing-dashboard-wrapper {
-  display: flex;
-  margin-top: -3rem;
-  margin-right: 2rem;
-}
 
 .dashboard-info {
   margin: -.3rem 0 .8rem 0;

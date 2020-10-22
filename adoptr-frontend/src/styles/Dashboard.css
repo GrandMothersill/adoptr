@@ -4,6 +4,20 @@
   background-color: rgba(243, 179, 47, 0.5);
 }
 
-.shelter-landing-dashboard {
-  color: purple;
+
+.dashboard-title {
+  display: flex;
+  justify-content: space-between;
+  margin-top: -.3em;
+}
+
+.dashboard-card {
+  width: 22rem;
+  height: 40rem;
+  margin: .8rem;
+}
+
+.dashboard-button {
+  height: 2.3em;
+  margin-right: -.3em;
 }
