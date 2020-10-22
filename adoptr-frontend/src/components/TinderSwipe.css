@@ -4,18 +4,18 @@
 
 .swipe-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .swiping {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 10%;
 }
 
 .swipe-button {
-  font-size: 50px;
+  font-size: 75px;
+  margin: 5rem;
 }
 
 .red {
@@ -31,10 +31,10 @@
 }
 
 .swipe-card-container {
-  width: 105vw;
-  max-width: 700px;
+  width: 75vw;
+  max-width: 450px;
   height: 135vh;
-  max-height: 900px;
+  max-height: 675px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -44,9 +44,9 @@
 .swipe-card {
   background-color: white;
   width: 75vw;
-  max-width: 600px;
+  max-width: 450px;
   height: 135vh;
-  max-height: 900px;
+  max-height: 675px;
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.3);
   border-radius: 20px;
   background-position: center;
@@ -54,7 +54,7 @@
 
 .swipe-photo {
   width: 100%;
-  height: 550px;
+  height: 400px;
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -73,5 +73,7 @@
   border-radius: 20px;
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.3);
   padding: 50px;
-  margin-top: 15%;
+ position: absolute;
+ left: 5rem;
+ top: 17rem;
 }

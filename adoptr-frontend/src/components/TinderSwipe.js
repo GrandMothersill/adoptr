@@ -225,7 +225,7 @@ function TinderSwipe(props) {
                                             <FontAwesomeIcon className="icon" icon={faPaw} /> {animal.species} ({animal.breedAndInfo.breed})
                                         <br />
                                             <FontAwesomeIcon className="icon" icon={faSearch} /> Looking for a forever home {animal.foster ? 'or loving temporary home' : ''}</p>
-                                        <p style={{ "font-size": "150%" }}>{animal.bio}</p>
+                                        <p style={{ "font-size": "120%", overflow: 'auto', maxHeight: '10rem', marginBottom: '-1rem' }}>{animal.bio}</p>
                                     </div>
                                 </div>
 
