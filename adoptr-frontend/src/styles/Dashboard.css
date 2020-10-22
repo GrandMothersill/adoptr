@@ -1,4 +1,9 @@
 .body {
   display: flex;
   justify-content: start;
+  background-color: rgba(243, 179, 47, 0.5);
+}
+
+.shelter-landing-dashboard {
+  color: purple;
 }

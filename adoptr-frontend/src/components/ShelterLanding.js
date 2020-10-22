@@ -30,16 +30,20 @@ function ShelterLanding(props) {
   }
 
   if (!loading) {
-    
+
     return (
       <div className="landing">
-        <h1>Welcome to your dashboard, {props.state.account.name}</h1>
-        <p>Edit your account, create new animal profiles and keep track of your animals and their matches all in one place!</p>
-        <div className="dashboard-actions">
-          <Link to="/shelter/edit"><Button variant="warning" className="dashboard-actions">Edit Account</Button></Link>
-          <Link to="/animals"><Button variant="warning" className="dashboard-actions action">Create New Animal Profile</Button></Link>
+        <div className="landing-dashboard-wrapper">
+          <div>
+            <h1 style={{ fontSize: '280%' }}> Welcome to your Dashboard, {props.state.account.name}</h1>
+            <p className="dashboard-info">Edit your account, create new animal profiles and keep track of your animals and their matches all in one place!</p>
+            <div className="dashboard-actions">
+              <Link to="/animals"><Button variant="warning" className="dashboard-actions">Create New Animal Profile</Button></Link>
+              <Link to="/shelter/edit"><Button variant="warning" className="dashboard-actions action">Edit Account</Button></Link>
+            </div>
+          </div>
         </div>
-        <div className="row dashboard"><Dashboard profiles={profiles} type={props.state.type}/></div>
+        <div className="row dashboard"><Dashboard className="shelter-landing-dashboard" profiles={profiles} type={props.state.type} /></div>
       </div>
     )
   } else {
